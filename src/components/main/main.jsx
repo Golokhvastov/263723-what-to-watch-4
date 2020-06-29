@@ -1,6 +1,9 @@
 import React from "react";
 
-const Main = () => {
+const Main = (props) => {
+  // eslint-disable-next-line react/prop-types
+  const {movieCardTitle, movieCardGenre, movieCardYear} = props;
+
   return (
     <>
       <section className="movie-card">
@@ -33,14 +36,14 @@ const Main = () => {
             </div>
 
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">The Grand Budapest Hotel</h2>
+              <h2 className="movie-card__title">{movieCardTitle}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">Drama</span>
-                <span className="movie-card__year">2014</span>
+                <span className="movie-card__genre">{movieCardGenre}</span>
+                <span className="movie-card__year">{movieCardYear}</span>
               </p>
 
               <div className="movie-card__buttons">
-               <button className="btn btn--play movie-card__button" type="button">
+                <button className="btn btn--play movie-card__button" type="button">
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
