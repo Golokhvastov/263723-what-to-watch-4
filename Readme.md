@@ -1,7 +1,7 @@
 # Личный проект «Что посмотреть» [![Build status][travis-image]][travis-url]
 
 * Студент: [Дмитрий Голохвастов](https://up.htmlacademy.ru/react/4/user/263723).
-* Наставник: `Неизвестно`.
+* Наставник: [Влад Слепкан](https://htmlacademy.ru/profile/id383197).
 
 ---
 
