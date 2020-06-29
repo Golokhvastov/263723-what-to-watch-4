@@ -5,7 +5,7 @@ env:
 
 extends: ['htmlacademy/es6', 'plugin:react/recommended']
 
-parseOptions:
+parserOptions:
   ecmaFeatures:
     jsx: true
   ecmaVersion: 6
