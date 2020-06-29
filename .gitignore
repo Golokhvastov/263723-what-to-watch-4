@@ -10,3 +10,7 @@ Thumbs.db
 # Вспомогательные файлы
 *.log*
 node_modules/
+
+# Сборка webpack
+public/bundle.js
+public/bundle.js.map
