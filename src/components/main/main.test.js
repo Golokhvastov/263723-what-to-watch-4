@@ -9,6 +9,8 @@ const mocks = {
   movies: [`Test1`, `Test2`, `Test3`]
 };
 
+const onMovieTitleClick = () => {};
+
 it(`Main render correctly`, () => {
   const tree = renderer
     .create(
@@ -17,6 +19,7 @@ it(`Main render correctly`, () => {
           movieCardGenre = {mocks.movieCardGenre}
           movieCardYear = {mocks.movieCardYear}
           movies = {mocks.movies}
+          onMovieTitleClick = {onMovieTitleClick}
         />
     ).toJSON();
 
