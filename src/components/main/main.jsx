@@ -1,7 +1,7 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const Main = (props) => {
-  // eslint-disable-next-line react/prop-types
   const {movieCardTitle, movieCardGenre, movieCardYear, movies} = props;
 
   return (
@@ -137,3 +137,12 @@ const Main = (props) => {
 };
 
 export default Main;
+
+Main.propTypes = {
+  movieCardTitle: PropTypes.string.isRequired,
+  movieCardGenre: PropTypes.string.isRequired,
+  movieCardYear: PropTypes.number.isRequired,
+  movies: PropTypes.arrayOf(
+      PropTypes.string.isRequired
+  ).isRequired
+};
