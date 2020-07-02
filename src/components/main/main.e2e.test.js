@@ -15,18 +15,26 @@ const mocks = {
 };
 
 it(`e2e test for Main`, () => {
+  const movieTitleClickHandler = jest.fn();
+
   const main = shallow(
       <Main
         movieCardTitle = {mocks.movieCardTitle}
         movieCardGenre = {mocks.movieCardGenre}
         movieCardYear = {mocks.movieCardYear}
         movies = {mocks.movies}
+        onMovieTitleClick = {movieTitleClickHandler}
       />
   );
 
   const moviesCards = main.find(`.small-movie-card`);
   expect(moviesCards.length).toBe(mocks.movies.length);
+
+  moviesCards.at(0).find(`h3`).simulate(`click`);
+  expect(movieTitleClickHandler.mock.calls.length).toBe(1);
+
   for (let i = 0; i < moviesCards.length; i++) {
-    expect(moviesCards.at(i).find(`a`).text()).toEqual(mocks.movies[i]);
+    moviesCards.at(i).find(`h3`).simulate(`click`);
   }
+  expect(movieTitleClickHandler.mock.calls.length).toBe(mocks.movies.length + 1);
 });
