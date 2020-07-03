@@ -1,5 +1,5 @@
 import React from "react";
-import Enzyme, {shallow} from "enzyme";
+import Enzyme, {mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import Main from "./main.jsx";
 
@@ -30,7 +30,7 @@ const mocks = {
 it(`e2e test for Main`, () => {
   const movieTitleClickHandler = jest.fn();
 
-  const main = shallow(
+  const main = mount(
       <Main
         movieCardTitle = {mocks.movieCardTitle}
         movieCardGenre = {mocks.movieCardGenre}

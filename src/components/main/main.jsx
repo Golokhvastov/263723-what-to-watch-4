@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import MovieCard from "../movie-card/movie-card.jsx";
 
 const Main = (props) => {
   const {movieCardTitle, movieCardGenre, movieCardYear, movies, onMovieTitleClick} = props;
@@ -99,16 +100,15 @@ const Main = (props) => {
           </ul>
 
           <div className="catalog__movies-list">
-            {movies.map((movie, i) => {
+            {movies.map((movie) => {
               return (
-                <article className="small-movie-card catalog__movies-card" key={movie.title + i}>
-                  <div className="small-movie-card__image">
-                    <img src={`img/${movie.pictureSrc}`} alt={movie.title} width="280" height="175" />
-                  </div>
-                  <h3 className="small-movie-card__title" onClick = {onMovieTitleClick}>
-                    <a className="small-movie-card__link" href="movie-page.html">{movie.title}</a>
-                  </h3>
-                </article>
+                <MovieCard
+                  key = {movie.title}
+                  movie = {movie}
+                  onTitleClick = {onMovieTitleClick}
+                  onMouseEnter = {() => {}}
+                  onMouseLeave = {() => {}}
+                />
               );
             })}
           </div>
