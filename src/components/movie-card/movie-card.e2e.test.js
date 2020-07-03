@@ -35,12 +35,12 @@ it(`e2e test for MovieCard`, () => {
       />
   );
 
-  movieCard.find(`.small-movie-card__title`).simulate(`click`, mockEvent);
+  movieCard.simulate(`click`, mockEvent);
   expect(onTitleClick).toHaveBeenCalledTimes(1);
 
-  movieCard.find(`.catalog__movies-card`).simulate(`mouseenter`);
+  movieCard.simulate(`mouseenter`);
   expect(onMouseEnter.mock.calls[0][0]).toBe(result.resultIndex);
 
-  movieCard.find(`.catalog__movies-card`).simulate(`mouseleave`);
+  movieCard.simulate(`mouseleave`);
   expect(onMouseLeave).toHaveBeenCalledTimes(1);
 });
