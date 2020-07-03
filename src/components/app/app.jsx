@@ -12,11 +12,16 @@ class App extends React.PureComponent {
       selectedMovie: null
     };
     this.movieTitleClickHandler = this.movieTitleClickHandler.bind(this);
+    this.logoClickHandler = this.logoClickHandler.bind(this);
     this._renderApp = this._renderApp.bind(this);
   }
 
   movieTitleClickHandler(selectedMovie) {
     this.setState({selectedMovie});
+  }
+
+  logoClickHandler() {
+    this.setState({selectedMovie: null});
   }
 
   _renderApp() {
@@ -34,12 +39,17 @@ class App extends React.PureComponent {
       );
     } else {
       return (
-        <MoviePage />
+        <MoviePage
+          movie = {this.state.selectedMovie}
+          onLogoClick = {this.logoClickHandler}
+        />
       );
     }
   }
 
   render() {
+    const {movies} = this.props;
+
     return (
       <BrowserRouter>
         <Switch>
@@ -47,7 +57,10 @@ class App extends React.PureComponent {
             {this._renderApp()}
           </Route>
           <Route exact path="/dev-movie-page">
-            <MoviePage />
+            <MoviePage
+              movie = {movies[0]}
+              onLogoClick = {this.logoClickHandler}
+            />
           </Route>
         </Switch>
       </BrowserRouter>
