@@ -99,14 +99,14 @@ const Main = (props) => {
           </ul>
 
           <div className="catalog__movies-list">
-            {movies.map((movie, index) => {
+            {movies.map((movie, i) => {
               return (
-                <article className="small-movie-card catalog__movies-card" key={movie + index}>
+                <article className="small-movie-card catalog__movies-card" key={movie.title + i}>
                   <div className="small-movie-card__image">
-                    <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt={movie} width="280" height="175" />
+                    <img src={`img/${movie.pictureSrc}`} alt={movie.title} width="280" height="175" />
                   </div>
                   <h3 className="small-movie-card__title" onClick = {onMovieTitleClick}>
-                    <a className="small-movie-card__link" href="movie-page.html">{movie}</a>
+                    <a className="small-movie-card__link" href="movie-page.html">{movie.title}</a>
                   </h3>
                 </article>
               );
@@ -143,7 +143,10 @@ Main.propTypes = {
   movieCardGenre: PropTypes.string.isRequired,
   movieCardYear: PropTypes.number.isRequired,
   movies: PropTypes.arrayOf(
-      PropTypes.string.isRequired
+      PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        pictureSrc: PropTypes.string.isRequired
+      })
   ).isRequired,
   onMovieTitleClick: PropTypes.func.isRequired
 };

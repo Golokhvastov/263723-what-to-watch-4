@@ -25,6 +25,9 @@ App.propTypes = {
   movieCardGenre: PropTypes.string.isRequired,
   movieCardYear: PropTypes.number.isRequired,
   movies: PropTypes.arrayOf(
-      PropTypes.string.isRequired
-  ).isRequired
+      PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        pictureSrc: PropTypes.string.isRequired
+      })
+  ).isRequired,
 };
