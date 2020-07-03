@@ -4,30 +4,56 @@ import {BrowserRouter, Switch, Route} from "react-router-dom";
 import Main from "../main/main.jsx";
 import MoviePage from "../movie-page/movie-page.jsx";
 
-const movieTitleClickHandler = () => {};
 
-const App = (props) => {
-  const {movieCardTitle, movieCardGenre, movieCardYear, movies} = props;
+class App extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedMovie: null
+    };
+    this.movieTitleClickHandler = this.movieTitleClickHandler.bind(this);
+    this._renderApp = this._renderApp.bind(this);
+  }
 
-  return (
-    <BrowserRouter>
-      <Switch>
-        <Route exact path="/">
-          <Main
-            movieCardTitle = {movieCardTitle}
-            movieCardGenre = {movieCardGenre}
-            movieCardYear = {movieCardYear}
-            movies = {movies}
-            onMovieTitleClick = {movieTitleClickHandler}
-          />
-        </Route>
-        <Route exact path="/dev-movie-page">
-          <MoviePage />
-        </Route>
-      </Switch>
-    </BrowserRouter>
-  );
-};
+  movieTitleClickHandler(selectedMovie) {
+    this.setState({selectedMovie});
+  }
+
+  _renderApp() {
+    const {movieCardTitle, movieCardGenre, movieCardYear, movies} = this.props;
+
+    if (!this.state.selectedMovie) {
+      return (
+        <Main
+          movieCardTitle = {movieCardTitle}
+          movieCardGenre = {movieCardGenre}
+          movieCardYear = {movieCardYear}
+          movies = {movies}
+          onMovieTitleClick = {this.movieTitleClickHandler}
+        />
+      );
+    } else {
+      return (
+        <MoviePage />
+      );
+    }
+  }
+
+  render() {
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/">
+            {this._renderApp()}
+          </Route>
+          <Route exact path="/dev-movie-page">
+            <MoviePage />
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    );
+  }
+}
 
 export default App;
 

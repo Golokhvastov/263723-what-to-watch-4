@@ -13,7 +13,12 @@ const MovieCard = (props) => {
       <div className="small-movie-card__image">
         <img src={`img/${movie.pictureSrc}`} alt={movie.title} width="280" height="175" />
       </div>
-      <h3 className="small-movie-card__title" onClick = {onTitleClick}>
+      <h3 className="small-movie-card__title"
+        onClick = {(evt) => {
+          evt.preventDefault();
+          onTitleClick(movie);
+        }}
+      >
         <a className="small-movie-card__link" href="movie-page.html">{movie.title}</a>
       </h3>
     </article>
