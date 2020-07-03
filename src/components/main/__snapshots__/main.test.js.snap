@@ -259,14 +259,16 @@ Array [
       >
         <article
           className="small-movie-card catalog__movies-card"
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
         >
           <div
             className="small-movie-card__image"
           >
             <img
-              alt="Test1"
+              alt="Тест1"
               height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+              src="img/test1.jpg"
               width="280"
             />
           </div>
@@ -278,20 +280,22 @@ Array [
               className="small-movie-card__link"
               href="movie-page.html"
             >
-              Test1
+              Тест1
             </a>
           </h3>
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
         >
           <div
             className="small-movie-card__image"
           >
             <img
-              alt="Test2"
+              alt="Тест2"
               height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+              src="img/test2.jpg"
               width="280"
             />
           </div>
@@ -303,20 +307,22 @@ Array [
               className="small-movie-card__link"
               href="movie-page.html"
             >
-              Test2
+              Тест2
             </a>
           </h3>
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
         >
           <div
             className="small-movie-card__image"
           >
             <img
-              alt="Test3"
+              alt="Тест3"
               height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+              src="img/test3.jpg"
               width="280"
             />
           </div>
@@ -328,7 +334,7 @@ Array [
               className="small-movie-card__link"
               href="movie-page.html"
             >
-              Test3
+              Тест3
             </a>
           </h3>
         </article>

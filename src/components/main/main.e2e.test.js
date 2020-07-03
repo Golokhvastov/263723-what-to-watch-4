@@ -1,5 +1,5 @@
 import React from "react";
-import Enzyme, {shallow} from "enzyme";
+import Enzyme, {mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import Main from "./main.jsx";
 
@@ -11,13 +11,26 @@ const mocks = {
   movieCardTitle: `Test`,
   movieCardGenre: `Comedy`,
   movieCardYear: 2011,
-  movies: [`Test1`, `Test2`, `Test3`]
+  movies: [
+    {
+      title: `Тест1`,
+      pictureSrc: `test1.jpg`
+    },
+    {
+      title: `Тест2`,
+      pictureSrc: `test2.jpg`
+    },
+    {
+      title: `Тест3`,
+      pictureSrc: `test3.jpg`
+    },
+  ]
 };
 
 it(`e2e test for Main`, () => {
   const movieTitleClickHandler = jest.fn();
 
-  const main = shallow(
+  const main = mount(
       <Main
         movieCardTitle = {mocks.movieCardTitle}
         movieCardGenre = {mocks.movieCardGenre}

@@ -6,7 +6,20 @@ const mocks = {
   movieCardTitle: `Test`,
   movieCardGenre: `Comedy`,
   movieCardYear: 2011,
-  movies: [`Test1`, `Test2`, `Test3`]
+  movies: [
+    {
+      title: `Тест1`,
+      pictureSrc: `test1.jpg`
+    },
+    {
+      title: `Тест2`,
+      pictureSrc: `test2.jpg`
+    },
+    {
+      title: `Тест3`,
+      pictureSrc: `test3.jpg`
+    },
+  ]
 };
 
 const onMovieTitleClick = () => {};
