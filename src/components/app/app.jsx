@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {BrowserRouter, Switch, Route} from "react-router-dom";
 import Main from "../main/main.jsx";
+import MoviePage from "../movie-page/movie-page.jsx";
 
 const movieTitleClickHandler = () => {};
 
@@ -8,13 +10,22 @@ const App = (props) => {
   const {movieCardTitle, movieCardGenre, movieCardYear, movies} = props;
 
   return (
-    <Main
-      movieCardTitle = {movieCardTitle}
-      movieCardGenre = {movieCardGenre}
-      movieCardYear = {movieCardYear}
-      movies = {movies}
-      onMovieTitleClick = {movieTitleClickHandler}
-    />
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/">
+          <Main
+            movieCardTitle = {movieCardTitle}
+            movieCardGenre = {movieCardGenre}
+            movieCardYear = {movieCardYear}
+            movies = {movies}
+            onMovieTitleClick = {movieTitleClickHandler}
+          />
+        </Route>
+        <Route exact path="/dev-movie-page">
+          <MoviePage />
+        </Route>
+      </Switch>
+    </BrowserRouter>
   );
 };
 
