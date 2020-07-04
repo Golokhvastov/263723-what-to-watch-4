@@ -1,22 +1,72 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {BrowserRouter, Switch, Route} from "react-router-dom";
 import Main from "../main/main.jsx";
+import MoviePage from "../movie-page/movie-page.jsx";
 
-const movieTitleClickHandler = () => {};
 
-const App = (props) => {
-  const {movieCardTitle, movieCardGenre, movieCardYear, movies} = props;
+class App extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedMovie: null
+    };
+    this.movieTitleClickHandler = this.movieTitleClickHandler.bind(this);
+    this.logoClickHandler = this.logoClickHandler.bind(this);
+    this._renderApp = this._renderApp.bind(this);
+  }
 
-  return (
-    <Main
-      movieCardTitle = {movieCardTitle}
-      movieCardGenre = {movieCardGenre}
-      movieCardYear = {movieCardYear}
-      movies = {movies}
-      onMovieTitleClick = {movieTitleClickHandler}
-    />
-  );
-};
+  movieTitleClickHandler(selectedMovie) {
+    this.setState({selectedMovie});
+  }
+
+  logoClickHandler() {
+    this.setState({selectedMovie: null});
+  }
+
+  _renderApp() {
+    const {movieCardTitle, movieCardGenre, movieCardYear, movies} = this.props;
+
+    if (!this.state.selectedMovie) {
+      return (
+        <Main
+          movieCardTitle = {movieCardTitle}
+          movieCardGenre = {movieCardGenre}
+          movieCardYear = {movieCardYear}
+          movies = {movies}
+          onMovieTitleClick = {this.movieTitleClickHandler}
+        />
+      );
+    } else {
+      return (
+        <MoviePage
+          movie = {this.state.selectedMovie}
+          onLogoClick = {this.logoClickHandler}
+        />
+      );
+    }
+  }
+
+  render() {
+    const {movies} = this.props;
+
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/">
+            {this._renderApp()}
+          </Route>
+          <Route exact path="/dev-movie-page">
+            <MoviePage
+              movie = {movies[0]}
+              onLogoClick = {this.logoClickHandler}
+            />
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    );
+  }
+}
 
 export default App;
 
