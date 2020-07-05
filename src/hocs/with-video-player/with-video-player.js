@@ -14,13 +14,10 @@ const withVideoPlayer = (Component) => {
     }
 
     cardMouseEnterHandler() {
-      this.timerId = setTimeout(() => {
-        this.setState({isPlaying: true});
-      }, 1000);
+      this.setState({isPlaying: true});
     }
 
     cardMouseLeaveHandler() {
-      clearTimeout(this.timerId);
       this.setState({isPlaying: false});
     }
 
