@@ -18,6 +18,9 @@ class VideoPlayer extends React.PureComponent {
 
     video.src = src;
 
+    video.volume = 0;
+    video.poster = this.props.posterSrc;
+
     video.oncanplaythrough = this.setState({
       isLoading: false
     });
@@ -42,7 +45,8 @@ class VideoPlayer extends React.PureComponent {
       video.play();
     } else {
       video.pause();
-      video.currentTime = 0;
+      video.currentTime = null;
+      this.timerId = setTimeout(() => {video.src = video.src;}, 500);
     }
   }
 
@@ -53,6 +57,7 @@ class VideoPlayer extends React.PureComponent {
     video.onplay = null;
     video.onpause = null;
     video.ontimeupdate = null;
+    video.volume = null;
     video.src = null;
     video = null;
   }
@@ -68,6 +73,7 @@ export default VideoPlayer;
 
 VideoPlayer.propTypes = {
   src: PropTypes.string.isRequired,
+  posterSrc: PropTypes.string.isRequired,
   isPlaying: PropTypes.bool.isRequired,
   width: PropTypes.string.isRequired,
   height: PropTypes.string.isRequired

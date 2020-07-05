@@ -5,6 +5,9 @@ const MovieCard = (props) => {
   const {movie, onTitleClick, onMouseEnter, onMouseLeave,
     isPlaying, onCardMouseEnter, onCardMouseLeave, renderVideo} = props;
 
+  const videoSrc = movie.preview;
+  const videoPosterSrc = `img/${movie.pictureSrc}`;
+
   return (
     <article
       className="small-movie-card catalog__movies-card"
@@ -22,7 +25,7 @@ const MovieCard = (props) => {
       }}
     >
       <div className="small-movie-card__image">
-        {renderVideo(movie.preview)}
+        {renderVideo(videoSrc, videoPosterSrc)}
       </div>
       <h3 className="small-movie-card__title">
         <a className="small-movie-card__link" href="movie-page.html">{movie.title}</a>
