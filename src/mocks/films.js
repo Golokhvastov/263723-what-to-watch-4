@@ -19,7 +19,52 @@ export default [
       `Jude Law`,
       `Willem Dafoe`
     ],
-    preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/a/ab/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm.360p.vp9.webm`
+    runTime: `1h 39m`,
+    preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/a/ab/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm.360p.vp9.webm`,
+    reviews: [
+      {
+        rating: 8.9,
+        date: `December 24, 2016`,
+        author: `Kate Muir`,
+        text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`
+      },
+      {
+        rating: 7.6,
+        date: `December 20, 2016`,
+        author: `Paula Fleri-Soler`,
+        text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`
+      },
+      {
+        rating: 8.9,
+        date: `December 24, 2016`,
+        author: `Kate Muir`,
+        text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`
+      },
+      {
+        rating: 7.6,
+        date: `December 20, 2016`,
+        author: `Paula Fleri-Soler`,
+        text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`
+      },
+      {
+        rating: 8.9,
+        date: `December 24, 2016`,
+        author: `Kate Muir`,
+        text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`
+      },
+      {
+        rating: 8.9,
+        date: `December 24, 2016`,
+        author: `Kate Muir`,
+        text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`
+      },
+      {
+        rating: 7.6,
+        date: `December 20, 2016`,
+        author: `Paula Fleri-Soler`,
+        text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`
+      }
+    ]
   },
   {
     title: `Bohemian Rhapsody`,
@@ -38,7 +83,46 @@ export default [
       `Tim Robbins`,
       `Morgan Freeman`
     ],
-    preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
+    runTime: `2h 20m`,
+    preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    reviews: [
+      {
+        rating: 8.9,
+        date: `December 24, 2016`,
+        author: `Kate Muir`,
+        text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`
+      },
+      {
+        rating: 7.6,
+        date: `December 20, 2016`,
+        author: `Paula Fleri-Soler`,
+        text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`
+      },
+      {
+        rating: 8.9,
+        date: `December 24, 2016`,
+        author: `Kate Muir`,
+        text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`
+      },
+      {
+        rating: 7.6,
+        date: `December 20, 2016`,
+        author: `Paula Fleri-Soler`,
+        text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`
+      },
+      {
+        rating: 8.9,
+        date: `December 24, 2016`,
+        author: `Kate Muir`,
+        text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`
+      },
+      {
+        rating: 7.6,
+        date: `December 20, 2016`,
+        author: `Paula Fleri-Soler`,
+        text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`
+      }
+    ]
   },
   {
     title: `Macbeth`,
@@ -64,7 +148,46 @@ export default [
       `Gil Bellows`,
       `James Whitmore`
     ],
-    preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
+    runTime: `3h 10m`,
+    preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    reviews: [
+      {
+        rating: 8.9,
+        date: `December 24, 2016`,
+        author: `Kate Muir`,
+        text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`
+      },
+      {
+        rating: 7.6,
+        date: `December 20, 2016`,
+        author: `Paula Fleri-Soler`,
+        text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`
+      },
+      {
+        rating: 8.9,
+        date: `December 24, 2016`,
+        author: `Kate Muir`,
+        text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`
+      },
+      {
+        rating: 7.6,
+        date: `December 20, 2016`,
+        author: `Paula Fleri-Soler`,
+        text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`
+      },
+      {
+        rating: 8.9,
+        date: `December 24, 2016`,
+        author: `Kate Muir`,
+        text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`
+      },
+      {
+        rating: 7.6,
+        date: `December 20, 2016`,
+        author: `Paula Fleri-Soler`,
+        text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`
+      }
+    ]
   },
   {
     title: `Aviator`,
@@ -94,7 +217,46 @@ export default [
       `Christopher Walken`,
       `Bruce Willis`
     ],
-    preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
+    runTime: `1h 39m`,
+    preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    reviews: [
+      {
+        rating: 8.9,
+        date: `December 24, 2016`,
+        author: `Kate Muir`,
+        text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`
+      },
+      {
+        rating: 7.6,
+        date: `December 20, 2016`,
+        author: `Paula Fleri-Soler`,
+        text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`
+      },
+      {
+        rating: 8.9,
+        date: `December 24, 2016`,
+        author: `Kate Muir`,
+        text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`
+      },
+      {
+        rating: 7.6,
+        date: `December 20, 2016`,
+        author: `Paula Fleri-Soler`,
+        text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`
+      },
+      {
+        rating: 8.9,
+        date: `December 24, 2016`,
+        author: `Kate Muir`,
+        text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`
+      },
+      {
+        rating: 7.6,
+        date: `December 20, 2016`,
+        author: `Paula Fleri-Soler`,
+        text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`
+      }
+    ]
   },
   {
     title: `Revenant`,
@@ -111,7 +273,46 @@ export default [
     ],
     director: `Bruce Willis`,
     starring: [`Anthony Perkins`],
-    preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
+    runTime: `1h 39m`,
+    preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    reviews: [
+      {
+        rating: 8.9,
+        date: `December 24, 2016`,
+        author: `Kate Muir`,
+        text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`
+      },
+      {
+        rating: 7.6,
+        date: `December 20, 2016`,
+        author: `Paula Fleri-Soler`,
+        text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`
+      },
+      {
+        rating: 8.9,
+        date: `December 24, 2016`,
+        author: `Kate Muir`,
+        text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`
+      },
+      {
+        rating: 7.6,
+        date: `December 20, 2016`,
+        author: `Paula Fleri-Soler`,
+        text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`
+      },
+      {
+        rating: 8.9,
+        date: `December 24, 2016`,
+        author: `Kate Muir`,
+        text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`
+      },
+      {
+        rating: 7.6,
+        date: `December 20, 2016`,
+        author: `Paula Fleri-Soler`,
+        text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`
+      }
+    ]
   },
   {
     title: `What We Do in the Shadows`,
@@ -133,7 +334,46 @@ export default [
       `Lee Jung-eun`,
       `Chang Hyae-jin`
     ],
-    preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
+    runTime: `1h 39m`,
+    preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    reviews: [
+      {
+        rating: 8.9,
+        date: `December 24, 2016`,
+        author: `Kate Muir`,
+        text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`
+      },
+      {
+        rating: 7.6,
+        date: `December 20, 2016`,
+        author: `Paula Fleri-Soler`,
+        text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`
+      },
+      {
+        rating: 8.9,
+        date: `December 24, 2016`,
+        author: `Kate Muir`,
+        text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`
+      },
+      {
+        rating: 7.6,
+        date: `December 20, 2016`,
+        author: `Paula Fleri-Soler`,
+        text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`
+      },
+      {
+        rating: 8.9,
+        date: `December 24, 2016`,
+        author: `Kate Muir`,
+        text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`
+      },
+      {
+        rating: 7.6,
+        date: `December 20, 2016`,
+        author: `Paula Fleri-Soler`,
+        text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`
+      }
+    ]
   },
   {
     title: `Johnny English`,
@@ -153,7 +393,46 @@ export default [
       `Maggie Gyllenhaal`,
       `Morgan Freeman`
     ],
-    preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
+    runTime: `1h 39m`,
+    preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    reviews: [
+      {
+        rating: 8.9,
+        date: `December 24, 2016`,
+        author: `Kate Muir`,
+        text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`
+      },
+      {
+        rating: 7.6,
+        date: `December 20, 2016`,
+        author: `Paula Fleri-Soler`,
+        text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`
+      },
+      {
+        rating: 8.9,
+        date: `December 24, 2016`,
+        author: `Kate Muir`,
+        text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`
+      },
+      {
+        rating: 7.6,
+        date: `December 20, 2016`,
+        author: `Paula Fleri-Soler`,
+        text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`
+      },
+      {
+        rating: 8.9,
+        date: `December 24, 2016`,
+        author: `Kate Muir`,
+        text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`
+      },
+      {
+        rating: 7.6,
+        date: `December 20, 2016`,
+        author: `Paula Fleri-Soler`,
+        text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`
+      }
+    ]
   },
   {
     title: `Shutter Island`,
@@ -176,6 +455,45 @@ export default [
       `Hugo Weaving`,
       `Joe Pantoliano`
     ],
-    preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
+    runTime: `1h 39m`,
+    preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    reviews: [
+      {
+        rating: 8.9,
+        date: `December 24, 2016`,
+        author: `Kate Muir`,
+        text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`
+      },
+      {
+        rating: 7.6,
+        date: `December 20, 2016`,
+        author: `Paula Fleri-Soler`,
+        text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`
+      },
+      {
+        rating: 8.9,
+        date: `December 24, 2016`,
+        author: `Kate Muir`,
+        text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`
+      },
+      {
+        rating: 7.6,
+        date: `December 20, 2016`,
+        author: `Paula Fleri-Soler`,
+        text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`
+      },
+      {
+        rating: 8.9,
+        date: `December 24, 2016`,
+        author: `Kate Muir`,
+        text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`
+      },
+      {
+        rating: 7.6,
+        date: `December 20, 2016`,
+        author: `Paula Fleri-Soler`,
+        text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`
+      }
+    ]
   },
 ];
