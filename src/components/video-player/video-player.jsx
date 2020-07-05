@@ -21,19 +21,19 @@ class VideoPlayer extends React.PureComponent {
     video.volume = 0;
     video.poster = this.props.posterSrc;
 
-    video.oncanplaythrough = this.setState({
+    video.oncanplaythrough = () => this.setState({
       isLoading: false
     });
 
-    video.onplay = this.setState({
+    video.onplay = () => this.setState({
       isPlaying: true
     });
 
-    video.onpause = this.setState({
+    video.onpause = () => this.setState({
       isPlaying: false
     });
 
-    video.ontimeupdate = this.setState({
+    video.ontimeupdate = () => this.setState({
       progress: video.currentTime
     });
   }
@@ -46,7 +46,9 @@ class VideoPlayer extends React.PureComponent {
     } else {
       video.pause();
       video.currentTime = null;
-      this.timerId = setTimeout(() => {video.src = video.src;}, 500);
+      this.timerId = setTimeout(() => {
+        video.src = video.src;
+      }, 500);
     }
   }
 
@@ -64,7 +66,7 @@ class VideoPlayer extends React.PureComponent {
 
   render() {
     return (
-      <video ref = {this._videoRef} width={this.props.width} height={this.props.height}/>
+      <video ref={this._videoRef} width={this.props.width} height={this.props.height}/>
     );
   }
 }

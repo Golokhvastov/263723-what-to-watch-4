@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import VideoPlayer from "../../components/video-player/video-player.jsx";
 
 const withVideoPlayer = (Component) => {
@@ -8,7 +7,7 @@ const withVideoPlayer = (Component) => {
       super(props);
       this.state = {
         isPlaying: false,
-      }
+      };
       this.cardMouseEnterHandler = this.cardMouseEnterHandler.bind(this);
       this.cardMouseLeaveHandler = this.cardMouseLeaveHandler.bind(this);
       this.renderVideo = this.renderVideo.bind(this);
@@ -52,6 +51,6 @@ const withVideoPlayer = (Component) => {
   WithVideoPlayer.propTypes = {};
 
   return WithVideoPlayer;
-}
+};
 
 export default withVideoPlayer;

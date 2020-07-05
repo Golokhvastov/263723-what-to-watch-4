@@ -5,26 +5,32 @@ import MoviesList from "./movies-list.jsx";
 const movies = [
   {
     title: `Тест1`,
-    pictureSrc: `test1.jpg`
+    pictureSrc: `test1.jpg`,
+    preview: `test1.mp4`
   },
   {
     title: `Тест2`,
-    pictureSrc: `test2.jpg`
+    pictureSrc: `test2.jpg`,
+    preview: `test2.mp4`
   },
   {
     title: `Тест3`,
-    pictureSrc: `test3.jpg`
+    pictureSrc: `test3.jpg`,
+    preview: `test3.mp4`
   },
 ];
 
-it(`MovieCard render correctly`, () => {
+it(`MoviesList render correctly`, () => {
   const tree = renderer
     .create(
         <MoviesList
           movies = {movies}
           onMovieTitleClick = {() => {}}
-        />
-    ).toJSON();
+        />, {
+          createNodeMock: () => {
+            return {};
+          }
+        }).toJSON();
 
   expect(tree).toMatchSnapshot();
 });

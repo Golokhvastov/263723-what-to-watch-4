@@ -4,7 +4,8 @@ import MovieCard from "./movie-card.jsx";
 
 const movie = {
   title: `Тест1`,
-  pictureSrc: `test1.jpg`
+  pictureSrc: `test1.jpg`,
+  preview: `test2.jpg`,
 };
 
 it(`MovieCard render correctly`, () => {
@@ -15,6 +16,9 @@ it(`MovieCard render correctly`, () => {
           onTitleClick = {() => {}}
           onMouseEnter = {() => {}}
           onMouseLeave = {() => {}}
+          onCardMouseEnter = {() => {}}
+          onCardMouseLeave = {() => {}}
+          renderVideo = {() => {}}
         />
     ).toJSON();
 

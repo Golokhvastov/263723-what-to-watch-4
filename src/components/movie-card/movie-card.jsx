@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const MovieCard = (props) => {
   const {movie, onTitleClick, onMouseEnter, onMouseLeave,
-    isPlaying, onCardMouseEnter, onCardMouseLeave, renderVideo} = props;
+    onCardMouseEnter, onCardMouseLeave, renderVideo} = props;
 
   const videoSrc = movie.preview;
   const videoPosterSrc = `img/${movie.pictureSrc}`;
@@ -39,7 +39,8 @@ export default MovieCard;
 MovieCard.propTypes = {
   movie: PropTypes.shape({
     title: PropTypes.string.isRequired,
-    pictureSrc: PropTypes.string.isRequired
+    pictureSrc: PropTypes.string.isRequired,
+    preview: PropTypes.string.isRequired
   }).isRequired,
   onTitleClick: PropTypes.func.isRequired,
   onMouseEnter: PropTypes.func.isRequired,
