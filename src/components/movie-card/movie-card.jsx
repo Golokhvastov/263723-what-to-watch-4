@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import VideoPlayer from "../video-player/video-player.jsx";
 
 const MovieCard = (props) => {
   const {movie, onTitleClick, onMouseEnter, onMouseLeave} = props;
@@ -15,7 +16,7 @@ const MovieCard = (props) => {
       }}
     >
       <div className="small-movie-card__image">
-        <img src={`img/${movie.pictureSrc}`} alt={movie.title} width="280" height="175" />
+        <VideoPlayer src = {movie.preview} isPlaying = {false} width="280" height="175"/>
       </div>
       <h3 className="small-movie-card__title">
         <a className="small-movie-card__link" href="movie-page.html">{movie.title}</a>
@@ -35,3 +36,5 @@ MovieCard.propTypes = {
   onMouseEnter: PropTypes.func.isRequired,
   onMouseLeave: PropTypes.func.isRequired,
 };
+
+// <img src={`img/${movie.pictureSrc}`} alt={movie.title} width="280" height="175" />

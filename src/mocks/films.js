@@ -18,7 +18,8 @@ export default [
       `Edward Norton`,
       `Jude Law`,
       `Willem Dafoe`
-    ]
+    ],
+    preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/a/ab/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm.360p.vp9.webm`
   },
   {
     title: `Bohemian Rhapsody`,
@@ -36,7 +37,8 @@ export default [
     starring: [
       `Tim Robbins`,
       `Morgan Freeman`
-    ]
+    ],
+    preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
   },
   {
     title: `Macbeth`,
@@ -61,7 +63,8 @@ export default [
       `Clancy Brown`,
       `Gil Bellows`,
       `James Whitmore`
-    ]
+    ],
+    preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
   },
   {
     title: `Aviator`,
@@ -90,7 +93,8 @@ export default [
       `Rosanna Arquette`,
       `Christopher Walken`,
       `Bruce Willis`
-    ]
+    ],
+    preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
   },
   {
     title: `Revenant`,
@@ -106,7 +110,8 @@ export default [
       `These mock members are very useful in tests to assert how these functions get called, instantiated, or what they returned.`
     ],
     director: `Bruce Willis`,
-    starring: [`Anthony Perkins`]
+    starring: [`Anthony Perkins`],
+    preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
   },
   {
     title: `What We Do in the Shadows`,
@@ -127,7 +132,8 @@ export default [
       `Park So-dam`,
       `Lee Jung-eun`,
       `Chang Hyae-jin`
-    ]
+    ],
+    preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
   },
   {
     title: `Johnny English`,
@@ -146,7 +152,8 @@ export default [
     starring: [
       `Maggie Gyllenhaal`,
       `Morgan Freeman`
-    ]
+    ],
+    preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
   },
   {
     title: `Shutter Island`,
@@ -168,6 +175,7 @@ export default [
       `Carrie-Anne Moss`,
       `Hugo Weaving`,
       `Joe Pantoliano`
-    ]
+    ],
+    preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
   },
 ];
