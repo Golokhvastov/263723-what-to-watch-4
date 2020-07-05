@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import MoviePage from "./movie-page.jsx";
+import Tabs from "./tabs.jsx";
 
 const mocks = {
   movie: {
@@ -45,34 +45,14 @@ const mocks = {
         text: `Test7`
       }
     ]
-  },
-  movies: [
-    {
-      title: `Test8`,
-      pictureSrc: `test8.jpg`,
-      preview: `test8.mp4`
-    },
-    {
-      title: `Test9`,
-      pictureSrc: `test9.jpg`,
-      preview: `test9.mp4`
-    },
-    {
-      title: `Test10`,
-      pictureSrc: `test10.jpg`,
-      preview: `test10.mp4`
-    },
-  ]
+  }
 };
 
-it(`MoviePage render correctly`, () => {
+it(`Tabs render correctly`, () => {
   const tree = renderer
     .create(
-        <MoviePage
-          movie = {mocks.movie}
-          onLogoClick = {() => {}}
-          movies = {mocks.movies}
-          onMovieTitleClick = {() => {}}
+        <Tabs
+          movie={mocks.movie}
         />, {
           createNodeMock: () => {
             return {};
