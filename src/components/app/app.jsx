@@ -7,7 +7,7 @@ import {getSimilarMovies} from "../../utils/utils.js";
 
 const Settings = {
   maxSimilarMovies: 4,
-}
+};
 
 class App extends React.PureComponent {
   constructor(props) {
