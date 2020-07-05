@@ -3,7 +3,11 @@ import PropTypes from "prop-types";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 import Main from "../main/main.jsx";
 import MoviePage from "../movie-page/movie-page.jsx";
+import {getSimilarMovies} from "../../utils/utils.js";
 
+const Settings = {
+  maxSimilarMovies: 4,
+}
 
 class App extends React.PureComponent {
   constructor(props) {
@@ -26,8 +30,9 @@ class App extends React.PureComponent {
 
   _renderApp() {
     const {movieCardTitle, movieCardGenre, movieCardYear, movies} = this.props;
+    const {selectedMovie} = this.state;
 
-    if (!this.state.selectedMovie) {
+    if (!selectedMovie) {
       return (
         <Main
           movieCardTitle = {movieCardTitle}
@@ -40,8 +45,10 @@ class App extends React.PureComponent {
     } else {
       return (
         <MoviePage
-          movie = {this.state.selectedMovie}
+          movie = {selectedMovie}
           onLogoClick = {this.logoClickHandler}
+          movies = {getSimilarMovies(movies, selectedMovie, Settings.maxSimilarMovies)}
+          onMovieTitleClick = {this.movieTitleClickHandler}
         />
       );
     }
@@ -60,6 +67,8 @@ class App extends React.PureComponent {
             <MoviePage
               movie = {movies[0]}
               onLogoClick = {this.logoClickHandler}
+              movies = {getSimilarMovies(movies, movies[0], Settings.maxSimilarMovies)}
+              onMovieTitleClick = {this.movieTitleClickHandler}
             />
           </Route>
         </Switch>

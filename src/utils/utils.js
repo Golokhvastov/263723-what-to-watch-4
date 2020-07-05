@@ -11,3 +11,8 @@ export const getTextRating = (value) => {
 
   return ``;
 };
+
+export const getSimilarMovies = (movies, selectedMovie, maxSimilarMovies) => {
+  const allSimilarMovies = movies.filter((movie) => movie.genre === selectedMovie.genre);
+  return allSimilarMovies.slice(0, maxSimilarMovies);
+};
