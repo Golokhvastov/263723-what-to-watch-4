@@ -42,10 +42,14 @@ class VideoPlayer extends React.PureComponent {
     const video = this._videoRef.current;
 
     if (this.props.isPlaying) {
-      video.play();
+      clearTimeout(this.timerId);
+      this.timerId = setTimeout(() => {
+        video.currentTime = null;
+        video.play();
+      }, 1000);
     } else {
+      clearTimeout(this.timerId);
       video.pause();
-      video.currentTime = null;
       this.timerId = setTimeout(() => {
         video.src = video.src;
       }, 500);
@@ -54,6 +58,7 @@ class VideoPlayer extends React.PureComponent {
 
   componentWillUnmount() {
     const video = this._videoRef.current;
+    clearTimeout(this.timerId);
 
     video.oncanplaythrough = null;
     video.onplay = null;
@@ -61,7 +66,6 @@ class VideoPlayer extends React.PureComponent {
     video.ontimeupdate = null;
     video.volume = null;
     video.src = null;
-    video = null;
   }
 
   render() {
