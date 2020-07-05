@@ -9,7 +9,8 @@ Enzyme.configure({
 
 const movie = {
   title: `Тест1`,
-  pictureSrc: `test1.jpg`
+  pictureSrc: `test1.jpg`,
+  preview: `test2.jpg`,
 };
 
 const mockEvent = {
@@ -20,6 +21,7 @@ it(`e2e test for MovieCard`, () => {
   const onTitleClick = jest.fn();
   const onMouseEnter = jest.fn();
   const onMouseLeave = jest.fn();
+  const renderVideo = jest.fn();
 
   const result = {
     sentIndex: 5,
@@ -32,6 +34,9 @@ it(`e2e test for MovieCard`, () => {
         onTitleClick = {onTitleClick}
         onMouseEnter = {() => onMouseEnter(result.sentIndex)}
         onMouseLeave = {onMouseLeave}
+        onCardMouseEnter = {() => {}}
+        onCardMouseLeave = {() => {}}
+        renderVideo = {renderVideo}
       />
   );
 
@@ -43,4 +48,7 @@ it(`e2e test for MovieCard`, () => {
 
   movieCard.simulate(`mouseleave`);
   expect(onMouseLeave).toHaveBeenCalledTimes(1);
+
+  expect(renderVideo.mock.calls[0][0]).toBe(movie.preview);
+  expect(renderVideo.mock.calls[0][1]).toBe(`img/${movie.pictureSrc}`);
 });

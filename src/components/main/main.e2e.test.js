@@ -14,15 +14,18 @@ const mocks = {
   movies: [
     {
       title: `Тест1`,
-      pictureSrc: `test1.jpg`
+      pictureSrc: `test1.jpg`,
+      preview: `test1.jpg`,
     },
     {
       title: `Тест2`,
-      pictureSrc: `test2.jpg`
+      pictureSrc: `test2.jpg`,
+      preview: `test2.jpg`,
     },
     {
       title: `Тест3`,
-      pictureSrc: `test3.jpg`
+      pictureSrc: `test3.jpg`,
+      preview: `test3.jpg`,
     },
   ]
 };

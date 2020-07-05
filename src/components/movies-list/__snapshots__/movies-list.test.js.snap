@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MovieCard render correctly 1`] = `
+exports[`MoviesList render correctly 1`] = `
 <div
   className="catalog__movies-list"
 >
@@ -13,11 +13,9 @@ exports[`MovieCard render correctly 1`] = `
     <div
       className="small-movie-card__image"
     >
-      <img
-        alt="Тест1"
-        height="175"
-        src="img/test1.jpg"
-        width="280"
+      <video
+        height="100%"
+        width="100%"
       />
     </div>
     <h3
@@ -40,11 +38,9 @@ exports[`MovieCard render correctly 1`] = `
     <div
       className="small-movie-card__image"
     >
-      <img
-        alt="Тест2"
-        height="175"
-        src="img/test2.jpg"
-        width="280"
+      <video
+        height="100%"
+        width="100%"
       />
     </div>
     <h3
@@ -67,11 +63,9 @@ exports[`MovieCard render correctly 1`] = `
     <div
       className="small-movie-card__image"
     >
-      <img
-        alt="Тест3"
-        height="175"
-        src="img/test3.jpg"
-        width="280"
+      <video
+        height="100%"
+        width="100%"
       />
     </div>
     <h3
