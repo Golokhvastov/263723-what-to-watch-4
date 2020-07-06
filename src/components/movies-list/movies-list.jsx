@@ -5,44 +5,23 @@ import withVideoPlayer from "../../hocs/with-video-player/with-video-player.js";
 
 const MovieCardWrapper = withVideoPlayer(MovieCard);
 
-class MoviesList extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      activeCardId: null,
-    };
-    this.mouseEnterHandler = this.mouseEnterHandler.bind(this);
-    this.mouseLeaveHandler = this.mouseLeaveHandler.bind(this);
-  }
+const MoviesList = (props) => {
+  const {movies, onMovieTitleClick} = props;
 
-  mouseEnterHandler(movie) {
-    this.setState({activeCardId: movie});
-  }
-
-  mouseLeaveHandler() {
-    this.setState({activeCardId: null});
-  }
-
-  render() {
-    const {movies, onMovieTitleClick} = this.props;
-
-    return (
-      <div className="catalog__movies-list">
-        {movies.map((movie, index) => {
-          return (
-            <MovieCardWrapper
-              key = {movie.title}
-              movie = {movie}
-              onTitleClick = {onMovieTitleClick}
-              onMouseEnter = {() => this.mouseEnterHandler(index)}
-              onMouseLeave = {this.mouseLeaveHandler}
-            />
-          );
-        })}
-      </div>
-    );
-  }
-}
+  return (
+    <div className="catalog__movies-list">
+      {movies.map((movie, i) => {
+        return (
+          <MovieCardWrapper
+            key = {movie.title + i}
+            movie = {movie}
+            onTitleClick = {onMovieTitleClick}
+          />
+        );
+      })}
+    </div>
+  );
+};
 
 export default MoviesList;
 

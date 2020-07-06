@@ -1,13 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
+import {connect} from "react-redux";
 import Main from "../main/main.jsx";
 import MoviePage from "../movie-page/movie-page.jsx";
-import {getSimilarMovies} from "../../utils/utils.js";
-
-const Settings = {
-  maxSimilarMovies: 4,
-};
+import {getFilteredMovies} from "../../utils/utils.js";
+import {Settings} from "../../const.js";
 
 class App extends React.PureComponent {
   constructor(props) {
@@ -29,16 +27,15 @@ class App extends React.PureComponent {
   }
 
   _renderApp() {
-    const {movieCardTitle, movieCardGenre, movieCardYear, movies} = this.props;
+    const {movies} = this.props;
     const {selectedMovie} = this.state;
 
     if (!selectedMovie) {
       return (
         <Main
-          movieCardTitle = {movieCardTitle}
-          movieCardGenre = {movieCardGenre}
-          movieCardYear = {movieCardYear}
-          movies = {movies}
+          movieCardTitle = {movies[0].title}
+          movieCardGenre = {movies[0].genre}
+          movieCardYear = {movies[0].year}
           onMovieTitleClick = {this.movieTitleClickHandler}
         />
       );
@@ -47,7 +44,7 @@ class App extends React.PureComponent {
         <MoviePage
           movie = {selectedMovie}
           onLogoClick = {this.logoClickHandler}
-          movies = {getSimilarMovies(movies, selectedMovie, Settings.maxSimilarMovies)}
+          movies = {getFilteredMovies(movies, selectedMovie.genre, Settings.maxSimilarMovies)}
           onMovieTitleClick = {this.movieTitleClickHandler}
         />
       );
@@ -67,7 +64,7 @@ class App extends React.PureComponent {
             <MoviePage
               movie = {movies[0]}
               onLogoClick = {this.logoClickHandler}
-              movies = {getSimilarMovies(movies, movies[0], Settings.maxSimilarMovies)}
+              movies = {getFilteredMovies(movies, movies[0].genre, Settings.maxSimilarMovies)}
               onMovieTitleClick = {this.movieTitleClickHandler}
             />
           </Route>
@@ -77,16 +74,21 @@ class App extends React.PureComponent {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  movies: state.movies
+});
+
+export {App};
+export default connect(
+    mapStateToProps
+)(App);
 
 App.propTypes = {
-  movieCardTitle: PropTypes.string.isRequired,
-  movieCardGenre: PropTypes.string.isRequired,
-  movieCardYear: PropTypes.number.isRequired,
   movies: PropTypes.arrayOf(
       PropTypes.shape({
         title: PropTypes.string.isRequired,
-        pictureSrc: PropTypes.string.isRequired
+        genre: PropTypes.string.isRequired,
+        year: PropTypes.number.isRequired,
       })
   ).isRequired,
 };

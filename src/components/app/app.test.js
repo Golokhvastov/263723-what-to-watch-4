@@ -1,6 +1,10 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import App from "./app.jsx";
+import {App} from "./app.jsx";
+import {Provider} from "react-redux";
+import configureStore from "redux-mock-store";
+
+const mockStore = configureStore([]);
 
 const mocks = {
   movieCardTitle: `Test`,
@@ -8,7 +12,7 @@ const mocks = {
   movieCardYear: 2011,
   movies: [
     {
-      title: `Тест1`,
+      title: `Test1`,
       pictureSrc: `test1.jpg`,
       genre: `Drama`,
       year: 2016,
@@ -30,30 +34,35 @@ const mocks = {
       preview: `test1.jpg`,
     },
     {
-      title: `Тест2`,
+      title: `Test2`,
+      genre: `Test22`,
+      year: 2020,
       pictureSrc: `test2.jpg`,
       preview: `test2.jpg`,
     },
     {
-      title: `Тест3`,
+      title: `Test3`,
+      genre: `Test33`,
+      year: 2030,
       pictureSrc: `test3.jpg`,
       preview: `test3.jpg`,
     },
   ]
 };
 
-const onMovieTitleClick = () => {};
-
 it(`App render correctly`, () => {
+  const store = mockStore({
+    activeGenre: `All genres`,
+    movies: mocks.movies,
+  });
+
   const tree = renderer
     .create(
-        <App
-          movieCardTitle = {mocks.movieCardTitle}
-          movieCardGenre = {mocks.movieCardGenre}
-          movieCardYear = {mocks.movieCardYear}
-          movies = {mocks.movies}
-          onMovieTitleClick = {onMovieTitleClick}
-        />, {
+        <Provider store={store}>
+          <App
+            movies = {mocks.movies}
+          />
+        </Provider>, {
           createNodeMock: () => {
             return {};
           }
