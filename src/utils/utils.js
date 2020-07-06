@@ -14,12 +14,15 @@ export const getTextRating = (value) => {
   return ``;
 };
 
-export const getFilteredMovies = (movies, genre, maxMovies = Settings.startCountMovies) => {
+export const getAllFilteredMovies = (movies, genre) => {
   if (genre !== Settings.allGenres) {
-    const allFilteredMovies = movies.filter((movie) => movie.genre === genre);
-    return allFilteredMovies.slice(0, maxMovies);
+    return movies.filter((movie) => movie.genre === genre);
   }
   return movies;
+};
+
+export const getFilteredMovies = (movies, genre, maxMovies) => {
+  return getAllFilteredMovies(movies, genre).slice(0, maxMovies);
 };
 
 export const getGenresList = (movies) => {

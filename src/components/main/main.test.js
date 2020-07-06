@@ -25,6 +25,42 @@ const mocks = {
       pictureSrc: `test3.jpg`,
       preview: `test3.jpg`,
     },
+    {
+      title: `Test1`,
+      genre: `Test11`,
+      pictureSrc: `test1.jpg`,
+      preview: `test1.jpg`,
+    },
+    {
+      title: `Test2`,
+      genre: `Test22`,
+      pictureSrc: `test2.jpg`,
+      preview: `test2.jpg`,
+    },
+    {
+      title: `Test3`,
+      genre: `Test33`,
+      pictureSrc: `test3.jpg`,
+      preview: `test3.jpg`,
+    },
+    {
+      title: `Test1`,
+      genre: `Test11`,
+      pictureSrc: `test1.jpg`,
+      preview: `test1.jpg`,
+    },
+    {
+      title: `Test2`,
+      genre: `Test22`,
+      pictureSrc: `test2.jpg`,
+      preview: `test2.jpg`,
+    },
+    {
+      title: `Test3`,
+      genre: `Test33`,
+      pictureSrc: `test3.jpg`,
+      preview: `test3.jpg`,
+    },
   ]
 };
 
