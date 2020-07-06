@@ -6,7 +6,6 @@ import Main from "../main/main.jsx";
 import MoviePage from "../movie-page/movie-page.jsx";
 import {getFilteredMovies} from "../../utils/utils.js";
 import {Settings} from "../../const.js";
-import {ActionCreator} from "../../reducer.js";
 
 class App extends React.PureComponent {
   constructor(props) {
@@ -79,16 +78,9 @@ const mapStateToProps = (state) => ({
   movies: state.movies
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  selectGenre: (selectedGenre) => {
-    dispatch(ActionCreator.selectGenre(selectedGenre));
-  }
-});
-
 export {App};
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+    mapStateToProps
 )(App);
 
 App.propTypes = {
@@ -99,5 +91,4 @@ App.propTypes = {
         year: PropTypes.number.isRequired,
       })
   ).isRequired,
-  selectGenre: PropTypes.func.isRequired
 };

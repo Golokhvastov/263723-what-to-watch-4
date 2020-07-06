@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Main from "./main.jsx";
+import {Main} from "./main.jsx";
 
 const mocks = {
   movieCardTitle: `Test`,
@@ -8,24 +8,25 @@ const mocks = {
   movieCardYear: 2011,
   movies: [
     {
-      title: `Тест1`,
+      title: `Test1`,
+      genre: `Test11`,
       pictureSrc: `test1.jpg`,
       preview: `test1.jpg`,
     },
     {
-      title: `Тест2`,
+      title: `Test2`,
+      genre: `Test22`,
       pictureSrc: `test2.jpg`,
       preview: `test2.jpg`,
     },
     {
-      title: `Тест3`,
+      title: `Test3`,
+      genre: `Test33`,
       pictureSrc: `test3.jpg`,
       preview: `test3.jpg`,
     },
   ]
 };
-
-const onMovieTitleClick = () => {};
 
 it(`Main render correctly`, () => {
   const tree = renderer
@@ -35,7 +36,9 @@ it(`Main render correctly`, () => {
           movieCardGenre = {mocks.movieCardGenre}
           movieCardYear = {mocks.movieCardYear}
           movies = {mocks.movies}
-          onMovieTitleClick = {onMovieTitleClick}
+          activeGenre = {`All genres`}
+          selectGenre = {() => {}}
+          onMovieTitleClick = {() => {}}
         />, {
           createNodeMock: () => {
             return {};

@@ -1,7 +1,7 @@
 import React from "react";
 import Enzyme, {mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import Main from "./main.jsx";
+import {Main} from "./main.jsx";
 
 Enzyme.configure({
   adapter: new Adapter()
@@ -13,17 +13,20 @@ const mocks = {
   movieCardYear: 2011,
   movies: [
     {
-      title: `Тест1`,
+      title: `Test1`,
+      genre: `Test11`,
       pictureSrc: `test1.jpg`,
       preview: `test1.jpg`,
     },
     {
-      title: `Тест2`,
+      title: `Test2`,
+      genre: `Test22`,
       pictureSrc: `test2.jpg`,
       preview: `test2.jpg`,
     },
     {
-      title: `Тест3`,
+      title: `Test3`,
+      genre: `Test33`,
       pictureSrc: `test3.jpg`,
       preview: `test3.jpg`,
     },
@@ -39,6 +42,8 @@ it(`e2e test for Main`, () => {
         movieCardGenre = {mocks.movieCardGenre}
         movieCardYear = {mocks.movieCardYear}
         movies = {mocks.movies}
+        activeGenre = {`All genres`}
+        selectGenre = {() => {}}
         onMovieTitleClick = {movieTitleClickHandler}
       />
   );
