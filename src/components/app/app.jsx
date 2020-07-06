@@ -4,7 +4,7 @@ import {BrowserRouter, Switch, Route} from "react-router-dom";
 import {connect} from "react-redux";
 import Main from "../main/main.jsx";
 import MoviePage from "../movie-page/movie-page.jsx";
-import {getSimilarMovies} from "../../utils/utils.js";
+import {getFilteredMovies} from "../../utils/utils.js";
 import {Settings} from "../../const.js";
 import {ActionCreator} from "../../reducer.js";
 
@@ -46,7 +46,7 @@ class App extends React.PureComponent {
         <MoviePage
           movie = {selectedMovie}
           onLogoClick = {this.logoClickHandler}
-          movies = {getSimilarMovies(movies, selectedMovie, Settings.maxSimilarMovies)}
+          movies = {getFilteredMovies(movies, selectedMovie.genre, Settings.maxSimilarMovies)}
           onMovieTitleClick = {this.movieTitleClickHandler}
         />
       );
@@ -66,7 +66,7 @@ class App extends React.PureComponent {
             <MoviePage
               movie = {movies[0]}
               onLogoClick = {this.logoClickHandler}
-              movies = {getSimilarMovies(movies, movies[0], Settings.maxSimilarMovies)}
+              movies = {getFilteredMovies(movies, movies[0].genre, Settings.maxSimilarMovies)}
               onMovieTitleClick = {this.movieTitleClickHandler}
             />
           </Route>
@@ -82,21 +82,22 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   selectGenre: (selectedGenre) => {
-    dispatch(ActionCreator.selectGenre(selectedGenre))
+    dispatch(ActionCreator.selectGenre(selectedGenre));
   }
 });
 
 export {App};
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(App);
 
 App.propTypes = {
   movies: PropTypes.arrayOf(
       PropTypes.shape({
         title: PropTypes.string.isRequired,
-        pictureSrc: PropTypes.string.isRequired
+        genre: PropTypes.string.isRequired,
+        year: PropTypes.number.isRequired,
       })
   ).isRequired,
   selectGenre: PropTypes.func.isRequired

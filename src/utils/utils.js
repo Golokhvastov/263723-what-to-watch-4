@@ -1,3 +1,5 @@
+import {Settings} from "../const.js";
+
 export const getTextRating = (value) => {
   if (value >= 0 && value < 3) {
     return `Bad`;
@@ -12,9 +14,12 @@ export const getTextRating = (value) => {
   return ``;
 };
 
-export const getSimilarMovies = (movies, selectedMovie, maxSimilarMovies) => {
-  const allSimilarMovies = movies.filter((movie) => movie.genre === selectedMovie.genre);
-  return allSimilarMovies.slice(0, maxSimilarMovies);
+export const getFilteredMovies = (movies, genre, maxMovies = Settings.startCountMovies) => {
+  if (genre !== Settings.allGenres) {
+    const allFilteredMovies = movies.filter((movie) => movie.genre === genre);
+    return allFilteredMovies.slice(0, maxMovies);
+  }
+  return movies;
 };
 
 export const extend = (a, b) => {

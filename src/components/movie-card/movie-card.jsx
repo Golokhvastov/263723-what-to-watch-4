@@ -2,8 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const MovieCard = (props) => {
-  const {movie, onTitleClick, onMouseEnter, onMouseLeave,
-    onCardMouseEnter, onCardMouseLeave, renderVideo} = props;
+  const {movie, onTitleClick, onCardMouseEnter, onCardMouseLeave, renderVideo} = props;
 
   const videoSrc = movie.preview;
   const videoPosterSrc = `img/${movie.pictureSrc}`;
@@ -11,14 +10,8 @@ const MovieCard = (props) => {
   return (
     <article
       className="small-movie-card catalog__movies-card"
-      onMouseEnter={() => {
-        onMouseEnter();
-        onCardMouseEnter();
-      }}
-      onMouseLeave={() => {
-        onMouseLeave();
-        onCardMouseLeave();
-      }}
+      onMouseEnter={onCardMouseEnter}
+      onMouseLeave={onCardMouseLeave}
       onClick = {(evt) => {
         evt.preventDefault();
         onTitleClick(movie);
@@ -43,8 +36,6 @@ MovieCard.propTypes = {
     preview: PropTypes.string.isRequired
   }).isRequired,
   onTitleClick: PropTypes.func.isRequired,
-  onMouseEnter: PropTypes.func.isRequired,
-  onMouseLeave: PropTypes.func.isRequired,
   onCardMouseEnter: PropTypes.func.isRequired,
   onCardMouseLeave: PropTypes.func.isRequired,
   renderVideo: PropTypes.func.isRequired,
