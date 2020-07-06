@@ -37,7 +37,6 @@ class App extends React.PureComponent {
           movieCardTitle = {movies[0].title}
           movieCardGenre = {movies[0].genre}
           movieCardYear = {movies[0].year}
-          movies = {movies}
           onMovieTitleClick = {this.movieTitleClickHandler}
         />
       );

@@ -22,6 +22,14 @@ export const getFilteredMovies = (movies, genre, maxMovies = Settings.startCount
   return movies;
 };
 
+export const getGenresList = (movies) => {
+  const genres = movies.map((movie) => movie.genre);
+  let uniqueGenres = genres.filter((value, index, array) => array.indexOf(value) === index);
+  uniqueGenres.unshift(Settings.allGenres);
+
+  return uniqueGenres.slice(0, Settings.maxFiltersInMain);
+};
+
 export const extend = (a, b) => {
   return Object.assign({}, a, b);
 };
