@@ -1,13 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
+import {connect} from "react-redux";
 import Main from "../main/main.jsx";
 import MoviePage from "../movie-page/movie-page.jsx";
 import {getSimilarMovies} from "../../utils/utils.js";
-
-const Settings = {
-  maxSimilarMovies: 4,
-};
+import {Settings} from "../../const.js";
+import {ActionCreator} from "../../reducer.js";
 
 class App extends React.PureComponent {
   constructor(props) {
@@ -29,15 +28,15 @@ class App extends React.PureComponent {
   }
 
   _renderApp() {
-    const {movieCardTitle, movieCardGenre, movieCardYear, movies} = this.props;
+    const {movies} = this.props;
     const {selectedMovie} = this.state;
 
     if (!selectedMovie) {
       return (
         <Main
-          movieCardTitle = {movieCardTitle}
-          movieCardGenre = {movieCardGenre}
-          movieCardYear = {movieCardYear}
+          movieCardTitle = {movies[0].title}
+          movieCardGenre = {movies[0].genre}
+          movieCardYear = {movies[0].year}
           movies = {movies}
           onMovieTitleClick = {this.movieTitleClickHandler}
         />
@@ -77,16 +76,28 @@ class App extends React.PureComponent {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  movies: state.movies
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  selectGenre: (selectedGenre) => {
+    dispatch(ActionCreator.selectGenre(selectedGenre))
+  }
+});
+
+export {App};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
 
 App.propTypes = {
-  movieCardTitle: PropTypes.string.isRequired,
-  movieCardGenre: PropTypes.string.isRequired,
-  movieCardYear: PropTypes.number.isRequired,
   movies: PropTypes.arrayOf(
       PropTypes.shape({
         title: PropTypes.string.isRequired,
         pictureSrc: PropTypes.string.isRequired
       })
   ).isRequired,
+  selectGenre: PropTypes.func.isRequired
 };

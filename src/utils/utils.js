@@ -16,3 +16,7 @@ export const getSimilarMovies = (movies, selectedMovie, maxSimilarMovies) => {
   const allSimilarMovies = movies.filter((movie) => movie.genre === selectedMovie.genre);
   return allSimilarMovies.slice(0, maxSimilarMovies);
 };
+
+export const extend = (a, b) => {
+  return Object.assign({}, a, b);
+};
