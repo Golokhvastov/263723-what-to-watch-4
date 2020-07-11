@@ -13,7 +13,8 @@ const Main = (props) => {
     movieCardGenre,
     movieCardYear,
     movies,
-    onMovieTitleClick
+    onMovieTitleClick,
+    onPlayClick
   } = props;
 
   return (
@@ -55,7 +56,11 @@ const Main = (props) => {
               </p>
 
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button">
+                <button
+                  className="btn btn--play movie-card__button"
+                  type="button"
+                  onClick={() => onPlayClick(movies[0])}
+                >
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
@@ -118,5 +123,6 @@ Main.propTypes = {
         pictureSrc: PropTypes.string.isRequired
       })
   ).isRequired,
-  onMovieTitleClick: PropTypes.func.isRequired
+  onMovieTitleClick: PropTypes.func.isRequired,
+  onPlayClick: PropTypes.func.isRequired
 };
