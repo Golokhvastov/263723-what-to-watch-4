@@ -52,7 +52,7 @@ const mocks = {
 
 it(`App render correctly`, () => {
   const store = mockStore({
-    activeGenre: `All genres`,
+    activeMovie: null,
     movies: mocks.movies,
   });
 
@@ -61,6 +61,8 @@ it(`App render correctly`, () => {
         <Provider store={store}>
           <App
             movies = {mocks.movies}
+            activeMovie = {null}
+            selectMovie = {() => {}}
           />
         </Provider>, {
           createNodeMock: () => {

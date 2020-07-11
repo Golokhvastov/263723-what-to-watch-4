@@ -1,28 +1,27 @@
 import films from "./mocks/films.js";
 import {extend} from "./utils/utils.js";
-import {Settings} from "./const.js";
 
 const initialState = {
-  activeGenre: Settings.allGenres,
+  activeMovie: null,
   movies: films,
 };
 
 const ActionType = {
-  SELECT_GENRE: `SELECT_GENRE`,
+  SELECT_MOVIE: `SELECT_MOVIE`,
 };
 
 const ActionCreator = {
-  selectGenre: (genre) => ({
-    type: ActionType.SELECT_GENRE,
-    payload: genre
+  selectMovie: (movie) => ({
+    type: ActionType.SELECT_MOVIE,
+    payload: movie
   })
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.SELECT_GENRE:
+    case ActionType.SELECT_MOVIE:
       return extend(state, {
-        activeGenre: action.payload
+        activeMovie: action.payload
       });
   }
 
