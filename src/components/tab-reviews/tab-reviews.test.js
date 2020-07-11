@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Tabs from "./tabs.jsx";
+import TabReviews from "./tab-reviews.jsx";
 
 const mocks = {
   movie: {
@@ -48,43 +48,13 @@ const mocks = {
   }
 };
 
-describe(`Tabs render correctly`, () => {
-  it(`Tabs with Overview`, () => {
-    const tree = renderer
-      .create(
-          <Tabs
-            movie={mocks.movie}
-            activeItem = "Overview"
-            onActiveItemChange = {() => {}}
-          />
-      ).toJSON();
+it(`TabReviews render correctly`, () => {
+  const tree = renderer
+    .create(
+        <TabReviews
+          movie={mocks.movie}
+        />
+    ).toJSON();
 
-    expect(tree).toMatchSnapshot();
-  });
-
-  it(`Tabs with Details`, () => {
-    const tree = renderer
-      .create(
-          <Tabs
-            movie={mocks.movie}
-            activeItem = "Details"
-            onActiveItemChange = {() => {}}
-          />
-      ).toJSON();
-
-    expect(tree).toMatchSnapshot();
-  });
-
-  it(`Tabs with Reviews`, () => {
-    const tree = renderer
-      .create(
-          <Tabs
-            movie={mocks.movie}
-            activeItem = "Reviews"
-            onActiveItemChange = {() => {}}
-          />
-      ).toJSON();
-
-    expect(tree).toMatchSnapshot();
-  });
+  expect(tree).toMatchSnapshot();
 });
