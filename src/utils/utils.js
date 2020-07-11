@@ -21,8 +21,8 @@ export const getAllFilteredMovies = (movies, genre) => {
   return movies;
 };
 
-export const getFilteredMovies = (movies, genre, maxMovies) => {
-  return getAllFilteredMovies(movies, genre).slice(0, maxMovies);
+export const getNeedMovies = (movies, maxMovies) => {
+  return movies.slice(0, maxMovies);
 };
 
 export const getGenresList = (movies) => {

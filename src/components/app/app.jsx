@@ -4,83 +4,69 @@ import {BrowserRouter, Switch, Route} from "react-router-dom";
 import {connect} from "react-redux";
 import Main from "../main/main.jsx";
 import MoviePage from "../movie-page/movie-page.jsx";
-import {getFilteredMovies} from "../../utils/utils.js";
+import {getNeedMovies, getAllFilteredMovies} from "../../utils/utils.js";
 import {Settings} from "../../const.js";
+import {ActionCreator} from "../../reducer.js";
 
-class App extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedMovie: null
-    };
-    this.movieTitleClickHandler = this.movieTitleClickHandler.bind(this);
-    this.logoClickHandler = this.logoClickHandler.bind(this);
-    this._renderApp = this._renderApp.bind(this);
-  }
+const App = (props) => {
+  const {movies, activeMovie, selectMovie} = props;
 
-  movieTitleClickHandler(selectedMovie) {
-    this.setState({selectedMovie});
-  }
-
-  logoClickHandler() {
-    this.setState({selectedMovie: null});
-  }
-
-  _renderApp() {
-    const {movies} = this.props;
-    const {selectedMovie} = this.state;
-
-    if (!selectedMovie) {
+  const _renderApp = () => {
+    if (!activeMovie) {
       return (
         <Main
           movieCardTitle = {movies[0].title}
           movieCardGenre = {movies[0].genre}
           movieCardYear = {movies[0].year}
-          onMovieTitleClick = {this.movieTitleClickHandler}
+          onMovieTitleClick = {selectMovie}
         />
       );
     } else {
       return (
         <MoviePage
-          movie = {selectedMovie}
-          onLogoClick = {this.logoClickHandler}
-          movies = {getFilteredMovies(movies, selectedMovie.genre, Settings.maxSimilarMovies)}
-          onMovieTitleClick = {this.movieTitleClickHandler}
+          movie = {activeMovie}
+          onLogoClick = {() => selectMovie(null)}
+          movies = {getNeedMovies(getAllFilteredMovies(movies, activeMovie.genre), Settings.maxSimilarMovies)}
+          onMovieTitleClick = {selectMovie}
         />
       );
     }
-  }
+  };
 
-  render() {
-    const {movies} = this.props;
-
-    return (
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="/">
-            {this._renderApp()}
-          </Route>
-          <Route exact path="/dev-movie-page">
-            <MoviePage
-              movie = {movies[0]}
-              onLogoClick = {this.logoClickHandler}
-              movies = {getFilteredMovies(movies, movies[0].genre, Settings.maxSimilarMovies)}
-              onMovieTitleClick = {this.movieTitleClickHandler}
-            />
-          </Route>
-        </Switch>
-      </BrowserRouter>
-    );
-  }
-}
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/">
+          {_renderApp()}
+        </Route>
+        <Route exact path="/dev-movie-page">
+          <MoviePage
+            movie = {movies[0]}
+            onLogoClick = {() => {}}
+            movies = {getNeedMovies(getAllFilteredMovies(movies, movies[0].genre), Settings.maxSimilarMovies)}
+            onMovieTitleClick = {() => {}}
+          />
+        </Route>
+      </Switch>
+    </BrowserRouter>
+  );
+};
 
 const mapStateToProps = (state) => ({
-  movies: state.movies
+  movies: state.movies,
+  activeMovie: state.activeMovie,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  selectMovie: (selectedMovie) => {
+    dispatch(ActionCreator.selectMovie(selectedMovie));
+  },
 });
 
 export {App};
 export default connect(
-    mapStateToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(App);
 
 App.propTypes = {
@@ -91,4 +77,8 @@ App.propTypes = {
         year: PropTypes.number.isRequired,
       })
   ).isRequired,
+  activeMovie: PropTypes.shape({
+    genre: PropTypes.string.isRequired,
+  }),
+  selectMovie: PropTypes.func.isRequired,
 };

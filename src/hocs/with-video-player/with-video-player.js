@@ -1,5 +1,8 @@
 import React from "react";
-import VideoPlayer from "../../components/video-player/video-player.jsx";
+import Player from "../../components/player/player.jsx";
+import withVideo from "../with-video/with-video.js";
+
+const VideoPlayer = withVideo(Player);
 
 const withVideoPlayer = (Component) => {
   class WithVideoPlayer extends React.PureComponent {

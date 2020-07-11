@@ -1,6 +1,145 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Tabs render correctly 1`] = `
+exports[`Tabs render correctly Tabs with Details 1`] = `
+<div
+  className="movie-card__desc"
+>
+  <nav
+    className="movie-nav movie-card__nav"
+  >
+    <ul
+      className="movie-nav__list"
+    >
+      <li
+        className="movie-nav__item "
+      >
+        <a
+          className="movie-nav__link"
+          href="#"
+          onClick={[Function]}
+        >
+          Overview
+        </a>
+      </li>
+      <li
+        className="movie-nav__item movie-nav__item--active"
+      >
+        <a
+          className="movie-nav__link"
+          href="#"
+          onClick={[Function]}
+        >
+          Details
+        </a>
+      </li>
+      <li
+        className="movie-nav__item "
+      >
+        <a
+          className="movie-nav__link"
+          href="#"
+          onClick={[Function]}
+        >
+          Reviews
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <div
+    className="movie-card__text movie-card__row"
+  >
+    <div
+      className="movie-card__text-col"
+    >
+      <p
+        className="movie-card__details-item"
+      >
+        <strong
+          className="movie-card__details-name"
+        >
+          Director
+        </strong>
+        <span
+          className="movie-card__details-value"
+        >
+          Test director
+        </span>
+      </p>
+      <p
+        className="movie-card__details-item"
+      >
+        <strong
+          className="movie-card__details-name"
+        >
+          Starring
+        </strong>
+        <span
+          className="movie-card__details-value"
+        >
+          Test starring 1
+          ,
+          <br />
+          Test starring 2
+          ,
+          <br />
+          Test starring 3
+          ,
+          <br />
+          Test starring 4
+        </span>
+      </p>
+    </div>
+    <div
+      className="movie-card__text-col"
+    >
+      <p
+        className="movie-card__details-item"
+      >
+        <strong
+          className="movie-card__details-name"
+        >
+          Run Time
+        </strong>
+        <span
+          className="movie-card__details-value"
+        >
+          2h 00m
+        </span>
+      </p>
+      <p
+        className="movie-card__details-item"
+      >
+        <strong
+          className="movie-card__details-name"
+        >
+          Genre
+        </strong>
+        <span
+          className="movie-card__details-value"
+        >
+          Test genre
+        </span>
+      </p>
+      <p
+        className="movie-card__details-item"
+      >
+        <strong
+          className="movie-card__details-name"
+        >
+          Released
+        </strong>
+        <span
+          className="movie-card__details-value"
+        >
+          1999
+        </span>
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Tabs render correctly Tabs with Overview 1`] = `
 <div
   className="movie-card__desc"
 >
@@ -95,6 +234,165 @@ exports[`Tabs render correctly 1`] = `
          and other
       </strong>
     </p>
+  </div>
+</div>
+`;
+
+exports[`Tabs render correctly Tabs with Reviews 1`] = `
+<div
+  className="movie-card__desc"
+>
+  <nav
+    className="movie-nav movie-card__nav"
+  >
+    <ul
+      className="movie-nav__list"
+    >
+      <li
+        className="movie-nav__item "
+      >
+        <a
+          className="movie-nav__link"
+          href="#"
+          onClick={[Function]}
+        >
+          Overview
+        </a>
+      </li>
+      <li
+        className="movie-nav__item "
+      >
+        <a
+          className="movie-nav__link"
+          href="#"
+          onClick={[Function]}
+        >
+          Details
+        </a>
+      </li>
+      <li
+        className="movie-nav__item movie-nav__item--active"
+      >
+        <a
+          className="movie-nav__link"
+          href="#"
+          onClick={[Function]}
+        >
+          Reviews
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <div
+    className="movie-card__reviews movie-card__row"
+  >
+    <div
+      className="movie-card__reviews-col"
+    >
+      <div
+        className="review"
+      >
+        <blockquote
+          className="review__quote"
+        >
+          <p
+            className="review__text"
+          >
+            Test5
+          </p>
+          <footer
+            className="review__details"
+          >
+            <cite
+              className="review__author"
+            >
+              Test5
+            </cite>
+            <time
+              className="review__date"
+              dateTime="2016-12-24"
+            >
+              December 10, 2010
+            </time>
+          </footer>
+        </blockquote>
+        <div
+          className="review__rating"
+        >
+          7.9
+        </div>
+      </div>
+      <div
+        className="review"
+      >
+        <blockquote
+          className="review__quote"
+        >
+          <p
+            className="review__text"
+          >
+            Test6
+          </p>
+          <footer
+            className="review__details"
+          >
+            <cite
+              className="review__author"
+            >
+              Test6
+            </cite>
+            <time
+              className="review__date"
+              dateTime="2016-12-24"
+            >
+              December 20, 2020
+            </time>
+          </footer>
+        </blockquote>
+        <div
+          className="review__rating"
+        >
+          8
+        </div>
+      </div>
+    </div>
+    <div
+      className="movie-card__reviews-col"
+    >
+      <div
+        className="review"
+      >
+        <blockquote
+          className="review__quote"
+        >
+          <p
+            className="review__text"
+          >
+            Test7
+          </p>
+          <footer
+            className="review__details"
+          >
+            <cite
+              className="review__author"
+            >
+              Test7
+            </cite>
+            <time
+              className="review__date"
+              dateTime="2016-12-24"
+            >
+              December 30, 2030
+            </time>
+          </footer>
+        </blockquote>
+        <div
+          className="review__rating"
+        >
+          9
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 `;

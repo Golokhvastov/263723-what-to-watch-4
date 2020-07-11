@@ -2,6 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import Tabs from "../tabs/tabs.jsx";
 import MoviesList from "../movies-list/movies-list.jsx";
+import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
+import {Settings} from "../../const.js";
+
+const TabsWrapper = withActiveItem(Tabs);
 
 const MoviePage = (props) => {
   const {movie, onLogoClick, movies, onMovieTitleClick} = props;
@@ -77,7 +81,10 @@ const MoviePage = (props) => {
               <img src={`img/${pictureSrc}`} alt={`${title} poster`} width="218" height="327" />
             </div>
 
-            <Tabs movie={movie} />
+            <TabsWrapper
+              movie={movie}
+              startItem = {Settings.startMoviePageTab}
+            />
           </div>
         </div>
       </section>
