@@ -1,13 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import MoviesList from "../movies-list/movies-list.jsx";
-import GenresList from "../genres-list/genres-list.jsx";
-import withShowMoreButton from "../../hocs/with-show-more-button/with-show-more-button.js";
-import {getAllFilteredMovies, getGenresList} from "../../utils/utils.js";
-import {ActionCreator} from "../../reducer.js";
+import MoviesCatalog from "../movies-catalog/movies-catalog.jsx";
+import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
+import {Settings} from "../../const.js";
 
-const MoviesListWrapper = withShowMoreButton(MoviesList);
+const MoviesCatalogWrapper = withActiveItem(MoviesCatalog);
 
 const Main = (props) => {
   const {
@@ -15,8 +13,6 @@ const Main = (props) => {
     movieCardGenre,
     movieCardYear,
     movies,
-    activeGenre,
-    selectGenre,
     onMovieTitleClick
   } = props;
 
@@ -78,23 +74,12 @@ const Main = (props) => {
       </section>
 
       <div className="page-content">
-        <section className="catalog">
-          <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <GenresList
-            activeGenre = {activeGenre}
-            genres = {getGenresList(movies)}
-            onGenreClick = {(selectedGenre) => {
-              selectGenre(selectedGenre);
-            }}
-          />
-
-          <MoviesListWrapper
-            movies = {getAllFilteredMovies(movies, activeGenre)}
-            onMovieTitleClick = {onMovieTitleClick}
-            activeGenre = {activeGenre}
-          />
-        </section>
+        <MoviesCatalogWrapper
+          movies = {movies}
+          onMovieTitleClick = {onMovieTitleClick}
+          startItem = {Settings.allGenres}
+        />
 
         <footer className="page-footer">
           <div className="logo">
@@ -115,20 +100,12 @@ const Main = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  movies: state.movies,
-  activeGenre: state.activeGenre
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  selectGenre: (selectedGenre) => {
-    dispatch(ActionCreator.selectGenre(selectedGenre));
-  }
+  movies: state.movies
 });
 
 export {Main};
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+    mapStateToProps
 )(Main);
 
 Main.propTypes = {
@@ -141,7 +118,5 @@ Main.propTypes = {
         pictureSrc: PropTypes.string.isRequired
       })
   ).isRequired,
-  activeGenre: PropTypes.string.isRequired,
-  selectGenre: PropTypes.func.isRequired,
   onMovieTitleClick: PropTypes.func.isRequired
 };
