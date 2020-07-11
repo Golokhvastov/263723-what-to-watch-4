@@ -8,6 +8,9 @@ import FullscreenPlayer from "../fullscreen-player/fullscreen-player.jsx";
 import {getNeedMovies, getAllFilteredMovies} from "../../utils/utils.js";
 import {Settings} from "../../const.js";
 import {ActionCreator} from "../../reducer.js";
+import withVideo from "../../hocs/with-video/with-video.js";
+
+const FullscreenPlayerWrapper = withVideo(FullscreenPlayer);
 
 const App = (props) => {
   const {movies, activeMovie, selectMovie, playingMovie, playMovie} = props;
@@ -39,8 +42,13 @@ const App = (props) => {
 
     if (playingMovie) {
       return (
-        <FullscreenPlayer
+        <FullscreenPlayerWrapper
+          movie = {playingMovie}
+          src = {playingMovie.src}
+          posterSrc = {`img/${playingMovie.pictureSrc}`}
+          isPlaying = {false}
           onExitClick = {() => playMovie(null)}
+          videoClassName = {`player__video`}
         />
       );
     }
@@ -64,8 +72,13 @@ const App = (props) => {
           />
         </Route>
         <Route exact path="/dev-player">
-          <FullscreenPlayer
+          <FullscreenPlayerWrapper
+            movie = {movies[0]}
+            src = {movies[0].src}
+            posterSrc = {movies[0].pictureSrc}
+            isPlaying = {true}
             onExitClick = {() => {}}
+            videoClassName = {`player__video`}
           />
         </Route>
       </Switch>
@@ -100,12 +113,17 @@ App.propTypes = {
         title: PropTypes.string.isRequired,
         genre: PropTypes.string.isRequired,
         year: PropTypes.number.isRequired,
+        src: PropTypes.string.isRequired,
+        pictureSrc: PropTypes.string.isRequired,
       })
   ).isRequired,
   activeMovie: PropTypes.shape({
     genre: PropTypes.string.isRequired,
   }),
   selectMovie: PropTypes.func.isRequired,
-  playingMovie: PropTypes.object,
+  playingMovie: PropTypes.shape({
+    src: PropTypes.string.isRequired,
+    pictureSrc: PropTypes.string.isRequired,
+  }),
   playMovie: PropTypes.func.isRequired,
 };
