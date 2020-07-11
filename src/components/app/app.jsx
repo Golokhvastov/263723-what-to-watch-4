@@ -4,7 +4,7 @@ import {BrowserRouter, Switch, Route} from "react-router-dom";
 import {connect} from "react-redux";
 import Main from "../main/main.jsx";
 import MoviePage from "../movie-page/movie-page.jsx";
-import {getFilteredMovies} from "../../utils/utils.js";
+import {getNeedMovies, getAllFilteredMovies} from "../../utils/utils.js";
 import {Settings} from "../../const.js";
 
 class App extends React.PureComponent {
@@ -44,7 +44,7 @@ class App extends React.PureComponent {
         <MoviePage
           movie = {selectedMovie}
           onLogoClick = {this.logoClickHandler}
-          movies = {getFilteredMovies(movies, selectedMovie.genre, Settings.maxSimilarMovies)}
+          movies = {getNeedMovies(getAllFilteredMovies(movies, selectedMovie.genre), Settings.maxSimilarMovies)}
           onMovieTitleClick = {this.movieTitleClickHandler}
         />
       );
@@ -64,7 +64,7 @@ class App extends React.PureComponent {
             <MoviePage
               movie = {movies[0]}
               onLogoClick = {this.logoClickHandler}
-              movies = {getFilteredMovies(movies, movies[0].genre, Settings.maxSimilarMovies)}
+              movies = {getNeedMovies(getAllFilteredMovies(movies, movies[0].genre), Settings.maxSimilarMovies)}
               onMovieTitleClick = {this.movieTitleClickHandler}
             />
           </Route>
