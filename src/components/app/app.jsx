@@ -9,8 +9,14 @@ import {getNeedMovies, getAllFilteredMovies} from "../../utils/utils.js";
 import {Settings} from "../../const.js";
 import {ActionCreator} from "../../reducer.js";
 import withVideo from "../../hocs/with-video/with-video.js";
+import {createAPI} from "../../api.js";
 
 const FullscreenPlayerWrapper = withVideo(FullscreenPlayer);
+
+const API = createAPI(() => {});
+API.get(`/films`).then(res => {
+  console.log(res);
+});
 
 const App = (props) => {
   const {movies, activeMovie, selectMovie, playingMovie, playMovie} = props;
