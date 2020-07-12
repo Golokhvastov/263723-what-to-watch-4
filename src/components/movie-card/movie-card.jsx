@@ -2,7 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const MovieCard = (props) => {
-  const {movie, onTitleClick, onCardMouseEnter, onCardMouseLeave, renderVideo} = props;
+  const {
+    movie,
+    onTitleClick,
+    onCardMouseEnter,
+    onCardMouseLeave,
+    renderVideo,
+    isPlaying
+  } = props;
 
   const videoSrc = movie.preview;
   const videoPosterSrc = `img/${movie.pictureSrc}`;
@@ -18,7 +25,10 @@ const MovieCard = (props) => {
       }}
     >
       <div className="small-movie-card__image">
-        {renderVideo(videoSrc, videoPosterSrc)}
+        {isPlaying
+          ? (renderVideo(videoSrc, videoPosterSrc))
+          : (<img src={`img/${movie.pictureSrc}`} alt={movie.title} width="280" height="175" />)
+        }
       </div>
       <h3 className="small-movie-card__title">
         <a className="small-movie-card__link" href="movie-page.html">{movie.title}</a>
@@ -39,6 +49,5 @@ MovieCard.propTypes = {
   onCardMouseEnter: PropTypes.func.isRequired,
   onCardMouseLeave: PropTypes.func.isRequired,
   renderVideo: PropTypes.func.isRequired,
+  isPlaying: PropTypes.bool.isRequired,
 };
-
-// <img src={`img/${movie.pictureSrc}`} alt={movie.title} width="280" height="175" />

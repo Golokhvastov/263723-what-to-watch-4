@@ -211,9 +211,11 @@ Array [
           <div
             className="small-movie-card__image"
           >
-            <video
-              height="100%"
-              width="100%"
+            <img
+              alt="Test1"
+              height="175"
+              src="img/test1.jpg"
+              width="280"
             />
           </div>
           <h3
@@ -236,9 +238,11 @@ Array [
           <div
             className="small-movie-card__image"
           >
-            <video
-              height="100%"
-              width="100%"
+            <img
+              alt="Test2"
+              height="175"
+              src="img/test2.jpg"
+              width="280"
             />
           </div>
           <h3
@@ -261,9 +265,11 @@ Array [
           <div
             className="small-movie-card__image"
           >
-            <video
-              height="100%"
-              width="100%"
+            <img
+              alt="Test3"
+              height="175"
+              src="img/test3.jpg"
+              width="280"
             />
           </div>
           <h3
@@ -286,9 +292,11 @@ Array [
           <div
             className="small-movie-card__image"
           >
-            <video
-              height="100%"
-              width="100%"
+            <img
+              alt="Test1"
+              height="175"
+              src="img/test1.jpg"
+              width="280"
             />
           </div>
           <h3
@@ -311,9 +319,11 @@ Array [
           <div
             className="small-movie-card__image"
           >
-            <video
-              height="100%"
-              width="100%"
+            <img
+              alt="Test2"
+              height="175"
+              src="img/test2.jpg"
+              width="280"
             />
           </div>
           <h3
@@ -336,9 +346,11 @@ Array [
           <div
             className="small-movie-card__image"
           >
-            <video
-              height="100%"
-              width="100%"
+            <img
+              alt="Test3"
+              height="175"
+              src="img/test3.jpg"
+              width="280"
             />
           </div>
           <h3
@@ -361,9 +373,11 @@ Array [
           <div
             className="small-movie-card__image"
           >
-            <video
-              height="100%"
-              width="100%"
+            <img
+              alt="Test1"
+              height="175"
+              src="img/test1.jpg"
+              width="280"
             />
           </div>
           <h3
@@ -386,9 +400,11 @@ Array [
           <div
             className="small-movie-card__image"
           >
-            <video
-              height="100%"
-              width="100%"
+            <img
+              alt="Test2"
+              height="175"
+              src="img/test2.jpg"
+              width="280"
             />
           </div>
           <h3
@@ -664,9 +680,11 @@ Array [
           <div
             className="small-movie-card__image"
           >
-            <video
-              height="100%"
-              width="100%"
+            <img
+              alt="Test1"
+              height="175"
+              src="img/test1.jpg"
+              width="280"
             />
           </div>
           <h3
@@ -689,9 +707,11 @@ Array [
           <div
             className="small-movie-card__image"
           >
-            <video
-              height="100%"
-              width="100%"
+            <img
+              alt="Test2"
+              height="175"
+              src="img/test2.jpg"
+              width="280"
             />
           </div>
           <h3
@@ -714,9 +734,11 @@ Array [
           <div
             className="small-movie-card__image"
           >
-            <video
-              height="100%"
-              width="100%"
+            <img
+              alt="Test3"
+              height="175"
+              src="img/test3.jpg"
+              width="280"
             />
           </div>
           <h3
@@ -739,9 +761,11 @@ Array [
           <div
             className="small-movie-card__image"
           >
-            <video
-              height="100%"
-              width="100%"
+            <img
+              alt="Test1"
+              height="175"
+              src="img/test1.jpg"
+              width="280"
             />
           </div>
           <h3
@@ -764,9 +788,11 @@ Array [
           <div
             className="small-movie-card__image"
           >
-            <video
-              height="100%"
-              width="100%"
+            <img
+              alt="Test2"
+              height="175"
+              src="img/test2.jpg"
+              width="280"
             />
           </div>
           <h3
@@ -789,9 +815,11 @@ Array [
           <div
             className="small-movie-card__image"
           >
-            <video
-              height="100%"
-              width="100%"
+            <img
+              alt="Test3"
+              height="175"
+              src="img/test3.jpg"
+              width="280"
             />
           </div>
           <h3
@@ -814,9 +842,11 @@ Array [
           <div
             className="small-movie-card__image"
           >
-            <video
-              height="100%"
-              width="100%"
+            <img
+              alt="Test1"
+              height="175"
+              src="img/test1.jpg"
+              width="280"
             />
           </div>
           <h3
@@ -839,9 +869,11 @@ Array [
           <div
             className="small-movie-card__image"
           >
-            <video
-              height="100%"
-              width="100%"
+            <img
+              alt="Test2"
+              height="175"
+              src="img/test2.jpg"
+              width="280"
             />
           </div>
           <h3

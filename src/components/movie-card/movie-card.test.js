@@ -8,19 +8,40 @@ const movie = {
   preview: `test2.jpg`,
 };
 
-it(`MovieCard render correctly`, () => {
-  const tree = renderer
-    .create(
-        <MovieCard
-          movie = {movie}
-          onTitleClick = {() => {}}
-          onMouseEnter = {() => {}}
-          onMouseLeave = {() => {}}
-          onCardMouseEnter = {() => {}}
-          onCardMouseLeave = {() => {}}
-          renderVideo = {() => {}}
-        />
-    ).toJSON();
+describe(`MovieCard render correctly`, () => {
+  it(`isPlaying = true`, () => {
+    const tree = renderer
+      .create(
+          <MovieCard
+            movie = {movie}
+            onTitleClick = {() => {}}
+            onMouseEnter = {() => {}}
+            onMouseLeave = {() => {}}
+            onCardMouseEnter = {() => {}}
+            onCardMouseLeave = {() => {}}
+            renderVideo = {() => {}}
+            isPlaying = {true}
+          />
+      ).toJSON();
 
-  expect(tree).toMatchSnapshot();
+    expect(tree).toMatchSnapshot();
+  });
+
+  it(`isPlaying = false`, () => {
+    const tree = renderer
+      .create(
+          <MovieCard
+            movie = {movie}
+            onTitleClick = {() => {}}
+            onMouseEnter = {() => {}}
+            onMouseLeave = {() => {}}
+            onCardMouseEnter = {() => {}}
+            onCardMouseLeave = {() => {}}
+            renderVideo = {() => {}}
+            isPlaying = {false}
+          />
+      ).toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
 });
