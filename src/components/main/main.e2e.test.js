@@ -45,6 +45,7 @@ it(`e2e test for Main`, () => {
         activeGenre = {`All genres`}
         selectGenre = {() => {}}
         onMovieTitleClick = {movieTitleClickHandler}
+        onPlayClick = {() => {}}
       />
   );
 

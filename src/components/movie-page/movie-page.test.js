@@ -73,6 +73,7 @@ it(`MoviePage render correctly`, () => {
           onLogoClick = {() => {}}
           movies = {mocks.movies}
           onMovieTitleClick = {() => {}}
+          onPlayClick = {() => {}}
         />, {
           createNodeMock: () => {
             return {};

@@ -35,6 +35,7 @@ it(`e2e test for MovieCard`, () => {
         onCardMouseEnter = {() => onMouseEnter(result.sentIndex)}
         onCardMouseLeave = {onMouseLeave}
         renderVideo = {renderVideo}
+        isPlaying = {true}
       />
   );
 

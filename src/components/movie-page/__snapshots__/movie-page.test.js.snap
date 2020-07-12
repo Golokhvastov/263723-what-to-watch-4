@@ -94,6 +94,7 @@ Array [
           >
             <button
               className="btn btn--play movie-card__button"
+              onClick={[Function]}
               type="button"
             >
               <svg
@@ -274,9 +275,11 @@ Array [
           <div
             className="small-movie-card__image"
           >
-            <video
-              height="100%"
-              width="100%"
+            <img
+              alt="Test8"
+              height="175"
+              src="img/test8.jpg"
+              width="280"
             />
           </div>
           <h3
@@ -299,9 +302,11 @@ Array [
           <div
             className="small-movie-card__image"
           >
-            <video
-              height="100%"
-              width="100%"
+            <img
+              alt="Test9"
+              height="175"
+              src="img/test9.jpg"
+              width="280"
             />
           </div>
           <h3
@@ -324,9 +329,11 @@ Array [
           <div
             className="small-movie-card__image"
           >
-            <video
-              height="100%"
-              width="100%"
+            <img
+              alt="Test10"
+              height="175"
+              src="img/test10.jpg"
+              width="280"
             />
           </div>
           <h3

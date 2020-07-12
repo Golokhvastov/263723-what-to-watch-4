@@ -64,22 +64,45 @@ const mocks = {
   ]
 };
 
-it(`Main render correctly`, () => {
-  const tree = renderer
-    .create(
-        <Main
-          movieCardTitle = {mocks.movieCardTitle}
-          movieCardGenre = {mocks.movieCardGenre}
-          movieCardYear = {mocks.movieCardYear}
-          movies = {mocks.movies}
-          activeGenre = {`All genres`}
-          selectGenre = {() => {}}
-          onMovieTitleClick = {() => {}}
-        />, {
-          createNodeMock: () => {
-            return {};
-          }
-        }).toJSON();
+describe(`Main render correctly`, () => {
+  it(`with genre: All genres`, () => {
+    const tree = renderer
+      .create(
+          <Main
+            movieCardTitle = {mocks.movieCardTitle}
+            movieCardGenre = {mocks.movieCardGenre}
+            movieCardYear = {mocks.movieCardYear}
+            movies = {mocks.movies}
+            activeGenre = {`All genres`}
+            selectGenre = {() => {}}
+            onMovieTitleClick = {() => {}}
+            onPlayClick = {() => {}}
+          />, {
+            createNodeMock: () => {
+              return {};
+            }
+          }).toJSON();
 
-  expect(tree).toMatchSnapshot();
+    expect(tree).toMatchSnapshot();
+  });
+  it(`with genre: Test11`, () => {
+    const tree = renderer
+      .create(
+          <Main
+            movieCardTitle = {mocks.movieCardTitle}
+            movieCardGenre = {mocks.movieCardGenre}
+            movieCardYear = {mocks.movieCardYear}
+            movies = {mocks.movies}
+            activeGenre = {`Test11`}
+            selectGenre = {() => {}}
+            onMovieTitleClick = {() => {}}
+            onPlayClick = {() => {}}
+          />, {
+            createNodeMock: () => {
+              return {};
+            }
+          }).toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
 });

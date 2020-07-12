@@ -8,7 +8,7 @@ import {Settings} from "../../const.js";
 const TabsWrapper = withActiveItem(Tabs);
 
 const MoviePage = (props) => {
-  const {movie, onLogoClick, movies, onMovieTitleClick} = props;
+  const {movie, onLogoClick, movies, onMovieTitleClick, onPlayClick} = props;
   const {
     title,
     pictureSrc,
@@ -57,7 +57,11 @@ const MoviePage = (props) => {
               </p>
 
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button">
+                <button
+                  className="btn btn--play movie-card__button"
+                  type="button"
+                  onClick={() => onPlayClick(movie)}
+                >
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
@@ -145,5 +149,6 @@ MoviePage.propTypes = {
   }).isRequired,
   onLogoClick: PropTypes.func.isRequired,
   movies: PropTypes.array.isRequired,
-  onMovieTitleClick: PropTypes.func.isRequired
+  onMovieTitleClick: PropTypes.func.isRequired,
+  onPlayClick: PropTypes.func.isRequired,
 };

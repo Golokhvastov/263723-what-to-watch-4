@@ -17,11 +17,19 @@ const withVideoPlayer = (Component) => {
     }
 
     cardMouseEnterHandler() {
-      this.setState({isPlaying: true});
+      clearTimeout(this.timerId);
+      this.timerId = setTimeout(() => {
+        this.setState({isPlaying: true});
+      }, 1000);
     }
 
     cardMouseLeaveHandler() {
+      clearTimeout(this.timerId);
       this.setState({isPlaying: false});
+    }
+
+    componentWillUnmount() {
+      clearTimeout(this.timerId);
     }
 
     renderVideo(src, posterSrc) {
@@ -43,6 +51,7 @@ const withVideoPlayer = (Component) => {
           onCardMouseEnter = {this.cardMouseEnterHandler}
           onCardMouseLeave = {this.cardMouseLeaveHandler}
           renderVideo = {(src, posterSrc) => this.renderVideo(src, posterSrc)}
+          isPlaying = {this.state.isPlaying}
         />
       );
     }
