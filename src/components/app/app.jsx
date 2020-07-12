@@ -14,7 +14,6 @@ const FullscreenPlayerWrapper = withVideo(FullscreenPlayer);
 
 const App = (props) => {
   const {movies, activeMovie, selectMovie, playingMovie, playMovie} = props;
-  console.log(movies);
 
   const _renderApp = () => {
     if (!activeMovie && !playingMovie) {

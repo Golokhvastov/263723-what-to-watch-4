@@ -39,6 +39,14 @@ const ActionCreator = {
   }),
 };
 
+const Operation = {
+  loadMovies: () => (dispatch, getState, api) => {
+    return api.get(`/films`).then((response) => {
+      dispatch(ActionCreator.loadMovies(response.data));
+    });
+  }
+};
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.SELECT_MOVIE:
@@ -62,4 +70,4 @@ const reducer = (state = initialState, action) => {
   return state;
 };
 
-export {reducer, ActionType, ActionCreator, AuthorizationStatus};
+export {reducer, ActionType, ActionCreator, AuthorizationStatus, Operation};

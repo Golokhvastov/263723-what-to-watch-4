@@ -4,12 +4,14 @@ import {createStore, applyMiddleware, compose} from "redux";
 import {Provider} from "react-redux";
 import thunk from "redux-thunk";
 import App from "./components/app/app.jsx";
-import {reducer, ActionCreator, AuthorizationStatus} from "./reducer.js";
+import {reducer, ActionCreator, AuthorizationStatus, Operation} from "./reducer.js";
 import {createAPI} from "./api.js";
 
-const api = createAPI(() => {
+const onUnauthorized = () => {
   store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
-});
+};
+
+const api = createAPI(onUnauthorized);
 
 const store = createStore(
     reducer,
@@ -19,9 +21,7 @@ const store = createStore(
     )
 );
 
-api.get(`/films`).then(res => {
-  store.dispatch(ActionCreator.loadMovies(res.data));
-});
+store.dispatch(Operation.loadMovies());
 
 ReactDOM.render(
     <Provider store={store}>
