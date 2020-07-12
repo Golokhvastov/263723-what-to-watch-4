@@ -19,6 +19,10 @@ const store = createStore(
     )
 );
 
+api.get(`/films`).then(res => {
+  store.dispatch(ActionCreator.loadMovies(res.data));
+});
+
 ReactDOM.render(
     <Provider store={store}>
       <App />
