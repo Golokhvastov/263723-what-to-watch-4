@@ -15,11 +15,12 @@ const MoviePage = (props) => {
     year,
     posterImage,
     backgroundImage,
+    backgroundColor,
   } = movie;
 
   return (
     <>
-      <section className="movie-card movie-card--full">
+      <section className="movie-card movie-card--full" style={{background: backgroundColor}}>
         <div className="movie-card__hero">
           <div className="movie-card__bg">
             <img src={backgroundImage} alt={title} />
@@ -135,6 +136,7 @@ MoviePage.propTypes = {
     title: PropTypes.string.isRequired,
     posterImage: PropTypes.string.isRequired,
     backgroundImage: PropTypes.string.isRequired,
+    backgroundColor: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
     year: PropTypes.number.isRequired,
     rating: PropTypes.shape({

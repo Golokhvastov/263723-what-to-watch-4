@@ -7,6 +7,7 @@ const mocks = {
     title: `Test1`,
     posterImage: `test1.jpg`,
     backgroundImage: `test1.jpg`,
+    backgroundColor: `test1.jpg`,
     previewImage: `test1.jpg`,
     genre: `Test genre`,
     year: 1999,

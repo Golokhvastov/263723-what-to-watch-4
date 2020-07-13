@@ -17,6 +17,7 @@ const mocks = {
       previewImage: `test1.jpg`,
       posterImage: `test1.jpg`,
       backgroundImage: `test1.jpg`,
+      backgroundColor: `test1.jpg`,
       genre: `Drama`,
       year: 2016,
       rating: {
@@ -57,6 +58,7 @@ const mocks = {
       previewImage: `test2.jpg`,
       posterImage: `test2.jpg`,
       backgroundImage: `test2.jpg`,
+      backgroundColor: `test2.jpg`,
       genre: `Test22`,
       year: 2020,
       rating: {
