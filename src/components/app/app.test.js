@@ -3,6 +3,7 @@ import renderer from "react-test-renderer";
 import {App} from "./app.jsx";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
+import NameSpace from "../../reducer/name-space.js";
 
 const mockStore = configureStore([]);
 
@@ -95,7 +96,7 @@ describe(`App render correctly`, () => {
   it(`activeMovie = null, playingMovie = null`, () => {
     const store = mockStore({
       page: {activeMovie: null},
-      data: {movies: mocks.movies},
+      [NameSpace.DATA]: {movies: mocks.movies},
     });
 
     const tree = renderer

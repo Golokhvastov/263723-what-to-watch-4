@@ -1,5 +1,7 @@
 import NameSpace from "../name-space.js";
 
+const NAME_SPACE = NameSpace.DATA;
+
 export const getMovies = (state) => {
-  return state[NameSpace.DATA].movies;
+  return state[NAME_SPACE].movies;
 };
