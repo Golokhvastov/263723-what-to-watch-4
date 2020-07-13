@@ -7,7 +7,7 @@ const movie = {
   pictureSrc: `test2.jpg`,
   preview: `test3.jpg`,
   src: `test4.jpg`,
-  runTime: `test4.jpg`,
+  runTime: 55,
 };
 
 describe(`FullscreenPlayer render correctly`, () => {

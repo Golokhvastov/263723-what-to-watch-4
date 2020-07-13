@@ -103,7 +103,7 @@ exports[`Tabs render correctly Tabs with Details 1`] = `
         <span
           className="movie-card__details-value"
         >
-          2h 00m
+          2h 0m
         </span>
       </p>
       <p

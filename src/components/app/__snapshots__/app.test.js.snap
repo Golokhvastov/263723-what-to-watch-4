@@ -25,7 +25,7 @@ exports[`App render correctly activeMovie = mocks.movies[0], playingMovie = mock
       >
         <progress
           className="player__progress"
-          max="100"
+          max={1680}
           value={0}
         />
         <div
@@ -42,7 +42,7 @@ exports[`App render correctly activeMovie = mocks.movies[0], playingMovie = mock
       <div
         className="player__time-value"
       >
-        Test28
+        00:00:00
       </div>
     </div>
     <div
@@ -452,7 +452,7 @@ exports[`App render correctly activeMovie = null, playingMovie = mocks.movies[0]
       >
         <progress
           className="player__progress"
-          max="100"
+          max={1140}
           value={0}
         />
         <div
@@ -469,7 +469,7 @@ exports[`App render correctly activeMovie = null, playingMovie = mocks.movies[0]
       <div
         className="player__time-value"
       >
-        Test19
+        00:00:00
       </div>
     </div>
     <div

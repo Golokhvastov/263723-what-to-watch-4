@@ -68,7 +68,7 @@ TabOverview.propTypes = {
     starring: PropTypes.arrayOf(
         PropTypes.string.isRequired
     ).isRequired,
-    runTime: PropTypes.string.isRequired,
+    runTime: PropTypes.number.isRequired,
     reviews: PropTypes.arrayOf(
         PropTypes.shape({
           rating: PropTypes.number.isRequired,

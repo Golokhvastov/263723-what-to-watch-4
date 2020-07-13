@@ -23,7 +23,7 @@ exports[`FullscreenPlayer render correctly progress = 0, isLoading = false, isPl
       >
         <progress
           className="player__progress"
-          max="100"
+          max={3300}
           value={0}
         />
         <div
@@ -40,7 +40,7 @@ exports[`FullscreenPlayer render correctly progress = 0, isLoading = false, isPl
       <div
         className="player__time-value"
       >
-        test4.jpg
+        00:00:00
       </div>
     </div>
     <div
@@ -115,14 +115,14 @@ exports[`FullscreenPlayer render correctly progress = 11, isLoading = false, isP
       >
         <progress
           className="player__progress"
-          max="100"
+          max={3300}
           value={11}
         />
         <div
           className="player__toggler"
           style={
             Object {
-              "left": "11%",
+              "left": "0.33333333333333337%",
             }
           }
         >
@@ -132,7 +132,7 @@ exports[`FullscreenPlayer render correctly progress = 11, isLoading = false, isP
       <div
         className="player__time-value"
       >
-        test4.jpg
+        00:00:11
       </div>
     </div>
     <div
@@ -208,14 +208,14 @@ exports[`FullscreenPlayer render correctly progress = 22, isLoading = true, isPl
       >
         <progress
           className="player__progress"
-          max="100"
+          max={3300}
           value={22}
         />
         <div
           className="player__toggler"
           style={
             Object {
-              "left": "22%",
+              "left": "0.6666666666666667%",
             }
           }
         >
@@ -225,7 +225,7 @@ exports[`FullscreenPlayer render correctly progress = 22, isLoading = true, isPl
       <div
         className="player__time-value"
       >
-        test4.jpg
+        00:00:22
       </div>
     </div>
     <div
@@ -300,14 +300,14 @@ exports[`FullscreenPlayer render correctly progress = 100, isLoading = true, isP
       >
         <progress
           className="player__progress"
-          max="100"
+          max={3300}
           value={100}
         />
         <div
           className="player__toggler"
           style={
             Object {
-              "left": "100%",
+              "left": "3.0303030303030303%",
             }
           }
         >
@@ -317,7 +317,7 @@ exports[`FullscreenPlayer render correctly progress = 100, isLoading = true, isP
       <div
         className="player__time-value"
       >
-        test4.jpg
+        00:01:40
       </div>
     </div>
     <div

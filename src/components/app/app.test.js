@@ -34,7 +34,7 @@ const mocks = {
       ],
       preview: `test1.jpg`,
       src: `test100.jpg`,
-      runTime: `Test19`,
+      runTime: 19,
       reviews: [
         {
           rating: 8.9,
@@ -71,7 +71,7 @@ const mocks = {
       ],
       preview: `test2.jpg`,
       src: `test200.jpg`,
-      runTime: `Test28`,
+      runTime: 28,
       reviews: [
         {
           rating: 7.9,

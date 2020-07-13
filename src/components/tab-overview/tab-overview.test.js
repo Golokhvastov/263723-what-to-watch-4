@@ -23,7 +23,7 @@ const mocks = {
       `Test starring 3`,
       `Test starring 4`,
     ],
-    runTime: `2h 00m`,
+    runTime: 120,
     preview: `Test4`,
     reviews: [
       {
