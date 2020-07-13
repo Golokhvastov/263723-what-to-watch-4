@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Settings} from "../../const.js";
-import {getNeedMovies} from "../../utils/utils.js";
+import {getNumberOfMovies} from "../../reducer/data/selector.js";
 import ShowMore from "../../components/show-more/show-more.jsx";
 
 const withShowMoreButton = (Component) => {
@@ -38,7 +38,7 @@ const withShowMoreButton = (Component) => {
         <>
           <Component
             {...this.props}
-            movies = {getNeedMovies(movies, shownMoviesCount)}
+            movies = {getNumberOfMovies(movies, shownMoviesCount)}
           />
           {shownMoviesCount < movies.length &&
             <ShowMore

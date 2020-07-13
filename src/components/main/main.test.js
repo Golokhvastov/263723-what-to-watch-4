@@ -1,6 +1,11 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {Main} from "./main.jsx";
+import {Provider} from "react-redux";
+import configureStore from "redux-mock-store";
+import NameSpace from "../../reducer/name-space.js";
+import Main from "./main.jsx";
+
+const mockStore = configureStore([]);
 
 const mocks = {
   movieCardTitle: `Test`,
@@ -12,6 +17,7 @@ const mocks = {
       genre: `Test11`,
       pictureSrc: `test1.jpg`,
       preview: `test1.jpg`,
+      year: 1981,
     },
     {
       title: `Test2`,
@@ -64,45 +70,24 @@ const mocks = {
   ]
 };
 
-describe(`Main render correctly`, () => {
-  it(`with genre: All genres`, () => {
-    const tree = renderer
-      .create(
+it(`Main render correctly`, () => {
+  const store = mockStore({
+    [NameSpace.DATA]: {movies: mocks.movies},
+  });
+
+  const tree = renderer
+    .create(
+        <Provider store={store}>
           <Main
-            movieCardTitle = {mocks.movieCardTitle}
-            movieCardGenre = {mocks.movieCardGenre}
-            movieCardYear = {mocks.movieCardYear}
-            movies = {mocks.movies}
-            activeGenre = {`All genres`}
-            selectGenre = {() => {}}
+            mainMovie = {mocks.movies[0]}
             onMovieTitleClick = {() => {}}
             onPlayClick = {() => {}}
-          />, {
-            createNodeMock: () => {
-              return {};
-            }
-          }).toJSON();
+          />
+        </Provider>, {
+          createNodeMock: () => {
+            return {};
+          }
+        }).toJSON();
 
-    expect(tree).toMatchSnapshot();
-  });
-  it(`with genre: Test11`, () => {
-    const tree = renderer
-      .create(
-          <Main
-            movieCardTitle = {mocks.movieCardTitle}
-            movieCardGenre = {mocks.movieCardGenre}
-            movieCardYear = {mocks.movieCardYear}
-            movies = {mocks.movies}
-            activeGenre = {`Test11`}
-            selectGenre = {() => {}}
-            onMovieTitleClick = {() => {}}
-            onPlayClick = {() => {}}
-          />, {
-            createNodeMock: () => {
-              return {};
-            }
-          }).toJSON();
-
-    expect(tree).toMatchSnapshot();
-  });
+  expect(tree).toMatchSnapshot();
 });

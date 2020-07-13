@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {getTextRating} from "../../utils/utils.js";
+import {getTextRating} from "../../reducer/data/selector.js";
 
 const TabOverview = (props) => {
   const {movie} = props;

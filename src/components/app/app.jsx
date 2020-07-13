@@ -5,10 +5,9 @@ import {connect} from "react-redux";
 import Main from "../main/main.jsx";
 import MoviePage from "../movie-page/movie-page.jsx";
 import FullscreenPlayer from "../fullscreen-player/fullscreen-player.jsx";
-import {getNeedMovies, getAllFilteredMovies} from "../../utils/utils.js";
 import {Settings} from "../../const.js";
 import {ActionCreator} from "../../reducer/page/page.js";
-import {getMovies} from "../../reducer/data/selector.js";
+import {getMovies, getNumberOfMovies, getFilteredMovies} from "../../reducer/data/selector.js";
 import {getActiveMovie, getPlayingMovie} from "../../reducer/page/selector.js";
 import withVideo from "../../hocs/with-video/with-video.js";
 
@@ -21,9 +20,7 @@ const App = (props) => {
     if (!activeMovie && !playingMovie) {
       return (
         <Main
-          movieCardTitle = {movies[0].title}
-          movieCardGenre = {movies[0].genre}
-          movieCardYear = {movies[0].year}
+          mainMovie = {movies[0]}
           onMovieTitleClick = {selectMovie}
           onPlayClick = {playMovie}
         />
@@ -35,7 +32,7 @@ const App = (props) => {
         <MoviePage
           movie = {activeMovie}
           onLogoClick = {() => selectMovie(null)}
-          movies = {getNeedMovies(getAllFilteredMovies(movies, activeMovie.genre), Settings.maxSimilarMovies)}
+          movies = {getNumberOfMovies(getFilteredMovies(movies, activeMovie.genre), Settings.maxSimilarMovies)}
           onMovieTitleClick = {selectMovie}
           onPlayClick = {playMovie}
         />
@@ -68,7 +65,7 @@ const App = (props) => {
           <MoviePage
             movie = {movies[0]}
             onLogoClick = {() => {}}
-            movies = {getNeedMovies(getAllFilteredMovies(movies, movies[0].genre), Settings.maxSimilarMovies)}
+            movies = {getNumberOfMovies(getFilteredMovies(movies, movies[0].genre), Settings.maxSimilarMovies)}
             onMovieTitleClick = {() => {}}
             onPlayClick = {() => {}}
           />
