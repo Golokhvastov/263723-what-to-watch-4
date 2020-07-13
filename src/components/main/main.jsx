@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import MoviesCatalog from "../movies-catalog/movies-catalog.jsx";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 import {Settings} from "../../const.js";
+import {getMovies} from "../../reducer/data/selector.js";
 
 const MoviesCatalogWrapper = withActiveItem(MoviesCatalog);
 
@@ -105,7 +106,7 @@ const Main = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  movies: state.data.movies
+  movies: getMovies(state)
 });
 
 export {Main};

@@ -8,6 +8,8 @@ import FullscreenPlayer from "../fullscreen-player/fullscreen-player.jsx";
 import {getNeedMovies, getAllFilteredMovies} from "../../utils/utils.js";
 import {Settings} from "../../const.js";
 import {ActionCreator} from "../../reducer/page/page.js";
+import {getMovies} from "../../reducer/data/selector.js";
+import {getActiveMovie, getPlayingMovie} from "../../reducer/page/selector.js";
 import withVideo from "../../hocs/with-video/with-video.js";
 
 const FullscreenPlayerWrapper = withVideo(FullscreenPlayer);
@@ -87,9 +89,9 @@ const App = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  movies: state.data.movies,
-  activeMovie: state.page.activeMovie,
-  playingMovie: state.page.playingMovie,
+  movies: getMovies(state),
+  activeMovie: getActiveMovie(state),
+  playingMovie: getPlayingMovie(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -94,8 +94,8 @@ const mocks = {
 describe(`App render correctly`, () => {
   it(`activeMovie = null, playingMovie = null`, () => {
     const store = mockStore({
-      activeMovie: null,
-      movies: mocks.movies,
+      page: {activeMovie: null},
+      data: {movies: mocks.movies},
     });
 
     const tree = renderer
