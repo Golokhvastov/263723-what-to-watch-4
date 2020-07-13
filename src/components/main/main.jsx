@@ -105,7 +105,7 @@ const Main = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  movies: state.movies
+  movies: state.data.movies
 });
 
 export {Main};
