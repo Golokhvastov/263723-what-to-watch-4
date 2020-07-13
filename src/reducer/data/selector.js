@@ -4,8 +4,46 @@ import {Settings} from "../../const.js";
 
 const NAME_SPACE = NameSpace.DATA;
 
+const adaptMovies = (movies) => {
+  const result = movies.map((movie) => {
+    return {
+      id: movie.id,
+      posterImage: movie.poster_image,
+      previewImage: movie.preview_image,
+      backgroundImage: movie.background_image,
+      backgroundColor: movie.background_color,
+      isFavorite: movie.is_favorite,
+      descriptions: [
+        movie.description
+      ],
+      director: movie.director,
+      genre: movie.genre,
+      preview: movie.preview_video_link,
+      rating: {
+        score: movie.rating,
+        votes: movie.scores_count,
+      },
+      reviews: [
+        {
+          rating: 7.6,
+          date: `December 20, 2016`,
+          author: `Paula Fleri-Soler`,
+          text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`
+        }
+      ],
+      runTime: movie.run_time,
+      src: movie.video_link,
+      starring: movie.starring,
+      title: movie.name,
+      year: movie.released,
+    }
+  });
+
+  return result;
+};
+
 export const getMovies = (state) => {
-  return state[NAME_SPACE].movies;
+  return adaptMovies(state[NAME_SPACE].movies);
 };
 
 export const getTextRating = (value) => {
