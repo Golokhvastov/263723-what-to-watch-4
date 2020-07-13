@@ -4,7 +4,7 @@ import FullscreenPlayer from "./fullscreen-player.jsx";
 
 const movie = {
   title: `Test1`,
-  pictureSrc: `test2.jpg`,
+  previewImage: `test2.jpg`,
   preview: `test3.jpg`,
   src: `test4.jpg`,
   runTime: 55,

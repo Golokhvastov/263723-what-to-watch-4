@@ -108,7 +108,7 @@ Array [
       >
         <img
           alt="Test2"
-          src="img/test2.jpg"
+          src="test2.jpg"
         />
       </div>
       <h1
@@ -244,7 +244,7 @@ Array [
           <img
             alt="Test2 poster"
             height="327"
-            src="img/test2.jpg"
+            src="test2.jpg"
             width="218"
           />
         </div>
@@ -370,7 +370,7 @@ Array [
             <img
               alt="Test2"
               height="175"
-              src="img/test2.jpg"
+              src="test2.jpg"
               width="280"
             />
           </div>
@@ -736,7 +736,7 @@ Array [
             <img
               alt="Test1"
               height="175"
-              src="img/test1.jpg"
+              src="test1.jpg"
               width="280"
             />
           </div>
@@ -763,7 +763,7 @@ Array [
             <img
               alt="Test2"
               height="175"
-              src="img/test2.jpg"
+              src="test2.jpg"
               width="280"
             />
           </div>
@@ -790,7 +790,7 @@ Array [
             <img
               alt="Test3"
               height="175"
-              src="img/test3.jpg"
+              src="test3.jpg"
               width="280"
             />
           </div>

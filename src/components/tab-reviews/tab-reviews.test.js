@@ -5,7 +5,7 @@ import TabReviews from "./tab-reviews.jsx";
 const mocks = {
   movie: {
     title: `Test1`,
-    pictureSrc: `test1.jpg`,
+    previewImage: `test1.jpg`,
     genre: `Test genre`,
     year: 1999,
     rating: {

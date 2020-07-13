@@ -72,7 +72,7 @@ exports[`MoviesCatalog render correctly with genre: All genres 1`] = `
         <img
           alt="Test1"
           height="175"
-          src="img/test1.jpg"
+          src="test1.jpg"
           width="280"
         />
       </div>
@@ -99,7 +99,7 @@ exports[`MoviesCatalog render correctly with genre: All genres 1`] = `
         <img
           alt="Test2"
           height="175"
-          src="img/test2.jpg"
+          src="test2.jpg"
           width="280"
         />
       </div>
@@ -126,7 +126,7 @@ exports[`MoviesCatalog render correctly with genre: All genres 1`] = `
         <img
           alt="Test3"
           height="175"
-          src="img/test3.jpg"
+          src="test3.jpg"
           width="280"
         />
       </div>
@@ -153,7 +153,7 @@ exports[`MoviesCatalog render correctly with genre: All genres 1`] = `
         <img
           alt="Test1"
           height="175"
-          src="img/test1.jpg"
+          src="test1.jpg"
           width="280"
         />
       </div>
@@ -180,7 +180,7 @@ exports[`MoviesCatalog render correctly with genre: All genres 1`] = `
         <img
           alt="Test2"
           height="175"
-          src="img/test2.jpg"
+          src="test2.jpg"
           width="280"
         />
       </div>
@@ -207,7 +207,7 @@ exports[`MoviesCatalog render correctly with genre: All genres 1`] = `
         <img
           alt="Test3"
           height="175"
-          src="img/test3.jpg"
+          src="test3.jpg"
           width="280"
         />
       </div>
@@ -234,7 +234,7 @@ exports[`MoviesCatalog render correctly with genre: All genres 1`] = `
         <img
           alt="Test1"
           height="175"
-          src="img/test1.jpg"
+          src="test1.jpg"
           width="280"
         />
       </div>
@@ -261,7 +261,7 @@ exports[`MoviesCatalog render correctly with genre: All genres 1`] = `
         <img
           alt="Test2"
           height="175"
-          src="img/test2.jpg"
+          src="test2.jpg"
           width="280"
         />
       </div>
@@ -363,7 +363,7 @@ exports[`MoviesCatalog render correctly with genre: Test11 1`] = `
         <img
           alt="Test1"
           height="175"
-          src="img/test1.jpg"
+          src="test1.jpg"
           width="280"
         />
       </div>
@@ -390,7 +390,7 @@ exports[`MoviesCatalog render correctly with genre: Test11 1`] = `
         <img
           alt="Test1"
           height="175"
-          src="img/test1.jpg"
+          src="test1.jpg"
           width="280"
         />
       </div>
@@ -417,7 +417,7 @@ exports[`MoviesCatalog render correctly with genre: Test11 1`] = `
         <img
           alt="Test1"
           height="175"
-          src="img/test1.jpg"
+          src="test1.jpg"
           width="280"
         />
       </div>

@@ -9,7 +9,7 @@ Enzyme.configure({
 
 const movie = {
   title: `Тест1`,
-  pictureSrc: `test1.jpg`,
+  previewImage: `test1.jpg`,
   preview: `test2.jpg`,
 };
 
@@ -49,5 +49,5 @@ it(`e2e test for MovieCard`, () => {
   expect(onMouseLeave).toHaveBeenCalledTimes(1);
 
   expect(renderVideo.mock.calls[0][0]).toBe(movie.preview);
-  expect(renderVideo.mock.calls[0][1]).toBe(`img/${movie.pictureSrc}`);
+  expect(renderVideo.mock.calls[0][1]).toBe(movie.previewImage);
 });

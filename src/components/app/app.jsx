@@ -44,7 +44,7 @@ const App = (props) => {
         <FullscreenPlayerWrapper
           movie = {playingMovie}
           src = {playingMovie.src}
-          posterSrc = {`img/${playingMovie.pictureSrc}`}
+          posterSrc = {playingMovie.previewImage}
           isPlaying = {false}
           onExitClick = {() => playMovie(null)}
           videoClassName = {`player__video`}
@@ -74,7 +74,7 @@ const App = (props) => {
           <FullscreenPlayerWrapper
             movie = {movies[0]}
             src = {movies[0].src}
-            posterSrc = {movies[0].pictureSrc}
+            posterSrc = {movies[0].previewImage}
             isPlaying = {true}
             onExitClick = {() => {}}
             videoClassName = {`player__video`}
@@ -113,7 +113,7 @@ App.propTypes = {
         genre: PropTypes.string.isRequired,
         year: PropTypes.number.isRequired,
         src: PropTypes.string.isRequired,
-        pictureSrc: PropTypes.string.isRequired,
+        previewImage: PropTypes.string.isRequired,
       })
   ).isRequired,
   activeMovie: PropTypes.shape({
@@ -122,7 +122,7 @@ App.propTypes = {
   selectMovie: PropTypes.func.isRequired,
   playingMovie: PropTypes.shape({
     src: PropTypes.string.isRequired,
-    pictureSrc: PropTypes.string.isRequired,
+    previewImage: PropTypes.string.isRequired,
   }),
   playMovie: PropTypes.func.isRequired,
 };

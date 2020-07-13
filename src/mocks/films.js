@@ -1,7 +1,7 @@
 export default [
   {
     title: `Fantastic Beasts: The Crimes of Grindelwald`,
-    pictureSrc: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+    previewImage: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
     genre: `Drama`,
     year: 2016,
     rating: {
@@ -69,7 +69,7 @@ export default [
   },
   {
     title: `Bohemian Rhapsody`,
-    pictureSrc: `bohemian-rhapsody.jpg`,
+    previewImage: `bohemian-rhapsody.jpg`,
     genre: `Crime`,
     year: 2004,
     rating: {
@@ -128,7 +128,7 @@ export default [
   },
   {
     title: `Macbeth`,
-    pictureSrc: `macbeth.jpg`,
+    previewImage: `macbeth.jpg`,
     genre: `Action`,
     year: 1988,
     rating: {
@@ -194,7 +194,7 @@ export default [
   },
   {
     title: `Aviator`,
-    pictureSrc: `aviator.jpg`,
+    previewImage: `aviator.jpg`,
     genre: `Action`,
     year: 1999,
     rating: {
@@ -264,7 +264,7 @@ export default [
   },
   {
     title: `Revenant`,
-    pictureSrc: `revenant.jpg`,
+    previewImage: `revenant.jpg`,
     genre: `Horror`,
     year: 2011,
     rating: {
@@ -321,7 +321,7 @@ export default [
   },
   {
     title: `What We Do in the Shadows`,
-    pictureSrc: `what-we-do-in-the-shadows.jpg`,
+    previewImage: `what-we-do-in-the-shadows.jpg`,
     genre: `Crime`,
     year: 1998,
     rating: {
@@ -383,7 +383,7 @@ export default [
   },
   {
     title: `Johnny English`,
-    pictureSrc: `johnny-english.jpg`,
+    previewImage: `johnny-english.jpg`,
     genre: `Action`,
     year: 1970,
     rating: {
@@ -443,7 +443,7 @@ export default [
   },
   {
     title: `Shutter Island`,
-    pictureSrc: `shutter-island.jpg`,
+    previewImage: `shutter-island.jpg`,
     genre: `Action`,
     year: 2020,
     rating: {

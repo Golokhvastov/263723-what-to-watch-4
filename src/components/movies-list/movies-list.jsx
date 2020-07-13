@@ -29,7 +29,7 @@ MoviesList.propTypes = {
   movies: PropTypes.arrayOf(
       PropTypes.shape({
         title: PropTypes.string.isRequired,
-        pictureSrc: PropTypes.string.isRequired
+        previewImage: PropTypes.string.isRequired
       })
   ).isRequired,
   onMovieTitleClick: PropTypes.func.isRequired

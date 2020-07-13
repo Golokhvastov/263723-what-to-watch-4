@@ -76,7 +76,7 @@ export default Tabs;
 Tabs.propTypes = {
   movie: PropTypes.shape({
     title: PropTypes.string.isRequired,
-    pictureSrc: PropTypes.string.isRequired,
+    previewImage: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
     year: PropTypes.number.isRequired,
     rating: PropTypes.shape({

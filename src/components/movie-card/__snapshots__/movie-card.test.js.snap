@@ -13,7 +13,7 @@ exports[`MovieCard render correctly isPlaying = false 1`] = `
     <img
       alt="Тест1"
       height="175"
-      src="img/test1.jpg"
+      src="test1.jpg"
       width="280"
     />
   </div>

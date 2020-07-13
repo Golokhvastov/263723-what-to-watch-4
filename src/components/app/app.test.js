@@ -14,7 +14,9 @@ const mocks = {
   movies: [
     {
       title: `Test1`,
-      pictureSrc: `test1.jpg`,
+      previewImage: `test1.jpg`,
+      posterImage: `test1.jpg`,
+      backgroundImage: `test1.jpg`,
       genre: `Drama`,
       year: 2016,
       rating: {
@@ -52,7 +54,9 @@ const mocks = {
     },
     {
       title: `Test2`,
-      pictureSrc: `test2.jpg`,
+      previewImage: `test2.jpg`,
+      posterImage: `test2.jpg`,
+      backgroundImage: `test2.jpg`,
       genre: `Test22`,
       year: 2020,
       rating: {
@@ -85,7 +89,7 @@ const mocks = {
       title: `Test3`,
       genre: `Test33`,
       year: 2030,
-      pictureSrc: `test3.jpg`,
+      previewImage: `test3.jpg`,
       preview: `test3.jpg`,
       src: `test300.jpg`,
     },

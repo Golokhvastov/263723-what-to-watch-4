@@ -100,7 +100,7 @@ FullscreenPlayer.propTypes = {
   movie: PropTypes.shape({
     title: PropTypes.string.isRequired,
     src: PropTypes.string.isRequired,
-    pictureSrc: PropTypes.string.isRequired,
+    previewImage: PropTypes.string.isRequired,
     runTime: PropTypes.number.isRequired,
   }),
   onExitClick: PropTypes.func.isRequired,
