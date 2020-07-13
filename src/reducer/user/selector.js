@@ -1,3 +1,5 @@
+import NameSpace from "../name-space.js";
+
 export const getAuthorizationStatus = (state) => {
-  return state.user.authorizationStatus;
+  return state[NameSpace.USER].authorizationStatus;
 };

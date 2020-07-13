@@ -1,7 +1,9 @@
+import NameSpace from "../name-space.js";
+
 export const getActiveMovie = (state) => {
-  return state.page.activeMovie;
+  return state[NameSpace.PAGE].activeMovie;
 };
 
 export const getPlayingMovie = (state) => {
-  return state.page.playingMovie;
+  return state[NameSpace.PAGE].playingMovie;
 };

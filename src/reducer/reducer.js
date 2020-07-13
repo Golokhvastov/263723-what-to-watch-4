@@ -1,10 +1,11 @@
 import {combineReducers} from "redux";
-import {reducer as dataReducer} from "./data/data.js";
-import {reducer as pageReducer} from "./page/page.js";
-import {reducer as userReducer} from "./user/user.js";
+import {reducer as data} from "./data/data.js";
+import {reducer as page} from "./page/page.js";
+import {reducer as user} from "./user/user.js";
+import NameSpace from "./name-space.js";
 
 export const reducer = combineReducers({
-  data: dataReducer,
-  page: pageReducer,
-  user: userReducer,
+  [NameSpace.DATA]: data,
+  [NameSpace.PAGE]: page,
+  [NameSpace.USER]: user,
 });
