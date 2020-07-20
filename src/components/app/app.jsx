@@ -17,7 +17,7 @@ const App = (props) => {
   const {movies, activeMovie, selectMovie, playingMovie, playMovie} = props;
 
   const _renderApp = () => {
-    if (!activeMovie && !playingMovie) {
+    if (!activeMovie && !playingMovie && movies.length > 0) {
       return (
         <Main
           mainMovie = {movies[0]}
@@ -60,25 +60,6 @@ const App = (props) => {
       <Switch>
         <Route exact path="/">
           {_renderApp()}
-        </Route>
-        <Route exact path="/dev-movie-page">
-          <MoviePage
-            movie = {movies[0]}
-            onLogoClick = {() => {}}
-            movies = {getNumberOfMovies(getFilteredMovies(movies, movies[0].genre), Settings.maxSimilarMovies)}
-            onMovieTitleClick = {() => {}}
-            onPlayClick = {() => {}}
-          />
-        </Route>
-        <Route exact path="/dev-player">
-          <FullscreenPlayerWrapper
-            movie = {movies[0]}
-            src = {movies[0].src}
-            posterSrc = {movies[0].previewImage}
-            isPlaying = {true}
-            onExitClick = {() => {}}
-            videoClassName = {`player__video`}
-          />
         </Route>
       </Switch>
     </BrowserRouter>

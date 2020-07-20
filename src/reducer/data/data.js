@@ -1,8 +1,7 @@
-import films from "../../mocks/films.js";
 import {extend} from "../../utils/utils.js";
 
 const initialState = {
-  movies: films
+  movies: []
 };
 
 const ActionType = {
