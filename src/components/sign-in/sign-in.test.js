@@ -1,10 +1,10 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import SingIn from "./sing-in.jsx";
+import SignIn from "./sign-in.jsx";
 
-it(`SingIn component render correctly`, () => {
+it(`SignIn component render correctly`, () => {
   const tree = renderer.create(
-      <SingIn
+      <SignIn
         onLogoClick={() => {}}
         onSubmit={() => {}}
       />

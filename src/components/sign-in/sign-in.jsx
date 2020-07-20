@@ -1,7 +1,7 @@
 import React, {createRef} from "react";
 import PropTypes from "prop-types";
 
-class SingIn extends React.PureComponent {
+class SignIn extends React.PureComponent {
   constructor(props) {
     super(props);
 
@@ -88,9 +88,9 @@ class SingIn extends React.PureComponent {
   }
 }
 
-export default SingIn;
+export default SignIn;
 
-SingIn.propTypes = {
+SignIn.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   onLogoClick: PropTypes.func.isRequired,
 };
