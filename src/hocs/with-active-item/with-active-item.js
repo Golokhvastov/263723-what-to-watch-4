@@ -29,7 +29,8 @@ const withActiveItem = (Component) => {
   WithActiveItem.propTypes = {
     startItem: PropTypes.oneOfType([
       PropTypes.string,
-      PropTypes.number
+      PropTypes.number,
+      PropTypes.bool,
     ]).isRequired,
   };
 

@@ -102,7 +102,6 @@ const mocks = {
 describe(`App render correctly`, () => {
   it(`activeMovie = null, playingMovie = null`, () => {
     const store = mockStore({
-      page: {activeMovie: null},
       [NameSpace.DATA]: {movies: mocks.movies},
     });
 
@@ -128,10 +127,7 @@ describe(`App render correctly`, () => {
   });
 
   it(`activeMovie = mocks.movies[1], playingMovie = null`, () => {
-    const store = mockStore({
-      activeMovie: null,
-      movies: mocks.movies,
-    });
+    const store = mockStore({});
 
     const tree = renderer
       .create(
@@ -155,10 +151,7 @@ describe(`App render correctly`, () => {
   });
 
   it(`activeMovie = null, playingMovie = mocks.movies[0]`, () => {
-    const store = mockStore({
-      activeMovie: null,
-      movies: mocks.movies,
-    });
+    const store = mockStore({});
 
     const tree = renderer
       .create(
@@ -182,10 +175,7 @@ describe(`App render correctly`, () => {
   });
 
   it(`activeMovie = mocks.movies[0], playingMovie = mocks.movies[1]`, () => {
-    const store = mockStore({
-      activeMovie: null,
-      movies: mocks.movies,
-    });
+    const store = mockStore({});
 
     const tree = renderer
       .create(
@@ -210,8 +200,7 @@ describe(`App render correctly`, () => {
 
   it(`with NO_AUTH`, () => {
     const store = mockStore({
-      activeMovie: null,
-      movies: mocks.movies,
+      [NameSpace.USER]: {authorizationErrorStatus: null},
     });
 
     const tree = renderer

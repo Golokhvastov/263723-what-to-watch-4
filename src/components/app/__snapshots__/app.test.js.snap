@@ -900,7 +900,7 @@ exports[`App render correctly with NO_AUTH 1`] = `
         className="sign-in__fields"
       >
         <div
-          className="sign-in__field"
+          className="sign-in__field "
         >
           <input
             className="sign-in__input"

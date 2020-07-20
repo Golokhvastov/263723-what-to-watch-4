@@ -12,9 +12,11 @@ import {getMovies, getNumberOfMovies, getFilteredMovies} from "../../reducer/dat
 import {getActiveMovie, getPlayingMovie} from "../../reducer/page/selector.js";
 import {getAuthorizationStatus} from "../../reducer/user/selector.js";
 import withVideo from "../../hocs/with-video/with-video.js";
+import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 import {Operation as UserOperation, AuthorizationStatus} from "../../reducer/user/user.js";
 
 const FullscreenPlayerWrapper = withVideo(FullscreenPlayer);
+const SignInWrapper = withActiveItem(SignIn);
 
 const App = (props) => {
   const {movies, activeMovie, selectMovie, playingMovie, playMovie, authorizationStatus, login} = props;
@@ -59,9 +61,10 @@ const App = (props) => {
       }
     } else {
       return (
-        <SignIn
+        <SignInWrapper
           onSubmit = {login}
           onLogoClick = {() => {}}
+          startItem = {true}
         />
       );
     }
@@ -76,9 +79,10 @@ const App = (props) => {
           {_renderApp()}
         </Route>
         <Route exact path="/dev">
-          <SignIn
+          <SignInWrapper
             onSubmit = {login}
             onLogoClick = {() => {}}
+            startItem = {true}
           />
         </Route>
       </Switch>
