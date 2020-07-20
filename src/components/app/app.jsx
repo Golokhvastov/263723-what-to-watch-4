@@ -12,45 +12,56 @@ import {getMovies, getNumberOfMovies, getFilteredMovies} from "../../reducer/dat
 import {getActiveMovie, getPlayingMovie} from "../../reducer/page/selector.js";
 import {getAuthorizationStatus} from "../../reducer/user/selector.js";
 import withVideo from "../../hocs/with-video/with-video.js";
+import {Operation as UserOperation, AuthorizationStatus} from "../../reducer/user/user.js";
 
 const FullscreenPlayerWrapper = withVideo(FullscreenPlayer);
 
 const App = (props) => {
-  const {movies, activeMovie, selectMovie, playingMovie, playMovie, authorizationStatus} = props;
+  const {movies, activeMovie, selectMovie, playingMovie, playMovie, authorizationStatus, login} = props;
 
   const _renderApp = () => {
-    if (!activeMovie && !playingMovie && movies.length > 0) {
-      return (
-        <Main
-          mainMovie = {movies[0]}
-          onMovieTitleClick = {selectMovie}
-          onPlayClick = {playMovie}
-          authorizationStatus = {authorizationStatus}
-        />
-      );
-    }
+    if (authorizationStatus === AuthorizationStatus.AUTH) {
+      if (!activeMovie && !playingMovie && movies.length > 0) {
+        return (
+          <Main
+            mainMovie = {movies[0]}
+            onMovieTitleClick = {selectMovie}
+            onPlayClick = {playMovie}
+            authorizationStatus = {authorizationStatus}
+          />
+        );
+      }
 
-    if (activeMovie && !playingMovie) {
-      return (
-        <MoviePage
-          movie = {activeMovie}
-          onLogoClick = {() => selectMovie(null)}
-          movies = {getNumberOfMovies(getFilteredMovies(movies, activeMovie.genre), Settings.maxSimilarMovies)}
-          onMovieTitleClick = {selectMovie}
-          onPlayClick = {playMovie}
-        />
-      );
-    }
+      if (activeMovie && !playingMovie) {
+        return (
+          <MoviePage
+            movie = {activeMovie}
+            onLogoClick = {() => selectMovie(null)}
+            movies = {getNumberOfMovies(getFilteredMovies(movies, activeMovie.genre), Settings.maxSimilarMovies)}
+            onMovieTitleClick = {selectMovie}
+            onPlayClick = {playMovie}
+            authorizationStatus = {authorizationStatus}
+          />
+        );
+      }
 
-    if (playingMovie) {
+      if (playingMovie) {
+        return (
+          <FullscreenPlayerWrapper
+            movie = {playingMovie}
+            src = {playingMovie.src}
+            posterSrc = {playingMovie.previewImage}
+            isPlaying = {false}
+            onExitClick = {() => playMovie(null)}
+            videoClassName = {`player__video`}
+          />
+        );
+      }
+    } else {
       return (
-        <FullscreenPlayerWrapper
-          movie = {playingMovie}
-          src = {playingMovie.src}
-          posterSrc = {playingMovie.previewImage}
-          isPlaying = {false}
-          onExitClick = {() => playMovie(null)}
-          videoClassName = {`player__video`}
+        <SingIn
+          onSubmit = {login}
+          onLogoClick = {() => {}}
         />
       );
     }
@@ -65,7 +76,10 @@ const App = (props) => {
           {_renderApp()}
         </Route>
         <Route exact path="/dev">
-          <SingIn />
+          <SingIn
+            onSubmit = {login}
+            onLogoClick = {() => {}}
+          />
         </Route>
       </Switch>
     </BrowserRouter>
@@ -85,6 +99,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   playMovie: (movie) => {
     dispatch(ActionCreator.playMovie(movie));
+  },
+  login: (authData) => {
+    dispatch(UserOperation.login(authData));
   },
 });
 
@@ -113,4 +130,6 @@ App.propTypes = {
     previewImage: PropTypes.string.isRequired,
   }),
   playMovie: PropTypes.func.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
+  login: PropTypes.func.isRequired,
 };

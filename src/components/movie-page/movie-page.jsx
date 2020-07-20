@@ -4,11 +4,12 @@ import Tabs from "../tabs/tabs.jsx";
 import MoviesList from "../movies-list/movies-list.jsx";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 import {Settings} from "../../const.js";
+import {AuthorizationStatus} from "../../reducer/user/user.js";
 
 const TabsWrapper = withActiveItem(Tabs);
 
 const MoviePage = (props) => {
-  const {movie, onLogoClick, movies, onMovieTitleClick, onPlayClick} = props;
+  const {movie, onLogoClick, movies, onMovieTitleClick, onPlayClick, authorizationStatus} = props;
   const {
     title,
     genre,
@@ -44,9 +45,16 @@ const MoviePage = (props) => {
             </div>
 
             <div className="user-block">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-              </div>
+              {authorizationStatus === AuthorizationStatus.AUTH
+                ? (
+                  <div className="user-block__avatar">
+                    <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+                  </div>
+                )
+                : (
+                  <a href="sign-in.html" className="user-block__link">Sign in</a>
+                )
+              }
             </div>
           </header>
 
@@ -155,4 +163,5 @@ MoviePage.propTypes = {
   movies: PropTypes.array.isRequired,
   onMovieTitleClick: PropTypes.func.isRequired,
   onPlayClick: PropTypes.func.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
 };
