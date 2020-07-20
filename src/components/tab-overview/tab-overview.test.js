@@ -5,7 +5,7 @@ import TabOverview from "./tab-overview.jsx";
 const mocks = {
   movie: {
     title: `Test1`,
-    pictureSrc: `test1.jpg`,
+    previewImage: `test1.jpg`,
     genre: `Test genre`,
     year: 1999,
     rating: {
@@ -23,7 +23,7 @@ const mocks = {
       `Test starring 3`,
       `Test starring 4`,
     ],
-    runTime: `2h 00m`,
+    runTime: 120,
     preview: `Test4`,
     reviews: [
       {

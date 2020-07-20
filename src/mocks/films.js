@@ -1,7 +1,7 @@
 export default [
   {
     title: `Fantastic Beasts: The Crimes of Grindelwald`,
-    pictureSrc: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+    previewImage: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
     genre: `Drama`,
     year: 2016,
     rating: {
@@ -19,7 +19,7 @@ export default [
       `Jude Law`,
       `Willem Dafoe`
     ],
-    runTime: `1h 39m`,
+    runTime: 5,
     src: `https://upload.wikimedia.org/wikipedia/commons/transcoded/a/ab/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm.360p.vp9.webm`,
     preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/a/ab/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm.360p.vp9.webm`,
     reviews: [
@@ -69,7 +69,7 @@ export default [
   },
   {
     title: `Bohemian Rhapsody`,
-    pictureSrc: `bohemian-rhapsody.jpg`,
+    previewImage: `bohemian-rhapsody.jpg`,
     genre: `Crime`,
     year: 2004,
     rating: {
@@ -84,7 +84,7 @@ export default [
       `Tim Robbins`,
       `Morgan Freeman`
     ],
-    runTime: `2h 20m`,
+    runTime: 140,
     src: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     reviews: [
@@ -128,7 +128,7 @@ export default [
   },
   {
     title: `Macbeth`,
-    pictureSrc: `macbeth.jpg`,
+    previewImage: `macbeth.jpg`,
     genre: `Action`,
     year: 1988,
     rating: {
@@ -150,7 +150,7 @@ export default [
       `Gil Bellows`,
       `James Whitmore`
     ],
-    runTime: `3h 10m`,
+    runTime: 190,
     src: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     reviews: [
@@ -194,7 +194,7 @@ export default [
   },
   {
     title: `Aviator`,
-    pictureSrc: `aviator.jpg`,
+    previewImage: `aviator.jpg`,
     genre: `Action`,
     year: 1999,
     rating: {
@@ -220,7 +220,7 @@ export default [
       `Christopher Walken`,
       `Bruce Willis`
     ],
-    runTime: `1h 39m`,
+    runTime: 99,
     src: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     reviews: [
@@ -264,7 +264,7 @@ export default [
   },
   {
     title: `Revenant`,
-    pictureSrc: `revenant.jpg`,
+    previewImage: `revenant.jpg`,
     genre: `Horror`,
     year: 2011,
     rating: {
@@ -277,7 +277,7 @@ export default [
     ],
     director: `Bruce Willis`,
     starring: [`Anthony Perkins`],
-    runTime: `1h 39m`,
+    runTime: 99,
     src: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     reviews: [
@@ -321,7 +321,7 @@ export default [
   },
   {
     title: `What We Do in the Shadows`,
-    pictureSrc: `what-we-do-in-the-shadows.jpg`,
+    previewImage: `what-we-do-in-the-shadows.jpg`,
     genre: `Crime`,
     year: 1998,
     rating: {
@@ -339,7 +339,7 @@ export default [
       `Lee Jung-eun`,
       `Chang Hyae-jin`
     ],
-    runTime: `1h 39m`,
+    runTime: 99,
     src: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     reviews: [
@@ -383,7 +383,7 @@ export default [
   },
   {
     title: `Johnny English`,
-    pictureSrc: `johnny-english.jpg`,
+    previewImage: `johnny-english.jpg`,
     genre: `Action`,
     year: 1970,
     rating: {
@@ -399,7 +399,7 @@ export default [
       `Maggie Gyllenhaal`,
       `Morgan Freeman`
     ],
-    runTime: `1h 39m`,
+    runTime: 99,
     src: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     reviews: [
@@ -443,7 +443,7 @@ export default [
   },
   {
     title: `Shutter Island`,
-    pictureSrc: `shutter-island.jpg`,
+    previewImage: `shutter-island.jpg`,
     genre: `Action`,
     year: 2020,
     rating: {
@@ -462,7 +462,7 @@ export default [
       `Hugo Weaving`,
       `Joe Pantoliano`
     ],
-    runTime: `1h 39m`,
+    runTime: 99,
     src: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     reviews: [

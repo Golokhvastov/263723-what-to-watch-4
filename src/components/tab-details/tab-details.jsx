@@ -37,7 +37,7 @@ const TabDetails = (props) => {
       <div className="movie-card__text-col">
         <p className="movie-card__details-item">
           <strong className="movie-card__details-name">Run Time</strong>
-          <span className="movie-card__details-value">{runTime}</span>
+          <span className="movie-card__details-value">{`${Math.floor(runTime / 60)}h ${runTime % 60}m`}</span>
         </p>
         <p className="movie-card__details-item">
           <strong className="movie-card__details-name">Genre</strong>
@@ -62,6 +62,6 @@ TabDetails.propTypes = {
     starring: PropTypes.arrayOf(
         PropTypes.string.isRequired
     ).isRequired,
-    runTime: PropTypes.string.isRequired
+    runTime: PropTypes.number.isRequired
   }).isRequired,
 };

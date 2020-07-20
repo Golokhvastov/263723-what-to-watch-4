@@ -4,7 +4,7 @@ import MovieCard from "./movie-card.jsx";
 
 const movie = {
   title: `Тест1`,
-  pictureSrc: `test1.jpg`,
+  previewImage: `test1.jpg`,
   preview: `test2.jpg`,
 };
 

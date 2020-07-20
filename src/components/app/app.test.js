@@ -3,6 +3,7 @@ import renderer from "react-test-renderer";
 import {App} from "./app.jsx";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
+import NameSpace from "../../reducer/name-space.js";
 
 const mockStore = configureStore([]);
 
@@ -13,7 +14,10 @@ const mocks = {
   movies: [
     {
       title: `Test1`,
-      pictureSrc: `test1.jpg`,
+      previewImage: `test1.jpg`,
+      posterImage: `test1.jpg`,
+      backgroundImage: `test1.jpg`,
+      backgroundColor: `test1.jpg`,
       genre: `Drama`,
       year: 2016,
       rating: {
@@ -33,7 +37,7 @@ const mocks = {
       ],
       preview: `test1.jpg`,
       src: `test100.jpg`,
-      runTime: `Test19`,
+      runTime: 19,
       reviews: [
         {
           rating: 8.9,
@@ -51,7 +55,10 @@ const mocks = {
     },
     {
       title: `Test2`,
-      pictureSrc: `test2.jpg`,
+      previewImage: `test2.jpg`,
+      posterImage: `test2.jpg`,
+      backgroundImage: `test2.jpg`,
+      backgroundColor: `test2.jpg`,
       genre: `Test22`,
       year: 2020,
       rating: {
@@ -70,7 +77,7 @@ const mocks = {
       ],
       preview: `test2.jpg`,
       src: `test200.jpg`,
-      runTime: `Test28`,
+      runTime: 28,
       reviews: [
         {
           rating: 7.9,
@@ -84,7 +91,7 @@ const mocks = {
       title: `Test3`,
       genre: `Test33`,
       year: 2030,
-      pictureSrc: `test3.jpg`,
+      previewImage: `test3.jpg`,
       preview: `test3.jpg`,
       src: `test300.jpg`,
     },
@@ -94,8 +101,8 @@ const mocks = {
 describe(`App render correctly`, () => {
   it(`activeMovie = null, playingMovie = null`, () => {
     const store = mockStore({
-      activeMovie: null,
-      movies: mocks.movies,
+      page: {activeMovie: null},
+      [NameSpace.DATA]: {movies: mocks.movies},
     });
 
     const tree = renderer

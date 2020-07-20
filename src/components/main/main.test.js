@@ -1,6 +1,11 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {Main} from "./main.jsx";
+import {Provider} from "react-redux";
+import configureStore from "redux-mock-store";
+import NameSpace from "../../reducer/name-space.js";
+import Main from "./main.jsx";
+
+const mockStore = configureStore([]);
 
 const mocks = {
   movieCardTitle: `Test`,
@@ -10,99 +15,79 @@ const mocks = {
     {
       title: `Test1`,
       genre: `Test11`,
-      pictureSrc: `test1.jpg`,
+      previewImage: `test1.jpg`,
       preview: `test1.jpg`,
+      year: 1981,
     },
     {
       title: `Test2`,
       genre: `Test22`,
-      pictureSrc: `test2.jpg`,
+      previewImage: `test2.jpg`,
       preview: `test2.jpg`,
     },
     {
       title: `Test3`,
       genre: `Test33`,
-      pictureSrc: `test3.jpg`,
+      previewImage: `test3.jpg`,
       preview: `test3.jpg`,
     },
     {
       title: `Test1`,
       genre: `Test11`,
-      pictureSrc: `test1.jpg`,
+      previewImage: `test1.jpg`,
       preview: `test1.jpg`,
     },
     {
       title: `Test2`,
       genre: `Test22`,
-      pictureSrc: `test2.jpg`,
+      previewImage: `test2.jpg`,
       preview: `test2.jpg`,
     },
     {
       title: `Test3`,
       genre: `Test33`,
-      pictureSrc: `test3.jpg`,
+      previewImage: `test3.jpg`,
       preview: `test3.jpg`,
     },
     {
       title: `Test1`,
       genre: `Test11`,
-      pictureSrc: `test1.jpg`,
+      previewImage: `test1.jpg`,
       preview: `test1.jpg`,
     },
     {
       title: `Test2`,
       genre: `Test22`,
-      pictureSrc: `test2.jpg`,
+      previewImage: `test2.jpg`,
       preview: `test2.jpg`,
     },
     {
       title: `Test3`,
       genre: `Test33`,
-      pictureSrc: `test3.jpg`,
+      previewImage: `test3.jpg`,
       preview: `test3.jpg`,
     },
   ]
 };
 
-describe(`Main render correctly`, () => {
-  it(`with genre: All genres`, () => {
-    const tree = renderer
-      .create(
+it(`Main render correctly`, () => {
+  const store = mockStore({
+    [NameSpace.DATA]: {movies: mocks.movies},
+  });
+
+  const tree = renderer
+    .create(
+        <Provider store={store}>
           <Main
-            movieCardTitle = {mocks.movieCardTitle}
-            movieCardGenre = {mocks.movieCardGenre}
-            movieCardYear = {mocks.movieCardYear}
-            movies = {mocks.movies}
-            activeGenre = {`All genres`}
-            selectGenre = {() => {}}
+            mainMovie = {mocks.movies[0]}
             onMovieTitleClick = {() => {}}
             onPlayClick = {() => {}}
-          />, {
-            createNodeMock: () => {
-              return {};
-            }
-          }).toJSON();
+          />
+        </Provider>, {
+          createNodeMock: () => {
+            return {};
+          }
+        }).toJSON();
 
-    expect(tree).toMatchSnapshot();
-  });
-  it(`with genre: Test11`, () => {
-    const tree = renderer
-      .create(
-          <Main
-            movieCardTitle = {mocks.movieCardTitle}
-            movieCardGenre = {mocks.movieCardGenre}
-            movieCardYear = {mocks.movieCardYear}
-            movies = {mocks.movies}
-            activeGenre = {`Test11`}
-            selectGenre = {() => {}}
-            onMovieTitleClick = {() => {}}
-            onPlayClick = {() => {}}
-          />, {
-            createNodeMock: () => {
-              return {};
-            }
-          }).toJSON();
-
-    expect(tree).toMatchSnapshot();
-  });
+  expect(tree).toMatchSnapshot();
 });

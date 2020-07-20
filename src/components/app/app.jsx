@@ -5,9 +5,10 @@ import {connect} from "react-redux";
 import Main from "../main/main.jsx";
 import MoviePage from "../movie-page/movie-page.jsx";
 import FullscreenPlayer from "../fullscreen-player/fullscreen-player.jsx";
-import {getNeedMovies, getAllFilteredMovies} from "../../utils/utils.js";
 import {Settings} from "../../const.js";
-import {ActionCreator} from "../../reducer.js";
+import {ActionCreator} from "../../reducer/page/page.js";
+import {getMovies, getNumberOfMovies, getFilteredMovies} from "../../reducer/data/selector.js";
+import {getActiveMovie, getPlayingMovie} from "../../reducer/page/selector.js";
 import withVideo from "../../hocs/with-video/with-video.js";
 
 const FullscreenPlayerWrapper = withVideo(FullscreenPlayer);
@@ -16,12 +17,10 @@ const App = (props) => {
   const {movies, activeMovie, selectMovie, playingMovie, playMovie} = props;
 
   const _renderApp = () => {
-    if (!activeMovie && !playingMovie) {
+    if (!activeMovie && !playingMovie && movies.length > 0) {
       return (
         <Main
-          movieCardTitle = {movies[0].title}
-          movieCardGenre = {movies[0].genre}
-          movieCardYear = {movies[0].year}
+          mainMovie = {movies[0]}
           onMovieTitleClick = {selectMovie}
           onPlayClick = {playMovie}
         />
@@ -33,7 +32,7 @@ const App = (props) => {
         <MoviePage
           movie = {activeMovie}
           onLogoClick = {() => selectMovie(null)}
-          movies = {getNeedMovies(getAllFilteredMovies(movies, activeMovie.genre), Settings.maxSimilarMovies)}
+          movies = {getNumberOfMovies(getFilteredMovies(movies, activeMovie.genre), Settings.maxSimilarMovies)}
           onMovieTitleClick = {selectMovie}
           onPlayClick = {playMovie}
         />
@@ -45,7 +44,7 @@ const App = (props) => {
         <FullscreenPlayerWrapper
           movie = {playingMovie}
           src = {playingMovie.src}
-          posterSrc = {`img/${playingMovie.pictureSrc}`}
+          posterSrc = {playingMovie.previewImage}
           isPlaying = {false}
           onExitClick = {() => playMovie(null)}
           videoClassName = {`player__video`}
@@ -62,34 +61,15 @@ const App = (props) => {
         <Route exact path="/">
           {_renderApp()}
         </Route>
-        <Route exact path="/dev-movie-page">
-          <MoviePage
-            movie = {movies[0]}
-            onLogoClick = {() => {}}
-            movies = {getNeedMovies(getAllFilteredMovies(movies, movies[0].genre), Settings.maxSimilarMovies)}
-            onMovieTitleClick = {() => {}}
-            onPlayClick = {() => {}}
-          />
-        </Route>
-        <Route exact path="/dev-player">
-          <FullscreenPlayerWrapper
-            movie = {movies[0]}
-            src = {movies[0].src}
-            posterSrc = {movies[0].pictureSrc}
-            isPlaying = {true}
-            onExitClick = {() => {}}
-            videoClassName = {`player__video`}
-          />
-        </Route>
       </Switch>
     </BrowserRouter>
   );
 };
 
 const mapStateToProps = (state) => ({
-  movies: state.movies,
-  activeMovie: state.activeMovie,
-  playingMovie: state.playingMovie,
+  movies: getMovies(state),
+  activeMovie: getActiveMovie(state),
+  playingMovie: getPlayingMovie(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -114,7 +94,7 @@ App.propTypes = {
         genre: PropTypes.string.isRequired,
         year: PropTypes.number.isRequired,
         src: PropTypes.string.isRequired,
-        pictureSrc: PropTypes.string.isRequired,
+        previewImage: PropTypes.string.isRequired,
       })
   ).isRequired,
   activeMovie: PropTypes.shape({
@@ -123,7 +103,7 @@ App.propTypes = {
   selectMovie: PropTypes.func.isRequired,
   playingMovie: PropTypes.shape({
     src: PropTypes.string.isRequired,
-    pictureSrc: PropTypes.string.isRequired,
+    previewImage: PropTypes.string.isRequired,
   }),
   playMovie: PropTypes.func.isRequired,
 };

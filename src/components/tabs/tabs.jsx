@@ -76,7 +76,7 @@ export default Tabs;
 Tabs.propTypes = {
   movie: PropTypes.shape({
     title: PropTypes.string.isRequired,
-    pictureSrc: PropTypes.string.isRequired,
+    previewImage: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
     year: PropTypes.number.isRequired,
     rating: PropTypes.shape({
@@ -90,7 +90,7 @@ Tabs.propTypes = {
     starring: PropTypes.arrayOf(
         PropTypes.string.isRequired
     ).isRequired,
-    runTime: PropTypes.string.isRequired,
+    runTime: PropTypes.number.isRequired,
     reviews: PropTypes.arrayOf(
         PropTypes.shape({
           rating: PropTypes.number.isRequired,

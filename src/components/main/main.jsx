@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {connect} from "react-redux";
 import MoviesCatalog from "../movies-catalog/movies-catalog.jsx";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 import {Settings} from "../../const.js";
@@ -9,10 +8,7 @@ const MoviesCatalogWrapper = withActiveItem(MoviesCatalog);
 
 const Main = (props) => {
   const {
-    movieCardTitle,
-    movieCardGenre,
-    movieCardYear,
-    movies,
+    mainMovie,
     onMovieTitleClick,
     onPlayClick
   } = props;
@@ -49,17 +45,17 @@ const Main = (props) => {
             </div>
 
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">{movieCardTitle}</h2>
+              <h2 className="movie-card__title">{mainMovie.title}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">{movieCardGenre}</span>
-                <span className="movie-card__year">{movieCardYear}</span>
+                <span className="movie-card__genre">{mainMovie.genre}</span>
+                <span className="movie-card__year">{mainMovie.year}</span>
               </p>
 
               <div className="movie-card__buttons">
                 <button
                   className="btn btn--play movie-card__button"
                   type="button"
-                  onClick={() => onPlayClick(movies[0])}
+                  onClick={() => onPlayClick(mainMovie)}
                 >
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
@@ -81,7 +77,6 @@ const Main = (props) => {
       <div className="page-content">
 
         <MoviesCatalogWrapper
-          movies = {movies}
           onMovieTitleClick = {onMovieTitleClick}
           startItem = {Settings.allGenres}
         />
@@ -104,25 +99,14 @@ const Main = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  movies: state.movies
-});
-
-export {Main};
-export default connect(
-    mapStateToProps
-)(Main);
+export default Main;
 
 Main.propTypes = {
-  movieCardTitle: PropTypes.string.isRequired,
-  movieCardGenre: PropTypes.string.isRequired,
-  movieCardYear: PropTypes.number.isRequired,
-  movies: PropTypes.arrayOf(
-      PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        pictureSrc: PropTypes.string.isRequired
-      })
-  ).isRequired,
+  mainMovie: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
+    year: PropTypes.number.isRequired
+  }).isRequired,
   onMovieTitleClick: PropTypes.func.isRequired,
   onPlayClick: PropTypes.func.isRequired
 };

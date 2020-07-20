@@ -5,17 +5,17 @@ import MoviesList from "./movies-list.jsx";
 const movies = [
   {
     title: `Тест1`,
-    pictureSrc: `test1.jpg`,
+    previewImage: `test1.jpg`,
     preview: `test1.mp4`
   },
   {
     title: `Тест2`,
-    pictureSrc: `test2.jpg`,
+    previewImage: `test2.jpg`,
     preview: `test2.mp4`
   },
   {
     title: `Тест3`,
-    pictureSrc: `test3.jpg`,
+    previewImage: `test3.jpg`,
     preview: `test3.mp4`
   },
 ];

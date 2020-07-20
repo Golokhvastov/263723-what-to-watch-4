@@ -13,6 +13,23 @@ const FullscreenPlayer = (props) => {
     children
   } = props;
 
+
+  let seconds = progress % 60;
+  let minutes = Math.floor(progress / 60) % 60;
+  let hours = Math.floor(progress / 360) % 60;
+
+  if (seconds <= 9) {
+    seconds = `0` + seconds;
+  }
+  if (minutes <= 9) {
+    minutes = `0` + minutes;
+  }
+  if (hours <= 9) {
+    hours = `0` + hours;
+  }
+
+  const toggleProgress = (progress / (movie.runTime * 60)) * 100;
+
   return (
     <div className="player">
       {children}
@@ -24,10 +41,10 @@ const FullscreenPlayer = (props) => {
       <div className="player__controls">
         <div className="player__controls-row">
           <div className="player__time">
-            <progress className="player__progress" value={progress} max="100"></progress>
-            <div className="player__toggler" style={{left: `${progress}%`}}>Toggler</div>
+            <progress className="player__progress" value={progress} max={movie.runTime * 60}></progress>
+            <div className="player__toggler" style={{left: `${toggleProgress}%`}}>Toggler</div>
           </div>
-          <div className="player__time-value">{movie.runTime}</div>
+          <div className="player__time-value">{`${hours}:${minutes}:${seconds}`}</div>
         </div>
 
         <div className="player__controls-row">
@@ -83,8 +100,8 @@ FullscreenPlayer.propTypes = {
   movie: PropTypes.shape({
     title: PropTypes.string.isRequired,
     src: PropTypes.string.isRequired,
-    pictureSrc: PropTypes.string.isRequired,
-    runTime: PropTypes.string.isRequired,
+    previewImage: PropTypes.string.isRequired,
+    runTime: PropTypes.number.isRequired,
   }),
   onExitClick: PropTypes.func.isRequired,
   progress: PropTypes.number.isRequired,

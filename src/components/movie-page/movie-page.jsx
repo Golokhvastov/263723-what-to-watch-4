@@ -11,17 +11,19 @@ const MoviePage = (props) => {
   const {movie, onLogoClick, movies, onMovieTitleClick, onPlayClick} = props;
   const {
     title,
-    pictureSrc,
     genre,
-    year
+    year,
+    posterImage,
+    backgroundImage,
+    backgroundColor,
   } = movie;
 
   return (
     <>
-      <section className="movie-card movie-card--full">
+      <section className="movie-card movie-card--full" style={{background: backgroundColor}}>
         <div className="movie-card__hero">
           <div className="movie-card__bg">
-            <img src={`img/${pictureSrc}`} alt={title} />
+            <img src={backgroundImage} alt={title} />
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -82,7 +84,7 @@ const MoviePage = (props) => {
         <div className="movie-card__wrap movie-card__translate-top">
           <div className="movie-card__info">
             <div className="movie-card__poster movie-card__poster--big">
-              <img src={`img/${pictureSrc}`} alt={`${title} poster`} width="218" height="327" />
+              <img src={posterImage} alt={`${title} poster`} width="218" height="327" />
             </div>
 
             <TabsWrapper
@@ -132,7 +134,9 @@ export default MoviePage;
 MoviePage.propTypes = {
   movie: PropTypes.shape({
     title: PropTypes.string.isRequired,
-    pictureSrc: PropTypes.string.isRequired,
+    posterImage: PropTypes.string.isRequired,
+    backgroundImage: PropTypes.string.isRequired,
+    backgroundColor: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
     year: PropTypes.number.isRequired,
     rating: PropTypes.shape({

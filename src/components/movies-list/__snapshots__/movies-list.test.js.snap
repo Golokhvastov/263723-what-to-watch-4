@@ -16,7 +16,7 @@ exports[`MoviesList render correctly 1`] = `
       <img
         alt="Тест1"
         height="175"
-        src="img/test1.jpg"
+        src="test1.jpg"
         width="280"
       />
     </div>
@@ -43,7 +43,7 @@ exports[`MoviesList render correctly 1`] = `
       <img
         alt="Тест2"
         height="175"
-        src="img/test2.jpg"
+        src="test2.jpg"
         width="280"
       />
     </div>
@@ -70,7 +70,7 @@ exports[`MoviesList render correctly 1`] = `
       <img
         alt="Тест3"
         height="175"
-        src="img/test3.jpg"
+        src="test3.jpg"
         width="280"
       />
     </div>

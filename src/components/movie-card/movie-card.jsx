@@ -12,7 +12,7 @@ const MovieCard = (props) => {
   } = props;
 
   const videoSrc = movie.preview;
-  const videoPosterSrc = `img/${movie.pictureSrc}`;
+  const videoPosterSrc = movie.previewImage;
 
   return (
     <article
@@ -27,7 +27,7 @@ const MovieCard = (props) => {
       <div className="small-movie-card__image">
         {isPlaying
           ? (renderVideo(videoSrc, videoPosterSrc))
-          : (<img src={`img/${movie.pictureSrc}`} alt={movie.title} width="280" height="175" />)
+          : (<img src={movie.previewImage} alt={movie.title} width="280" height="175" />)
         }
       </div>
       <h3 className="small-movie-card__title">
@@ -42,7 +42,7 @@ export default MovieCard;
 MovieCard.propTypes = {
   movie: PropTypes.shape({
     title: PropTypes.string.isRequired,
-    pictureSrc: PropTypes.string.isRequired,
+    previewImage: PropTypes.string.isRequired,
     preview: PropTypes.string.isRequired
   }).isRequired,
   onTitleClick: PropTypes.func.isRequired,

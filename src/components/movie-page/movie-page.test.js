@@ -5,7 +5,10 @@ import MoviePage from "./movie-page.jsx";
 const mocks = {
   movie: {
     title: `Test1`,
-    pictureSrc: `test1.jpg`,
+    posterImage: `test1.jpg`,
+    backgroundImage: `test1.jpg`,
+    backgroundColor: `test1.jpg`,
+    previewImage: `test1.jpg`,
     genre: `Test genre`,
     year: 1999,
     rating: {
@@ -23,7 +26,7 @@ const mocks = {
       `Test starring 3`,
       `Test starring 4`,
     ],
-    runTime: `2h 00m`,
+    runTime: 120,
     preview: `Test4`,
     reviews: [
       {
@@ -49,17 +52,23 @@ const mocks = {
   movies: [
     {
       title: `Test8`,
-      pictureSrc: `test8.jpg`,
+      posterImage: `test8.jpg`,
+      backgroundImage: `test8.jpg`,
+      previewImage: `test8.jpg`,
       preview: `test8.mp4`
     },
     {
       title: `Test9`,
-      pictureSrc: `test9.jpg`,
+      posterImage: `test9.jpg`,
+      backgroundImage: `test9.jpg`,
+      previewImage: `test9.jpg`,
       preview: `test9.mp4`
     },
     {
       title: `Test10`,
-      pictureSrc: `test10.jpg`,
+      posterImage: `test10.jpg`,
+      backgroundImage: `test10.jpg`,
+      previewImage: `test10.jpg`,
       preview: `test10.mp4`
     },
   ]
