@@ -4,6 +4,7 @@ import {App} from "./app.jsx";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import NameSpace from "../../reducer/name-space.js";
+import {AuthorizationStatus} from "../../reducer/user/user.js";
 
 const mockStore = configureStore([]);
 
@@ -114,6 +115,8 @@ describe(`App render correctly`, () => {
               selectMovie = {() => {}}
               playingMovie = {null}
               playMovie = {() => {}}
+              authorizationStatus = {AuthorizationStatus.AUTH}
+              login = {() => {}}
             />
           </Provider>, {
             createNodeMock: () => {
@@ -139,6 +142,8 @@ describe(`App render correctly`, () => {
               selectMovie = {() => {}}
               playingMovie = {null}
               playMovie = {() => {}}
+              authorizationStatus = {AuthorizationStatus.AUTH}
+              login = {() => {}}
             />
           </Provider>, {
             createNodeMock: () => {
@@ -164,6 +169,8 @@ describe(`App render correctly`, () => {
               selectMovie = {() => {}}
               playingMovie = {mocks.movies[0]}
               playMovie = {() => {}}
+              authorizationStatus = {AuthorizationStatus.AUTH}
+              login = {() => {}}
             />
           </Provider>, {
             createNodeMock: () => {
@@ -189,6 +196,35 @@ describe(`App render correctly`, () => {
               selectMovie = {() => {}}
               playingMovie = {mocks.movies[1]}
               playMovie = {() => {}}
+              authorizationStatus = {AuthorizationStatus.AUTH}
+              login = {() => {}}
+            />
+          </Provider>, {
+            createNodeMock: () => {
+              return {};
+            }
+          }).toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it(`with NO_AUTH`, () => {
+    const store = mockStore({
+      activeMovie: null,
+      movies: mocks.movies,
+    });
+
+    const tree = renderer
+      .create(
+          <Provider store={store}>
+            <App
+              movies = {mocks.movies}
+              activeMovie = {mocks.movies[0]}
+              selectMovie = {() => {}}
+              playingMovie = {mocks.movies[1]}
+              playMovie = {() => {}}
+              authorizationStatus = {AuthorizationStatus.NO_AUTH}
+              login = {() => {}}
             />
           </Provider>, {
             createNodeMock: () => {
