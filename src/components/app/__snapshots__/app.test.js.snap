@@ -99,6 +99,11 @@ exports[`App render correctly activeMovie = mocks.movies[1], playingMovie = null
 Array [
   <section
     className="movie-card movie-card--full"
+    style={
+      Object {
+        "background": "test2.jpg",
+      }
+    }
   >
     <div
       className="movie-card__hero"
