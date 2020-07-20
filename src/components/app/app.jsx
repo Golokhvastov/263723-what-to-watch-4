@@ -9,12 +9,13 @@ import {Settings} from "../../const.js";
 import {ActionCreator} from "../../reducer/page/page.js";
 import {getMovies, getNumberOfMovies, getFilteredMovies} from "../../reducer/data/selector.js";
 import {getActiveMovie, getPlayingMovie} from "../../reducer/page/selector.js";
+import {getAuthorizationStatus} from "../../reducer/user/selector.js";
 import withVideo from "../../hocs/with-video/with-video.js";
 
 const FullscreenPlayerWrapper = withVideo(FullscreenPlayer);
 
 const App = (props) => {
-  const {movies, activeMovie, selectMovie, playingMovie, playMovie} = props;
+  const {movies, activeMovie, selectMovie, playingMovie, playMovie, authorizationStatus} = props;
 
   const _renderApp = () => {
     if (!activeMovie && !playingMovie && movies.length > 0) {
@@ -23,6 +24,7 @@ const App = (props) => {
           mainMovie = {movies[0]}
           onMovieTitleClick = {selectMovie}
           onPlayClick = {playMovie}
+          authorizationStatus = {authorizationStatus}
         />
       );
     }
@@ -70,6 +72,7 @@ const mapStateToProps = (state) => ({
   movies: getMovies(state),
   activeMovie: getActiveMovie(state),
   playingMovie: getPlayingMovie(state),
+  authorizationStatus: getAuthorizationStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
