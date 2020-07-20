@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 import Main from "../main/main.jsx";
 import MoviePage from "../movie-page/movie-page.jsx";
 import FullscreenPlayer from "../fullscreen-player/fullscreen-player.jsx";
+import SingIn from "../sign-in/sign-in.jsx";
 import {Settings} from "../../const.js";
 import {ActionCreator} from "../../reducer/page/page.js";
 import {getMovies, getNumberOfMovies, getFilteredMovies} from "../../reducer/data/selector.js";
@@ -62,6 +63,9 @@ const App = (props) => {
       <Switch>
         <Route exact path="/">
           {_renderApp()}
+        </Route>
+        <Route exact path="/dev">
+          <SingIn />
         </Route>
       </Switch>
     </BrowserRouter>
