@@ -1,7 +1,10 @@
 export default [
   {
     title: `Fantastic Beasts: The Crimes of Grindelwald`,
-    previewImage: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+    previewImage: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Gangs_of_New_York_Poster.jpg`,
+    posterImage: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Gangs_of_New_York_Poster.jpg`,
+    backgroundImage: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Gangs_of_New_York_Poster.jpg`,
+    backgroundColor: `#A6B7AC`,
     genre: `Drama`,
     year: 2016,
     rating: {
