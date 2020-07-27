@@ -5,8 +5,11 @@ import {AuthorizationStatus} from "../../reducer/user/user.js";
 const AddReview = (props) => {
   const {
     movie,
+    onSubmit,
     onLogoClick,
-    authorizationStatus
+    authorizationStatus,
+    activeItem,
+    onActiveItemChange
   } = props;
   const {
     title,
@@ -14,6 +17,53 @@ const AddReview = (props) => {
     backgroundImage,
     backgroundColor,
   } = movie;
+  const {
+    rating,
+    reviewText,
+    isRatingChanged,
+    isTextCorrect
+  } = activeItem;
+
+  const _renderStars = () => {
+    let result = [];
+    for (let i = 0; i < 5; i++) {
+      result[i] = (
+        <>
+          <input className="rating__input" id={`star-${i + 1}`} type="radio" name="rating" value={i + 1}
+            onChange={(evt) => {
+              onActiveItemChange({
+                rating: evt.target.value,
+                reviewText,
+                isRatingChanged: true,
+                isTextCorrect
+              });
+            }}
+            checked={String(i + 1) === rating ? true : false}
+          />
+          <label className="rating__label" htmlFor={`star-${i + 1}`}>{`Rating ${i + 1}`}</label>
+        </>
+      );
+    }
+    return result;
+  };
+
+  const submitHandler = (evt) => {
+    evt.preventDefault();
+
+    if (isRatingChanged && isTextCorrect) {
+      onSubmit({
+        rating,
+        comment: reviewText,
+      });
+    }
+  };
+
+  const checkText = (text) => {
+    if (text.length >= 50 && text.length <= 400) {
+      return true;
+    }
+    return false;
+  };
 
   return (
     <section className="movie-card movie-card--full" style={{background: backgroundColor}}>
@@ -70,30 +120,28 @@ const AddReview = (props) => {
       </div>
 
       <div className="add-review">
-        <form action="#" className="add-review__form">
+        <form action="#" className="add-review__form" onSubmit={submitHandler}>
           <div className="rating">
             <div className="rating__stars">
-              <input className="rating__input" id="star-1" type="radio" name="rating" value="1"/>
-              <label className="rating__label" htmlFor="star-1">Rating 1</label>
-
-              <input className="rating__input" id="star-2" type="radio" name="rating" value="2" />
-              <label className="rating__label" htmlFor="star-2">Rating 2</label>
-
-              <input className="rating__input" id="star-3" type="radio" name="rating" value="3" checked />
-              <label className="rating__label" htmlFor="star-3">Rating 3</label>
-
-              <input className="rating__input" id="star-4" type="radio" name="rating" value="4" />
-              <label className="rating__label" htmlFor="star-4">Rating 4</label>
-
-              <input className="rating__input" id="star-5" type="radio" name="rating" value="5" />
-              <label className="rating__label" htmlFor="star-5">Rating 5</label>
+              {_renderStars()}
             </div>
           </div>
 
           <div className="add-review__text">
-            <textarea className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text"></textarea>
+            <textarea className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text"
+              onChange={(evt) => {
+                onActiveItemChange({
+                  rating,
+                  reviewText: evt.target.value,
+                  isRatingChanged,
+                  isTextCorrect: checkText(evt.target.value)
+                });
+              }}
+            ></textarea>
             <div className="add-review__submit">
-              <button className="add-review__btn" type="submit">Post</button>
+              <button className="add-review__btn" type="submit"
+                disabled={(isRatingChanged && isTextCorrect) ? false : true}
+              >Post</button>
             </div>
 
           </div>
@@ -113,6 +161,14 @@ AddReview.propTypes = {
     backgroundImage: PropTypes.string.isRequired,
     backgroundColor: PropTypes.string.isRequired
   }).isRequired,
+  onSubmit: PropTypes.func.isRequired,
   onLogoClick: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.bool.isRequired,
+  activeItem: PropTypes.shape({
+    rating: PropTypes.string,
+    reviewText: PropTypes.string,
+    isRatingChanged: PropTypes.bool,
+    isTextCorrect: PropTypes.bool,
+  }).isRequired,
+  onActiveItemChange: PropTypes.func.isRequired,
 };

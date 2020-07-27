@@ -20,6 +20,7 @@ import mockMovies from "../../mocks/films.js";
 
 const FullscreenPlayerWrapper = withVideo(FullscreenPlayer);
 const SignInWrapper = withActiveItem(SignIn);
+const AddReviewWrapper = withActiveItem(AddReview);
 
 const App = (props) => {
   const {movies, activeMovie, selectMovie, playingMovie, playMovie, authorizationStatus, login} = props;
@@ -89,10 +90,15 @@ const App = (props) => {
           />
         </Route>
         <Route exact path="/dev-review">
-          <AddReview
+          <AddReviewWrapper
             movie = {mockMovies[0]}
+            onSubmit = {() => {}}
             onLogoClick = {() => {}}
             authorizationStatus = {true}
+            startItem = {{
+              rating: null,
+              reviewText: null,
+            }}
           />
         </Route>
       </Switch>
