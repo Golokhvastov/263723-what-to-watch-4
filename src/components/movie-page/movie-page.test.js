@@ -1,6 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import MoviePage from "./movie-page.jsx";
+import {AuthorizationStatus} from "../../reducer/user/user.js";
 
 const mocks = {
   movie: {
@@ -74,20 +75,41 @@ const mocks = {
   ]
 };
 
-it(`MoviePage render correctly`, () => {
-  const tree = renderer
-    .create(
-        <MoviePage
-          movie = {mocks.movie}
-          onLogoClick = {() => {}}
-          movies = {mocks.movies}
-          onMovieTitleClick = {() => {}}
-          onPlayClick = {() => {}}
-        />, {
-          createNodeMock: () => {
-            return {};
-          }
-        }).toJSON();
+describe(`MoviePage render correctly`, () => {
+  it(`with AUTH`, () => {
+    const tree = renderer
+      .create(
+          <MoviePage
+            movie = {mocks.movie}
+            onLogoClick = {() => {}}
+            movies = {mocks.movies}
+            onMovieTitleClick = {() => {}}
+            onPlayClick = {() => {}}
+            authorizationStatus = {AuthorizationStatus.AUTH}
+          />, {
+            createNodeMock: () => {
+              return {};
+            }
+          }).toJSON();
 
-  expect(tree).toMatchSnapshot();
+    expect(tree).toMatchSnapshot();
+  });
+  it(`with NO_AUTH`, () => {
+    const tree = renderer
+      .create(
+          <MoviePage
+            movie = {mocks.movie}
+            onLogoClick = {() => {}}
+            movies = {mocks.movies}
+            onMovieTitleClick = {() => {}}
+            onPlayClick = {() => {}}
+            authorizationStatus = {AuthorizationStatus.NO_AUTH}
+          />, {
+            createNodeMock: () => {
+              return {};
+            }
+          }).toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
 });

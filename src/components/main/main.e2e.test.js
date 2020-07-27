@@ -5,6 +5,7 @@ import Main from "./main.jsx";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import NameSpace from "../../reducer/name-space.js";
+import {AuthorizationStatus} from "../../reducer/user/user.js";
 
 const mockStore = configureStore([]);
 
@@ -54,6 +55,7 @@ it(`e2e test for Main`, () => {
           mainMovie = {mocks.movies[0]}
           onMovieTitleClick = {movieTitleClickHandler}
           onPlayClick = {() => {}}
+          authorizationStatus = {AuthorizationStatus.AUTH}
         />
       </Provider>
   );

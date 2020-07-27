@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import MoviesCatalog from "../movies-catalog/movies-catalog.jsx";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 import {Settings} from "../../const.js";
+import {AuthorizationStatus} from "../../reducer/user/user.js";
 
 const MoviesCatalogWrapper = withActiveItem(MoviesCatalog);
 
@@ -10,7 +11,8 @@ const Main = (props) => {
   const {
     mainMovie,
     onMovieTitleClick,
-    onPlayClick
+    onPlayClick,
+    authorizationStatus
   } = props;
 
   return (
@@ -32,9 +34,16 @@ const Main = (props) => {
           </div>
 
           <div className="user-block">
-            <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-            </div>
+            {authorizationStatus === AuthorizationStatus.AUTH
+              ? (
+                <div className="user-block__avatar">
+                  <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+                </div>
+              )
+              : (
+                <a href="sign-in.html" className="user-block__link">Sign in</a>
+              )
+            }
           </div>
         </header>
 
@@ -108,5 +117,6 @@ Main.propTypes = {
     year: PropTypes.number.isRequired
   }).isRequired,
   onMovieTitleClick: PropTypes.func.isRequired,
-  onPlayClick: PropTypes.func.isRequired
+  onPlayClick: PropTypes.func.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
 };

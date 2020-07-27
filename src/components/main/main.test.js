@@ -4,6 +4,7 @@ import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import NameSpace from "../../reducer/name-space.js";
 import Main from "./main.jsx";
+import {AuthorizationStatus} from "../../reducer/user/user.js";
 
 const mockStore = configureStore([]);
 
@@ -70,24 +71,49 @@ const mocks = {
   ]
 };
 
-it(`Main render correctly`, () => {
-  const store = mockStore({
-    [NameSpace.DATA]: {movies: mocks.movies},
+describe(`Main render correctly`, () => {
+  it(`with AUTH`, () => {
+    const store = mockStore({
+      [NameSpace.DATA]: {movies: mocks.movies},
+    });
+
+    const tree = renderer
+      .create(
+          <Provider store={store}>
+            <Main
+              mainMovie = {mocks.movies[0]}
+              onMovieTitleClick = {() => {}}
+              onPlayClick = {() => {}}
+              authorizationStatus = {AuthorizationStatus.AUTH}
+            />
+          </Provider>, {
+            createNodeMock: () => {
+              return {};
+            }
+          }).toJSON();
+
+    expect(tree).toMatchSnapshot();
   });
+  it(`with NO_AUTH`, () => {
+    const store = mockStore({
+      [NameSpace.DATA]: {movies: mocks.movies},
+    });
 
-  const tree = renderer
-    .create(
-        <Provider store={store}>
-          <Main
-            mainMovie = {mocks.movies[0]}
-            onMovieTitleClick = {() => {}}
-            onPlayClick = {() => {}}
-          />
-        </Provider>, {
-          createNodeMock: () => {
-            return {};
-          }
-        }).toJSON();
+    const tree = renderer
+      .create(
+          <Provider store={store}>
+            <Main
+              mainMovie = {mocks.movies[0]}
+              onMovieTitleClick = {() => {}}
+              onPlayClick = {() => {}}
+              authorizationStatus = {AuthorizationStatus.NO_AUTH}
+            />
+          </Provider>, {
+            createNodeMock: () => {
+              return {};
+            }
+          }).toJSON();
 
-  expect(tree).toMatchSnapshot();
+    expect(tree).toMatchSnapshot();
+  });
 });
