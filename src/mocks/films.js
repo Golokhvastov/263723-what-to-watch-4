@@ -1,5 +1,6 @@
 export default [
   {
+    id: 42,
     title: `Fantastic Beasts: The Crimes of Grindelwald`,
     previewImage: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Gangs_of_New_York_Poster.jpg`,
     posterImage: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Gangs_of_New_York_Poster.jpg`,

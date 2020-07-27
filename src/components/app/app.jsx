@@ -8,13 +8,14 @@ import FullscreenPlayer from "../fullscreen-player/fullscreen-player.jsx";
 import SignIn from "../sign-in/sign-in.jsx";
 import AddReview from "../add-review/add-review.jsx";
 import {Settings} from "../../const.js";
-import {ActionCreator} from "../../reducer/page/page.js";
-import {getMovies, getNumberOfMovies, getFilteredMovies} from "../../reducer/data/selector.js";
+import {ActionCreator as PageActionCreator} from "../../reducer/page/page.js";
+import {getMovies, getNumberOfMovies, getFilteredMovies, getWaitingRequest} from "../../reducer/data/selector.js";
 import {getActiveMovie, getPlayingMovie} from "../../reducer/page/selector.js";
 import {getAuthorizationStatus} from "../../reducer/user/selector.js";
 import withVideo from "../../hocs/with-video/with-video.js";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 import {Operation as UserOperation, AuthorizationStatus} from "../../reducer/user/user.js";
+import {Operation as DataOperation, ActionCreator as DataActionCreator} from "../../reducer/data/data.js";
 
 import mockMovies from "../../mocks/films.js";
 
@@ -23,7 +24,17 @@ const SignInWrapper = withActiveItem(SignIn);
 const AddReviewWrapper = withActiveItem(AddReview);
 
 const App = (props) => {
-  const {movies, activeMovie, selectMovie, playingMovie, playMovie, authorizationStatus, login} = props;
+  const {
+    movies,
+    activeMovie,
+    selectMovie,
+    playingMovie,
+    playMovie,
+    authorizationStatus,
+    login,
+    waitingRequest,
+    postReview
+  } = props;
 
   const _renderApp = () => {
     if (authorizationStatus === AuthorizationStatus.AUTH) {
@@ -92,13 +103,14 @@ const App = (props) => {
         <Route exact path="/dev-review">
           <AddReviewWrapper
             movie = {mockMovies[0]}
-            onSubmit = {() => {}}
+            onSubmit = {postReview}
             onLogoClick = {() => {}}
             authorizationStatus = {true}
             startItem = {{
               rating: null,
               reviewText: null,
             }}
+            waitingRequest = {waitingRequest}
           />
         </Route>
       </Switch>
@@ -111,17 +123,22 @@ const mapStateToProps = (state) => ({
   activeMovie: getActiveMovie(state),
   playingMovie: getPlayingMovie(state),
   authorizationStatus: getAuthorizationStatus(state),
+  waitingRequest: getWaitingRequest(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   selectMovie: (movie) => {
-    dispatch(ActionCreator.selectMovie(movie));
+    dispatch(PageActionCreator.selectMovie(movie));
   },
   playMovie: (movie) => {
-    dispatch(ActionCreator.playMovie(movie));
+    dispatch(PageActionCreator.playMovie(movie));
   },
   login: (authData) => {
     dispatch(UserOperation.login(authData));
+  },
+  postReview: (newReviewData, filmId) => {
+    dispatch(DataActionCreator.startWaitingRequest());
+    dispatch(DataOperation.postReview(newReviewData, filmId));
   },
 });
 
@@ -152,4 +169,6 @@ App.propTypes = {
   playMovie: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   login: PropTypes.func.isRequired,
+  postReview: PropTypes.func.isRequired,
+  waitingRequest: PropTypes.bool.isRequired,
 };

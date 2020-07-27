@@ -9,9 +9,11 @@ const AddReview = (props) => {
     onLogoClick,
     authorizationStatus,
     activeItem,
-    onActiveItemChange
+    onActiveItemChange,
+    waitingRequest
   } = props;
   const {
+    id,
     title,
     posterImage,
     backgroundImage,
@@ -28,7 +30,7 @@ const AddReview = (props) => {
     let result = [];
     for (let i = 0; i < 5; i++) {
       result[i] = (
-        <>
+        <React.Fragment key={i}>
           <input className="rating__input" id={`star-${i + 1}`} type="radio" name="rating" value={i + 1}
             onChange={(evt) => {
               onActiveItemChange({
@@ -39,9 +41,10 @@ const AddReview = (props) => {
               });
             }}
             checked={String(i + 1) === rating ? true : false}
+            disabled={waitingRequest}
           />
           <label className="rating__label" htmlFor={`star-${i + 1}`}>{`Rating ${i + 1}`}</label>
-        </>
+        </React.Fragment>
       );
     }
     return result;
@@ -54,7 +57,7 @@ const AddReview = (props) => {
       onSubmit({
         rating,
         comment: reviewText,
-      });
+      }, id);
     }
   };
 
@@ -137,10 +140,11 @@ const AddReview = (props) => {
                   isTextCorrect: checkText(evt.target.value)
                 });
               }}
+              disabled={waitingRequest}
             ></textarea>
             <div className="add-review__submit">
               <button className="add-review__btn" type="submit"
-                disabled={(isRatingChanged && isTextCorrect) ? false : true}
+                disabled={(isRatingChanged && isTextCorrect && !waitingRequest) ? false : true}
               >Post</button>
             </div>
 
@@ -156,6 +160,7 @@ export default AddReview;
 
 AddReview.propTypes = {
   movie: PropTypes.shape({
+    id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     posterImage: PropTypes.string.isRequired,
     backgroundImage: PropTypes.string.isRequired,
@@ -171,4 +176,5 @@ AddReview.propTypes = {
     isTextCorrect: PropTypes.bool,
   }).isRequired,
   onActiveItemChange: PropTypes.func.isRequired,
+  waitingRequest: PropTypes.bool.isRequired,
 };
