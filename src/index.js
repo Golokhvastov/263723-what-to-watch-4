@@ -9,9 +9,14 @@ import {ActionCreator, AuthorizationStatus} from "./reducer/user/user.js";
 import {Operation as DataOperation} from "./reducer/data/data.js";
 import {Operation as UserOperation} from "./reducer/user/user.js";
 import {createAPI} from "./api.js";
+import history from "./history.js";
+import {AppRoute} from "./const.js";
 
 const onUnauthorized = () => {
   store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
+  if (history.location.pathname !== AppRoute.LOGIN) {
+    history.push(AppRoute.LOGIN);
+  }
 };
 
 const api = createAPI(onUnauthorized);
