@@ -49,6 +49,10 @@ export const getMovies = (state) => {
   return adaptMovies(state[NAME_SPACE].movies);
 };
 
+export const getWaitingRequest = (state) => {
+  return state[NAME_SPACE].waitingRequest;
+};
+
 export const getTextRating = (value) => {
   if (value >= 0 && value < 3) {
     return `Bad`;
