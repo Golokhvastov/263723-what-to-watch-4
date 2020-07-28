@@ -105,7 +105,7 @@ const App = (props) => {
             movie = {mockMovies[0]}
             onSubmit = {postReview}
             onLogoClick = {() => {}}
-            authorizationStatus = {true}
+            authorizationStatus = {AuthorizationStatus.NO_AUTH}
             startItem = {{
               rating: null,
               reviewText: null,

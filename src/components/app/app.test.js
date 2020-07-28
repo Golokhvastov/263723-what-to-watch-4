@@ -14,6 +14,7 @@ const mocks = {
   movieCardYear: 2011,
   movies: [
     {
+      id: 38,
       title: `Test1`,
       previewImage: `test1.jpg`,
       posterImage: `test1.jpg`,
@@ -116,6 +117,8 @@ describe(`App render correctly`, () => {
               playMovie = {() => {}}
               authorizationStatus = {AuthorizationStatus.AUTH}
               login = {() => {}}
+              postReview = {() => {}}
+              waitingRequest = {false}
             />
           </Provider>, {
             createNodeMock: () => {
@@ -140,6 +143,8 @@ describe(`App render correctly`, () => {
               playMovie = {() => {}}
               authorizationStatus = {AuthorizationStatus.AUTH}
               login = {() => {}}
+              postReview = {() => {}}
+              waitingRequest = {false}
             />
           </Provider>, {
             createNodeMock: () => {
@@ -164,6 +169,8 @@ describe(`App render correctly`, () => {
               playMovie = {() => {}}
               authorizationStatus = {AuthorizationStatus.AUTH}
               login = {() => {}}
+              postReview = {() => {}}
+              waitingRequest = {false}
             />
           </Provider>, {
             createNodeMock: () => {
@@ -188,6 +195,8 @@ describe(`App render correctly`, () => {
               playMovie = {() => {}}
               authorizationStatus = {AuthorizationStatus.AUTH}
               login = {() => {}}
+              postReview = {() => {}}
+              waitingRequest = {false}
             />
           </Provider>, {
             createNodeMock: () => {
@@ -214,6 +223,8 @@ describe(`App render correctly`, () => {
               playMovie = {() => {}}
               authorizationStatus = {AuthorizationStatus.NO_AUTH}
               login = {() => {}}
+              postReview = {() => {}}
+              waitingRequest = {false}
             />
           </Provider>, {
             createNodeMock: () => {

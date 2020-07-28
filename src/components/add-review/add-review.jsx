@@ -168,7 +168,7 @@ AddReview.propTypes = {
   }).isRequired,
   onSubmit: PropTypes.func.isRequired,
   onLogoClick: PropTypes.func.isRequired,
-  authorizationStatus: PropTypes.bool.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
   activeItem: PropTypes.shape({
     rating: PropTypes.string,
     reviewText: PropTypes.string,
