@@ -4,9 +4,9 @@ import {Link} from "react-router-dom";
 import Tabs from "../tabs/tabs.jsx";
 import MoviesList from "../movies-list/movies-list.jsx";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
-import {Settings} from "../../const.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
-import {AppRoute} from "../../const.js";
+import {Settings, AppRoute} from "../../const.js";
+import {getNumberOfMovies, getFilteredMovies} from "../../reducer/data/selector.js";
 
 const TabsWrapper = withActiveItem(Tabs);
 
@@ -20,6 +20,8 @@ const MoviePage = (props) => {
     backgroundImage,
     backgroundColor,
   } = movie;
+  const similarMovies = getNumberOfMovies(getFilteredMovies(movies, movie.genre), Settings.maxSimilarMovies);
+
 
   return (
     <>
@@ -48,7 +50,7 @@ const MoviePage = (props) => {
                   </div>
                 )
                 : (
-                  <a href="sign-in.html" className="user-block__link">Sign in</a>
+                  <Link className="user-block__link" to={AppRoute.LOGIN}>Sign in</Link>
                 )
               }
             </div>
@@ -106,7 +108,7 @@ const MoviePage = (props) => {
           <h2 className="catalog__title">More like this</h2>
 
           <MoviesList
-            movies = {movies}
+            movies = {similarMovies}
             onMovieTitleClick = {onMovieTitleClick}
           />
         </section>

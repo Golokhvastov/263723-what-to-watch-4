@@ -7,9 +7,9 @@ import MoviePage from "../movie-page/movie-page.jsx";
 import FullscreenPlayer from "../fullscreen-player/fullscreen-player.jsx";
 import SignIn from "../sign-in/sign-in.jsx";
 import AddReview from "../add-review/add-review.jsx";
-import {Settings, AppRoute} from "../../const.js";
+import {AppRoute} from "../../const.js";
 import {ActionCreator as PageActionCreator} from "../../reducer/page/page.js";
-import {getMovies, getNumberOfMovies, getFilteredMovies, getWaitingRequest} from "../../reducer/data/selector.js";
+import {getMovies, getWaitingRequest} from "../../reducer/data/selector.js";
 import {getActiveMovie, getPlayingMovie} from "../../reducer/page/selector.js";
 import {getAuthorizationStatus} from "../../reducer/user/selector.js";
 import withVideo from "../../hocs/with-video/with-video.js";
@@ -50,29 +50,11 @@ const App = (props) => {
     }
 
     if (activeMovie && !playingMovie) {
-      return (
-        <MoviePage
-          movie = {activeMovie}
-          onLogoClick = {() => selectMovie(null)}
-          movies = {getNumberOfMovies(getFilteredMovies(movies, activeMovie.genre), Settings.maxSimilarMovies)}
-          onMovieTitleClick = {selectMovie}
-          onPlayClick = {playMovie}
-          authorizationStatus = {authorizationStatus}
-        />
-      );
+      return history.push(AppRoute.FILM);
     }
 
     if (playingMovie) {
-      return (
-        <FullscreenPlayerWrapper
-          movie = {playingMovie}
-          src = {playingMovie.src}
-          posterSrc = {playingMovie.previewImage}
-          isPlaying = {false}
-          onExitClick = {() => playMovie(null)}
-          videoClassName = {`player__video`}
-        />
-      );
+      return history.push(AppRoute.PLAYER);
     }
 
     return null;
@@ -84,18 +66,11 @@ const App = (props) => {
         <Route exact path={AppRoute.ROOT}>
           {_renderApp()}
         </Route>
-        <Route exact path={AppRoute.LOGIN}>
-          <SignInWrapper
-            onSubmit = {login}
-            onLogoClick = {() => {}}
-            startItem = {true}
-          />
-        </Route>
-        <Route exact path="/dev-review">
+        <Route exact path={AppRoute.ADD_REVIEW}>
           <AddReviewWrapper
             movie = {mockMovies[0]}
             onSubmit = {postReview}
-            onLogoClick = {() => {}}
+            onLogoClick = {() => selectMovie(null)}
             authorizationStatus = {AuthorizationStatus.NO_AUTH}
             startItem = {{
               rating: null,
@@ -104,14 +79,32 @@ const App = (props) => {
             waitingRequest = {waitingRequest}
           />
         </Route>
-        <Route exact path="/dev-movie-page">
+        <Route exact path={AppRoute.FILM}>
           <MoviePage
-            movie = {mockMovies[0]}
-            onLogoClick = {() => {}}
-            movies = {getNumberOfMovies(getFilteredMovies(mockMovies, mockMovies[0].genre), Settings.maxSimilarMovies)}
-            onMovieTitleClick = {() => {}}
-            onPlayClick = {() => {}}
-            authorizationStatus = {AuthorizationStatus.NO_AUTH}
+            movie = {activeMovie}
+            onLogoClick = {() => selectMovie(null)}
+            movies = {movies}
+            onMovieTitleClick = {selectMovie}
+            onPlayClick = {playMovie}
+            authorizationStatus = {authorizationStatus}
+          />
+        </Route>
+        <Route exact path={AppRoute.LOGIN}>
+          <SignInWrapper
+            onSubmit = {login}
+            onLogoClick = {() => selectMovie(null)}
+            startItem = {true}
+          />
+        </Route>
+        <Route exact path={AppRoute.MY_LIST}>
+
+        </Route>
+        <Route exact path={AppRoute.PLAYER}>
+          <FullscreenPlayerWrapper
+            movie = {playingMovie}
+            isPlaying = {false}
+            onExitClick = {() => playMovie(null)}
+            videoClassName = {`player__video`}
           />
         </Route>
       </Switch>

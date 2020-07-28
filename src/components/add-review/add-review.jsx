@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {Link} from "react-router-dom";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
+import {AppRoute} from "../../const.js";
 
 const AddReview = (props) => {
   const {
@@ -78,18 +80,12 @@ const AddReview = (props) => {
         <h1 className="visually-hidden">WTW</h1>
 
         <header className="page-header">
-          <div
-            className="logo"
-            onClick={(evt) => {
-              evt.preventDefault();
-              onLogoClick();
-            }}
-          >
-            <a href="main.html" className="logo__link">
+          <div className="logo">
+            <Link className="logo__link" to={AppRoute.ROOT} onClick={onLogoClick}>
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </a>
+            </Link>
           </div>
 
           <nav className="breadcrumbs">
@@ -111,7 +107,7 @@ const AddReview = (props) => {
                 </div>
               )
               : (
-                <a href="sign-in.html" className="user-block__link">Sign in</a>
+                <Link className="user-block__link" to={AppRoute.LOGIN}>Sign in</Link>
               )
             }
           </div>

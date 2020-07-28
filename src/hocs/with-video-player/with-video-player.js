@@ -35,8 +35,10 @@ const withVideoPlayer = (Component) => {
     renderVideo(src, posterSrc) {
       return (
         <VideoPlayer
-          src = {src}
-          posterSrc = {posterSrc}
+          movie = {{
+            src,
+            posterImage: posterSrc,
+          }}
           isPlaying = {this.state.isPlaying}
           width={`100%`}
           height={`100%`}

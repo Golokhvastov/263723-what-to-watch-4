@@ -49,7 +49,7 @@ class SignIn extends React.PureComponent {
       <div className="user-page">
         <header className="page-header user-page__head">
           <div className="logo">
-            <Link className="logo__link" to={AppRoute.ROOT}>
+            <Link className="logo__link" to={AppRoute.ROOT} onClick={onLogoClick}>
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
@@ -93,7 +93,7 @@ class SignIn extends React.PureComponent {
 
         <footer className="page-footer">
           <div className="logo">
-            <Link className="logo__link logo__link--light" to={AppRoute.ROOT}>
+            <Link className="logo__link logo__link--light" to={AppRoute.ROOT} onClick={onLogoClick}>
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
