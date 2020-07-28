@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {BrowserRouter, Switch, Route} from "react-router-dom";
+import {Router, Switch, Route} from "react-router-dom";
 import {connect} from "react-redux";
 import Main from "../main/main.jsx";
 import MoviePage from "../movie-page/movie-page.jsx";
@@ -16,6 +16,7 @@ import withVideo from "../../hocs/with-video/with-video.js";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 import {Operation as UserOperation, AuthorizationStatus} from "../../reducer/user/user.js";
 import {Operation as DataOperation, ActionCreator as DataActionCreator} from "../../reducer/data/data.js";
+import history from "../../history.js";
 
 import mockMovies from "../../mocks/films.js";
 
@@ -37,49 +38,39 @@ const App = (props) => {
   } = props;
 
   const _renderApp = () => {
-    if (authorizationStatus === AuthorizationStatus.AUTH) {
-      if (!activeMovie && !playingMovie && movies.length > 0) {
-        return (
-          <Main
-            mainMovie = {movies[0]}
-            onMovieTitleClick = {selectMovie}
-            onPlayClick = {playMovie}
-            authorizationStatus = {authorizationStatus}
-          />
-        );
-      }
-
-      if (activeMovie && !playingMovie) {
-        return (
-          <MoviePage
-            movie = {activeMovie}
-            onLogoClick = {() => selectMovie(null)}
-            movies = {getNumberOfMovies(getFilteredMovies(movies, activeMovie.genre), Settings.maxSimilarMovies)}
-            onMovieTitleClick = {selectMovie}
-            onPlayClick = {playMovie}
-            authorizationStatus = {authorizationStatus}
-          />
-        );
-      }
-
-      if (playingMovie) {
-        return (
-          <FullscreenPlayerWrapper
-            movie = {playingMovie}
-            src = {playingMovie.src}
-            posterSrc = {playingMovie.previewImage}
-            isPlaying = {false}
-            onExitClick = {() => playMovie(null)}
-            videoClassName = {`player__video`}
-          />
-        );
-      }
-    } else {
+    if (!activeMovie && !playingMovie && movies.length > 0) {
       return (
-        <SignInWrapper
-          onSubmit = {login}
-          onLogoClick = {() => {}}
-          startItem = {true}
+        <Main
+          mainMovie = {movies[0]}
+          onMovieTitleClick = {selectMovie}
+          onPlayClick = {playMovie}
+          authorizationStatus = {authorizationStatus}
+        />
+      );
+    }
+
+    if (activeMovie && !playingMovie) {
+      return (
+        <MoviePage
+          movie = {activeMovie}
+          onLogoClick = {() => selectMovie(null)}
+          movies = {getNumberOfMovies(getFilteredMovies(movies, activeMovie.genre), Settings.maxSimilarMovies)}
+          onMovieTitleClick = {selectMovie}
+          onPlayClick = {playMovie}
+          authorizationStatus = {authorizationStatus}
+        />
+      );
+    }
+
+    if (playingMovie) {
+      return (
+        <FullscreenPlayerWrapper
+          movie = {playingMovie}
+          src = {playingMovie.src}
+          posterSrc = {playingMovie.previewImage}
+          isPlaying = {false}
+          onExitClick = {() => playMovie(null)}
+          videoClassName = {`player__video`}
         />
       );
     }
@@ -88,12 +79,12 @@ const App = (props) => {
   };
 
   return (
-    <BrowserRouter>
+    <Router history={history}>
       <Switch>
         <Route exact path="/">
           {_renderApp()}
         </Route>
-        <Route exact path="/dev">
+        <Route exact path="/login">
           <SignInWrapper
             onSubmit = {login}
             onLogoClick = {() => {}}
@@ -124,7 +115,7 @@ const App = (props) => {
           />
         </Route>
       </Switch>
-    </BrowserRouter>
+    </Router>
   );
 };
 
