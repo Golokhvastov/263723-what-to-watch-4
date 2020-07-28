@@ -1,8 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {Link} from "react-router-dom";
 import MoviesCatalog from "../movies-catalog/movies-catalog.jsx";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
-import {Settings} from "../../const.js";
+import {Settings, AppRoute} from "../../const.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 
 const MoviesCatalogWrapper = withActiveItem(MoviesCatalog);
@@ -41,7 +42,7 @@ const Main = (props) => {
                 </div>
               )
               : (
-                <a href="sign-in.html" className="user-block__link">Sign in</a>
+                <Link className="user-block__link" to={AppRoute.LOGIN}>Sign in</Link>
               )
             }
           </div>

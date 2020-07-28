@@ -7,7 +7,7 @@ import MoviePage from "../movie-page/movie-page.jsx";
 import FullscreenPlayer from "../fullscreen-player/fullscreen-player.jsx";
 import SignIn from "../sign-in/sign-in.jsx";
 import AddReview from "../add-review/add-review.jsx";
-import {Settings} from "../../const.js";
+import {Settings, AppRoute} from "../../const.js";
 import {ActionCreator as PageActionCreator} from "../../reducer/page/page.js";
 import {getMovies, getNumberOfMovies, getFilteredMovies, getWaitingRequest} from "../../reducer/data/selector.js";
 import {getActiveMovie, getPlayingMovie} from "../../reducer/page/selector.js";
@@ -81,10 +81,10 @@ const App = (props) => {
   return (
     <Router history={history}>
       <Switch>
-        <Route exact path="/">
+        <Route exact path={AppRoute.ROOT}>
           {_renderApp()}
         </Route>
-        <Route exact path="/login">
+        <Route exact path={AppRoute.LOGIN}>
           <SignInWrapper
             onSubmit = {login}
             onLogoClick = {() => {}}
