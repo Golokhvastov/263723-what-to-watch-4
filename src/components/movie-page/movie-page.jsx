@@ -83,7 +83,9 @@ const MoviePage = (props) => {
                   </svg>
                   <span>My list</span>
                 </button>
-                <a href="add-review.html" className="btn movie-card__button">Add review</a>
+                {authorizationStatus === AuthorizationStatus.AUTH && (
+                  <a href="add-review.html" className="btn movie-card__button">Add review</a>
+                )}
               </div>
             </div>
           </div>

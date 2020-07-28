@@ -113,6 +113,16 @@ const App = (props) => {
             waitingRequest = {waitingRequest}
           />
         </Route>
+        <Route exact path="/dev-movie-page">
+          <MoviePage
+            movie = {mockMovies[0]}
+            onLogoClick = {() => {}}
+            movies = {getNumberOfMovies(getFilteredMovies(mockMovies, mockMovies[0].genre), Settings.maxSimilarMovies)}
+            onMovieTitleClick = {() => {}}
+            onPlayClick = {() => {}}
+            authorizationStatus = {AuthorizationStatus.NO_AUTH}
+          />
+        </Route>
       </Switch>
     </BrowserRouter>
   );
