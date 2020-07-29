@@ -8,9 +8,7 @@ import FullscreenPlayer from "../fullscreen-player/fullscreen-player.jsx";
 import SignIn from "../sign-in/sign-in.jsx";
 import AddReview from "../add-review/add-review.jsx";
 import {AppRoute} from "../../const.js";
-import {ActionCreator as PageActionCreator} from "../../reducer/page/page.js";
 import {getMovies, getWaitingRequest} from "../../reducer/data/selector.js";
-import {getActiveMovie, getPlayingMovie} from "../../reducer/page/selector.js";
 import {getAuthorizationStatus} from "../../reducer/user/selector.js";
 import withVideo from "../../hocs/with-video/with-video.js";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
@@ -27,10 +25,6 @@ const AddReviewWrapper = withActiveItem(AddReview);
 const App = (props) => {
   const {
     movies,
-    activeMovie,
-    selectMovie,
-    playingMovie,
-    playMovie,
     authorizationStatus,
     login,
     waitingRequest,
@@ -39,78 +33,97 @@ const App = (props) => {
     removeMovieFromFavorite
   } = props;
 
-  const _renderApp = () => {
-    if (!activeMovie && !playingMovie && movies.length > 0) {
-      return (
-        <Main
-          mainMovie = {movies[0]}
-          onMovieTitleClick = {selectMovie}
-          onPlayClick = {playMovie}
-          authorizationStatus = {authorizationStatus}
-          addMovieInFavorite = {addMovieInFavorite}
-          removeMovieFromFavorite = {removeMovieFromFavorite}
-        />
-      );
-    }
-
-    if (activeMovie && !playingMovie) {
-      return history.push(AppRoute.FILM);
-    }
-
-    if (playingMovie) {
-      return history.push(AppRoute.PLAYER);
-    }
-
-    return null;
-  };
-
   return (
     <Router history={history}>
       <Switch>
         <Route exact path={AppRoute.ROOT}>
-          {_renderApp()}
-        </Route>
-        <Route exact path={AppRoute.ADD_REVIEW}>
-          <AddReviewWrapper
-            movie = {mockMovies[0]}
-            onSubmit = {postReview}
-            onLogoClick = {() => selectMovie(null)}
-            authorizationStatus = {AuthorizationStatus.NO_AUTH}
-            startItem = {{
-              rating: null,
-              reviewText: null,
-            }}
-            waitingRequest = {waitingRequest}
-          />
-        </Route>
-        <Route exact path={AppRoute.FILM}>
-          <MoviePage
-            movie = {activeMovie}
-            onLogoClick = {() => selectMovie(null)}
-            movies = {movies}
-            onMovieTitleClick = {selectMovie}
-            onPlayClick = {playMovie}
+          <Main
+            mainMovie = {movies[0]}
             authorizationStatus = {authorizationStatus}
             addMovieInFavorite = {addMovieInFavorite}
             removeMovieFromFavorite = {removeMovieFromFavorite}
+            onMovieTitleClick = {(movie) =>
+              history.push(`${AppRoute.FILM}/${movie.id}`)
+            }
+            onPlayClick = {(movie) =>
+              history.push(`${AppRoute.FILM}/${movie.id}${AppRoute.PLAYER}`)
+            }
           />
         </Route>
-        <Route exact path={AppRoute.LOGIN}>
-          <SignInWrapper
-            onSubmit = {login}
-            onLogoClick = {() => selectMovie(null)}
-            startItem = {true}
-          />
-        </Route>
+
+        <Route
+          exact
+          path={`${AppRoute.FILM}/:id`}
+          render={(routeProps) => (
+            <MoviePage
+              movie = {
+                movies.find((movie) => movie.id === Number(routeProps.match.params.id))
+              }
+              movies = {movies}
+              authorizationStatus = {authorizationStatus}
+              addMovieInFavorite = {addMovieInFavorite}
+              removeMovieFromFavorite = {removeMovieFromFavorite}
+              onLogoClick = {() =>
+                history.push(AppRoute.ROOT)
+              }
+              onMovieTitleClick = {(movie) =>
+                history.push(`${AppRoute.FILM}/${movie.id}`)
+              }
+              onPlayClick = {(movie) =>
+                history.push(`${AppRoute.FILM}/${movie.id}${AppRoute.PLAYER}`)
+              }
+            />
+          )}
+        />
+
+        <Route
+          exact
+          path={`${AppRoute.FILM}/:id${AppRoute.ADD_REVIEW}`}
+          render={() => (
+            <AddReviewWrapper
+              movie = {mockMovies[0]}
+              authorizationStatus = {AuthorizationStatus.NO_AUTH}
+              startItem = {{
+                rating: null,
+                reviewText: null,
+              }}
+              waitingRequest = {waitingRequest}
+              onSubmit = {postReview}
+              onLogoClick = {() =>
+                history.push(AppRoute.ROOT)
+              }
+            />
+          )}
+        />
+
+        <Route
+          exact
+          path={`${AppRoute.FILM}/:id${AppRoute.PLAYER}`}
+          render={(routeProps) => (
+            <FullscreenPlayerWrapper
+              movie = {
+                movies.find((movie) => movie.id === Number(routeProps.match.params.id))
+              }
+              isPlaying = {false}
+              videoClassName = {`player__video`}
+              onExitClick = {() =>
+                history.goBack()
+              }
+            />
+          )}
+        />
+
         <Route exact path={AppRoute.MY_LIST}>
 
         </Route>
-        <Route exact path={AppRoute.PLAYER}>
-          <FullscreenPlayerWrapper
-            movie = {playingMovie}
-            isPlaying = {false}
-            onExitClick = {() => playMovie(null)}
-            videoClassName = {`player__video`}
+
+        <Route exact path={AppRoute.LOGIN}>
+          <SignInWrapper
+            onSubmit = {login}
+            startItem = {true}
+            onLogoClick = {() =>
+              history.push(AppRoute.ROOT)
+            }
           />
         </Route>
       </Switch>
@@ -120,19 +133,11 @@ const App = (props) => {
 
 const mapStateToProps = (state) => ({
   movies: getMovies(state),
-  activeMovie: getActiveMovie(state),
-  playingMovie: getPlayingMovie(state),
   authorizationStatus: getAuthorizationStatus(state),
   waitingRequest: getWaitingRequest(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  selectMovie: (movie) => {
-    dispatch(PageActionCreator.selectMovie(movie));
-  },
-  playMovie: (movie) => {
-    dispatch(PageActionCreator.playMovie(movie));
-  },
   login: (authData) => {
     dispatch(UserOperation.login(authData));
   },
@@ -164,15 +169,6 @@ App.propTypes = {
         previewImage: PropTypes.string.isRequired,
       })
   ).isRequired,
-  activeMovie: PropTypes.shape({
-    genre: PropTypes.string.isRequired,
-  }),
-  selectMovie: PropTypes.func.isRequired,
-  playingMovie: PropTypes.shape({
-    src: PropTypes.string.isRequired,
-    previewImage: PropTypes.string.isRequired,
-  }),
-  playMovie: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   login: PropTypes.func.isRequired,
   postReview: PropTypes.func.isRequired,
