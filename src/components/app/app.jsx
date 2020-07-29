@@ -7,7 +7,7 @@ import MoviePage from "../movie-page/movie-page.jsx";
 import FullscreenPlayer from "../fullscreen-player/fullscreen-player.jsx";
 import SignIn from "../sign-in/sign-in.jsx";
 import AddReview from "../add-review/add-review.jsx";
-import {AppRoute} from "../../const.js";
+import {Settings, AppRoute} from "../../const.js";
 import {getMovies, getWaitingRequest} from "../../reducer/data/selector.js";
 import {getAuthorizationStatus} from "../../reducer/user/selector.js";
 import withVideo from "../../hocs/with-video/with-video.js";
@@ -15,6 +15,7 @@ import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 import {Operation as UserOperation, AuthorizationStatus} from "../../reducer/user/user.js";
 import {Operation as DataOperation, ActionCreator as DataActionCreator} from "../../reducer/data/data.js";
 import history from "../../history.js";
+import {getNumberOfMovies, getFilteredMovies} from "../../reducer/data/selector.js";
 
 import mockMovies from "../../mocks/films.js";
 
@@ -54,26 +55,34 @@ const App = (props) => {
         <Route
           exact
           path={`${AppRoute.FILM}/:id`}
-          render={(routeProps) => (
-            <MoviePage
-              movie = {
-                movies.find((movie) => movie.id === Number(routeProps.match.params.id))
-              }
-              movies = {movies}
-              authorizationStatus = {authorizationStatus}
-              addMovieInFavorite = {addMovieInFavorite}
-              removeMovieFromFavorite = {removeMovieFromFavorite}
-              onLogoClick = {() =>
-                history.push(AppRoute.ROOT)
-              }
-              onMovieTitleClick = {(movie) =>
-                history.push(`${AppRoute.FILM}/${movie.id}`)
-              }
-              onPlayClick = {(movie) =>
-                history.push(`${AppRoute.FILM}/${movie.id}${AppRoute.PLAYER}`)
-              }
-            />
-          )}
+          render={(routeProps) => {
+            const activeMovie = movies.find((movie) => movie.id === Number(routeProps.match.params.id));
+            let similarMovies = [];
+            if (activeMovie) {
+              similarMovies = getNumberOfMovies(getFilteredMovies(movies, activeMovie.genre), Settings.maxSimilarMovies);
+            }
+
+            return (
+              <MoviePage
+                movie = {
+                  activeMovie
+                }
+                similarMovies = {similarMovies}
+                authorizationStatus = {authorizationStatus}
+                addMovieInFavorite = {addMovieInFavorite}
+                removeMovieFromFavorite = {removeMovieFromFavorite}
+                onLogoClick = {() =>
+                  history.push(AppRoute.ROOT)
+                }
+                onMovieTitleClick = {(movie) =>
+                  history.push(`${AppRoute.FILM}/${movie.id}`)
+                }
+                onPlayClick = {(movie) =>
+                  history.push(`${AppRoute.FILM}/${movie.id}${AppRoute.PLAYER}`)
+                }
+              />
+            );
+          }}
         />
 
         <Route

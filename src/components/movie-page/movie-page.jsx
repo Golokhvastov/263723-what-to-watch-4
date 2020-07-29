@@ -6,7 +6,6 @@ import MoviesList from "../movies-list/movies-list.jsx";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 import {Settings, AppRoute} from "../../const.js";
-import {getNumberOfMovies, getFilteredMovies} from "../../reducer/data/selector.js";
 
 const TabsWrapper = withActiveItem(Tabs);
 
@@ -14,22 +13,31 @@ const MoviePage = (props) => {
   const {
     movie,
     onLogoClick,
-    movies,
+    similarMovies,
     onMovieTitleClick,
     onPlayClick,
     authorizationStatus,
     addMovieInFavorite,
     removeMovieFromFavorite
   } = props;
-  const {
-    title,
-    genre,
-    year,
-    posterImage,
-    backgroundImage,
-    backgroundColor,
-  } = movie;
-  const similarMovies = getNumberOfMovies(getFilteredMovies(movies, movie.genre), Settings.maxSimilarMovies);
+
+  let title;
+  let genre;
+  let year;
+  let posterImage;
+  let backgroundImage;
+  let backgroundColor;
+  let isFavorite;
+
+  if (movie) {
+    title = movie.title;
+    genre = movie.genre;
+    year = movie.year;
+    posterImage = movie.posterImage;
+    backgroundImage = movie.backgroundImage;
+    backgroundColor = movie.backgroundColor;
+    isFavorite = movie.isFavorite;
+  }
 
   return (
     <>
@@ -54,7 +62,7 @@ const MoviePage = (props) => {
               {authorizationStatus === AuthorizationStatus.AUTH
                 ? (
                   <div className="user-block__avatar">
-                    <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+                    <img src="/img/avatar.jpg" alt="User avatar" width="63" height="63" />
                   </div>
                 )
                 : (
@@ -83,7 +91,7 @@ const MoviePage = (props) => {
                   </svg>
                   <span>Play</span>
                 </button>
-                {movies.filter((film) => film.id === movie.id)[0].isFavorite === true
+                {isFavorite === true
                   ? (
                     <button className="btn btn--list movie-card__button" type="button"
                       onClick={() => removeMovieFromFavorite(movie.id)}
@@ -135,6 +143,7 @@ const MoviePage = (props) => {
             movies = {similarMovies}
             onMovieTitleClick = {onMovieTitleClick}
           />
+
         </section>
 
         <footer className="page-footer">
@@ -180,7 +189,7 @@ MoviePage.propTypes = {
     ).isRequired,
   }).isRequired,
   onLogoClick: PropTypes.func.isRequired,
-  movies: PropTypes.array.isRequired,
+  similarMovies: PropTypes.array.isRequired,
   onMovieTitleClick: PropTypes.func.isRequired,
   onPlayClick: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,

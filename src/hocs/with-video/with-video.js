@@ -29,13 +29,14 @@ const withVideo = (Component) => {
     }
 
     componentDidMount() {
-      const src = this.props.movie.src;
       const video = this._videoRef.current;
 
-      video.src = src;
+      if (this.props.movie) {
+        video.src = this.props.movie.src;
+        video.poster = this.props.movie.posterImage;
+      }
 
       video.volume = 0;
-      video.poster = this.props.movie.posterImage;
 
       video.oncanplaythrough = () => this.setState({
         isLoading: false
@@ -56,6 +57,15 @@ const withVideo = (Component) => {
 
     componentDidUpdate() {
       const video = this._videoRef.current;
+
+      if (this.props.movie) {
+        if (video.src !== this.props.movie.src) {
+          video.src = this.props.movie.src;
+        }
+        if (video.poster !== this.props.movie.posterImage) {
+          video.poster = this.props.movie.posterImage;
+        }
+      }
 
       if (this.props.isPlaying !== this.state.startIsPlaying) {
         this.setState({
