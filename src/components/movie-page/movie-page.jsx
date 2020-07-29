@@ -11,7 +11,16 @@ import {getNumberOfMovies, getFilteredMovies} from "../../reducer/data/selector.
 const TabsWrapper = withActiveItem(Tabs);
 
 const MoviePage = (props) => {
-  const {movie, onLogoClick, movies, onMovieTitleClick, onPlayClick, authorizationStatus} = props;
+  const {
+    movie,
+    onLogoClick,
+    movies,
+    onMovieTitleClick,
+    onPlayClick,
+    authorizationStatus,
+    addMovieInFavorite,
+    removeMovieFromFavorite
+  } = props;
   const {
     title,
     genre,
@@ -21,7 +30,6 @@ const MoviePage = (props) => {
     backgroundColor,
   } = movie;
   const similarMovies = getNumberOfMovies(getFilteredMovies(movies, movie.genre), Settings.maxSimilarMovies);
-
 
   return (
     <>
@@ -75,12 +83,28 @@ const MoviePage = (props) => {
                   </svg>
                   <span>Play</span>
                 </button>
-                <button className="btn btn--list movie-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                </button>
+                {movies.filter((film) => film.id === movie.id)[0].isFavorite === true
+                  ? (
+                    <button className="btn btn--list movie-card__button" type="button"
+                      onClick={() => removeMovieFromFavorite(movie.id)}
+                    >
+                      <svg viewBox="0 0 18 14" width="18" height="14">
+                        <use xlinkHref="#in-list"></use>
+                      </svg>
+                      <span>My list</span>
+                    </button>
+                  )
+                  : (
+                    <button className="btn btn--list movie-card__button" type="button"
+                      onClick={() => addMovieInFavorite(movie.id)}
+                    >
+                      <svg viewBox="0 0 19 20" width="19" height="20">
+                        <use xlinkHref="#add"></use>
+                      </svg>
+                      <span>My list</span>
+                    </button>
+                  )
+                }
                 {authorizationStatus === AuthorizationStatus.AUTH && (
                   <a href="add-review.html" className="btn movie-card__button">Add review</a>
                 )}
@@ -135,6 +159,8 @@ export default MoviePage;
 
 MoviePage.propTypes = {
   movie: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    isFavorite: PropTypes.bool.isRequired,
     title: PropTypes.string.isRequired,
     posterImage: PropTypes.string.isRequired,
     backgroundImage: PropTypes.string.isRequired,
@@ -158,4 +184,6 @@ MoviePage.propTypes = {
   onMovieTitleClick: PropTypes.func.isRequired,
   onPlayClick: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
+  addMovieInFavorite: PropTypes.func.isRequired,
+  removeMovieFromFavorite: PropTypes.func.isRequired,
 };

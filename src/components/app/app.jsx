@@ -34,7 +34,9 @@ const App = (props) => {
     authorizationStatus,
     login,
     waitingRequest,
-    postReview
+    postReview,
+    addMovieInFavorite,
+    removeMovieFromFavorite
   } = props;
 
   const _renderApp = () => {
@@ -45,6 +47,8 @@ const App = (props) => {
           onMovieTitleClick = {selectMovie}
           onPlayClick = {playMovie}
           authorizationStatus = {authorizationStatus}
+          addMovieInFavorite = {addMovieInFavorite}
+          removeMovieFromFavorite = {removeMovieFromFavorite}
         />
       );
     }
@@ -87,6 +91,8 @@ const App = (props) => {
             onMovieTitleClick = {selectMovie}
             onPlayClick = {playMovie}
             authorizationStatus = {authorizationStatus}
+            addMovieInFavorite = {addMovieInFavorite}
+            removeMovieFromFavorite = {removeMovieFromFavorite}
           />
         </Route>
         <Route exact path={AppRoute.LOGIN}>
@@ -134,6 +140,12 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(DataActionCreator.startWaitingRequest());
     dispatch(DataOperation.postReview(newReviewData, filmId));
   },
+  addMovieInFavorite: (filmId) => {
+    dispatch(DataOperation.addMovieToFavoriteMovies(filmId));
+  },
+  removeMovieFromFavorite: (filmId) => {
+    dispatch(DataOperation.removeMovieFromFavoriteMovies(filmId));
+  },
 });
 
 export {App};
@@ -165,4 +177,6 @@ App.propTypes = {
   login: PropTypes.func.isRequired,
   postReview: PropTypes.func.isRequired,
   waitingRequest: PropTypes.bool.isRequired,
+  addMovieInFavorite: PropTypes.func.isRequired,
+  removeMovieFromFavorite: PropTypes.func.isRequired,
 };

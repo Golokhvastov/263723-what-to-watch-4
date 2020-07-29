@@ -13,7 +13,9 @@ const Main = (props) => {
     mainMovie,
     onMovieTitleClick,
     onPlayClick,
-    authorizationStatus
+    authorizationStatus,
+    addMovieInFavorite,
+    removeMovieFromFavorite
   } = props;
 
   return (
@@ -72,12 +74,28 @@ const Main = (props) => {
                   </svg>
                   <span>Play</span>
                 </button>
-                <button className="btn btn--list movie-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                </button>
+                {mainMovie.isFavorite === true
+                  ? (
+                    <button className="btn btn--list movie-card__button" type="button"
+                      onClick={() => removeMovieFromFavorite(mainMovie.id)}
+                    >
+                      <svg viewBox="0 0 18 14" width="18" height="14">
+                        <use xlinkHref="#in-list"></use>
+                      </svg>
+                      <span>My list</span>
+                    </button>
+                  )
+                  : (
+                    <button className="btn btn--list movie-card__button" type="button"
+                      onClick={() => addMovieInFavorite(mainMovie.id)}
+                    >
+                      <svg viewBox="0 0 19 20" width="19" height="20">
+                        <use xlinkHref="#add"></use>
+                      </svg>
+                      <span>My list</span>
+                    </button>
+                  )
+                }
               </div>
             </div>
           </div>
@@ -113,11 +131,15 @@ export default Main;
 
 Main.propTypes = {
   mainMovie: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    isFavorite: PropTypes.bool.isRequired,
     title: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
-    year: PropTypes.number.isRequired
+    year: PropTypes.number.isRequired,
   }).isRequired,
   onMovieTitleClick: PropTypes.func.isRequired,
   onPlayClick: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
+  addMovieInFavorite: PropTypes.func.isRequired,
+  removeMovieFromFavorite: PropTypes.func.isRequired,
 };
