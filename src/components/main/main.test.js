@@ -5,6 +5,8 @@ import configureStore from "redux-mock-store";
 import NameSpace from "../../reducer/name-space.js";
 import Main from "./main.jsx";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
+import {Router} from "react-router-dom";
+import history from "../../history.js";
 
 const mockStore = configureStore([]);
 
@@ -14,11 +16,15 @@ const mocks = {
   movieCardYear: 2011,
   movies: [
     {
+      id: 1,
       title: `Test1`,
       genre: `Test11`,
       previewImage: `test1.jpg`,
+      posterImage: `test12.jpg`,
+      backgroundImage: `test13.jpg`,
       preview: `test1.jpg`,
       year: 1981,
+      isFavorite: false,
     },
     {
       title: `Test2`,
@@ -80,12 +86,18 @@ describe(`Main render correctly`, () => {
     const tree = renderer
       .create(
           <Provider store={store}>
-            <Main
-              mainMovie = {mocks.movies[0]}
-              onMovieTitleClick = {() => {}}
-              onPlayClick = {() => {}}
-              authorizationStatus = {AuthorizationStatus.AUTH}
-            />
+            <Router
+              history={history}
+            >
+              <Main
+                mainMovie = {mocks.movies[0]}
+                onMovieTitleClick = {() => {}}
+                onPlayClick = {() => {}}
+                authorizationStatus = {AuthorizationStatus.AUTH}
+                addMovieInFavorite = {() => {}}
+                removeMovieFromFavorite = {() => {}}
+              />
+            </Router>
           </Provider>, {
             createNodeMock: () => {
               return {};
@@ -102,12 +114,18 @@ describe(`Main render correctly`, () => {
     const tree = renderer
       .create(
           <Provider store={store}>
-            <Main
-              mainMovie = {mocks.movies[0]}
-              onMovieTitleClick = {() => {}}
-              onPlayClick = {() => {}}
-              authorizationStatus = {AuthorizationStatus.NO_AUTH}
-            />
+            <Router
+              history={history}
+            >
+              <Main
+                mainMovie = {mocks.movies[0]}
+                onMovieTitleClick = {() => {}}
+                onPlayClick = {() => {}}
+                authorizationStatus = {AuthorizationStatus.NO_AUTH}
+                addMovieInFavorite = {() => {}}
+                removeMovieFromFavorite = {() => {}}
+              />
+            </Router>
           </Provider>, {
             createNodeMock: () => {
               return {};
