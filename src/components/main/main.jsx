@@ -10,7 +10,7 @@ const MoviesCatalogWrapper = withActiveItem(MoviesCatalog);
 
 const Main = (props) => {
   const {
-    mainMovie,
+    promoMovie,
     onMovieTitleClick,
     onPlayClick,
     authorizationStatus,
@@ -26,14 +26,14 @@ const Main = (props) => {
   let backgroundImage;
   let isFavorite;
 
-  if (mainMovie) {
-    id = mainMovie.id;
-    title = mainMovie.title;
-    genre = mainMovie.genre;
-    year = mainMovie.year;
-    posterImage = mainMovie.posterImage;
-    backgroundImage = mainMovie.backgroundImage;
-    isFavorite = mainMovie.isFavorite;
+  if (promoMovie) {
+    id = promoMovie.id;
+    title = promoMovie.title;
+    genre = promoMovie.genre;
+    year = promoMovie.year;
+    posterImage = promoMovie.posterImage;
+    backgroundImage = promoMovie.backgroundImage;
+    isFavorite = promoMovie.isFavorite;
   }
 
   return (
@@ -85,7 +85,7 @@ const Main = (props) => {
                 <button
                   className="btn btn--play movie-card__button"
                   type="button"
-                  onClick={() => onPlayClick(mainMovie)}
+                  onClick={() => onPlayClick(promoMovie)}
                 >
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
@@ -148,7 +148,7 @@ const Main = (props) => {
 export default Main;
 
 Main.propTypes = {
-  mainMovie: PropTypes.shape({
+  promoMovie: PropTypes.shape({
     id: PropTypes.number.isRequired,
     isFavorite: PropTypes.bool.isRequired,
     title: PropTypes.string.isRequired,

@@ -8,7 +8,7 @@ import FullscreenPlayer from "../fullscreen-player/fullscreen-player.jsx";
 import SignIn from "../sign-in/sign-in.jsx";
 import AddReview from "../add-review/add-review.jsx";
 import {Settings, AppRoute} from "../../const.js";
-import {getMovies, getWaitingRequest} from "../../reducer/data/selector.js";
+import {getMovies, getPromoMovie, getFavoriteMovies, getWaitingRequest} from "../../reducer/data/selector.js";
 import {getAuthorizationStatus} from "../../reducer/user/selector.js";
 import withVideo from "../../hocs/with-video/with-video.js";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
@@ -26,6 +26,8 @@ const AddReviewWrapper = withActiveItem(AddReview);
 const App = (props) => {
   const {
     movies,
+    promoMovie,
+    favoriteMovies,
     authorizationStatus,
     login,
     waitingRequest,
@@ -39,7 +41,7 @@ const App = (props) => {
       <Switch>
         <Route exact path={AppRoute.ROOT}>
           <Main
-            mainMovie = {movies[0]}
+            promoMovie = {promoMovie}
             authorizationStatus = {authorizationStatus}
             addMovieInFavorite = {addMovieInFavorite}
             removeMovieFromFavorite = {removeMovieFromFavorite}
@@ -142,6 +144,8 @@ const App = (props) => {
 
 const mapStateToProps = (state) => ({
   movies: getMovies(state),
+  promoMovie: getPromoMovie(state),
+  favoriteMovies: getFavoriteMovies(state),
   authorizationStatus: getAuthorizationStatus(state),
   waitingRequest: getWaitingRequest(state),
 });
@@ -170,6 +174,22 @@ export default connect(
 
 App.propTypes = {
   movies: PropTypes.arrayOf(
+      PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        genre: PropTypes.string.isRequired,
+        year: PropTypes.number.isRequired,
+        src: PropTypes.string.isRequired,
+        previewImage: PropTypes.string.isRequired,
+      })
+  ).isRequired,
+  promoMovie: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
+    year: PropTypes.number.isRequired,
+    src: PropTypes.string.isRequired,
+    previewImage: PropTypes.string.isRequired,
+  }).isRequired,
+  favoriteMovies: PropTypes.arrayOf(
       PropTypes.shape({
         title: PropTypes.string.isRequired,
         genre: PropTypes.string.isRequired,

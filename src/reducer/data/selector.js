@@ -4,8 +4,8 @@ import {Settings} from "../../const.js";
 
 const NAME_SPACE = NameSpace.DATA;
 
-const adaptMovies = (movies) => {
-  const result = movies.map((movie) => {
+const adaptMovie = (movie) => {
+  if (movie) {
     if (movie.video_link) {
       return {
         id: movie.id,
@@ -39,14 +39,25 @@ const adaptMovies = (movies) => {
         year: movie.released,
       };
     }
-    return movie;
-  });
+  }
 
-  return result;
+  return movie;
+};
+
+const adaptMovies = (movies) => {
+  return movies.map((movie) => adaptMovie(movie));
 };
 
 export const getMovies = (state) => {
   return adaptMovies(state[NAME_SPACE].movies);
+};
+
+export const getPromoMovie = (state) => {
+  return adaptMovie(state[NAME_SPACE].promoMovie);
+};
+
+export const getFavoriteMovies = (state) => {
+  return adaptMovies(state[NAME_SPACE].favoriteMovies);
 };
 
 export const getWaitingRequest = (state) => {

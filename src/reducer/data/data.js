@@ -1,13 +1,18 @@
 import {extend} from "../../utils/utils.js";
+import NameSpace from "../name-space.js";
+
+const NAME_SPACE = NameSpace.DATA;
 
 const initialState = {
   movies: [],
+  promoMovie: null,
   favoriteMovies: [],
   waitingRequest: false,
 };
 
 const ActionType = {
   LOAD_MOVIES: `LOAD_MOVIES`,
+  LOAD_PROMO_MOVIE: `LOAD_PROMO_MOVIE`,
   LOAD_FAVORITE_MOVIES: `LOAD_FAVORITE_MOVIES`,
   CHANGE_FILM_IN_MOVIES: `CHANGE_FILM_IN_MOVIES`,
   ADD_FILM_IN_FAVORITE_MOVIES: `ADD_FILM_IN_FAVORITE_MOVIES`,
@@ -19,6 +24,10 @@ const ActionType = {
 const ActionCreator = {
   loadMovies: (movies) => ({
     type: ActionType.LOAD_MOVIES,
+    payload: movies
+  }),
+  loadPromoMovie: (movies) => ({
+    type: ActionType.LOAD_PROMO_MOVIE,
     payload: movies
   }),
   loadFavoriteMovies: (movies) => ({
@@ -52,6 +61,12 @@ const Operation = {
     });
   },
 
+  loadPromoMovie: () => (dispatch, getState, api) => {
+    return api.get(`/films/promo`).then((response) => {
+      dispatch(ActionCreator.loadPromoMovie(response.data));
+    });
+  },
+
   loadFavoriteMovies: () => (dispatch, getState, api) => {
     return api.get(`/favorite`).then((response) => {
       dispatch(ActionCreator.loadFavoriteMovies(response.data));
@@ -63,6 +78,9 @@ const Operation = {
       .then((response) => {
         dispatch(ActionCreator.changeFilmInMovies(response.data));
         dispatch(ActionCreator.addFilmInFavoriteMovies(response.data));
+        if (filmId === getState()[NAME_SPACE].promoMovie.id) {
+          dispatch(ActionCreator.loadPromoMovie(response.data));
+        }
       })
       .catch((err) => {
         throw err;
@@ -74,6 +92,9 @@ const Operation = {
       .then((response) => {
         dispatch(ActionCreator.changeFilmInMovies(response.data));
         dispatch(ActionCreator.removeFilmFromFavoriteMovies(response.data));
+        if (filmId === getState()[NAME_SPACE].promoMovie.id) {
+          dispatch(ActionCreator.loadPromoMovie(response.data));
+        }
       })
       .catch((err) => {
         throw err;
@@ -100,6 +121,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_MOVIES:
       return extend(state, {
         movies: action.payload
+      });
+    case ActionType.LOAD_PROMO_MOVIE:
+      return extend(state, {
+        promoMovie: action.payload
       });
     case ActionType.LOAD_FAVORITE_MOVIES:
       return extend(state, {

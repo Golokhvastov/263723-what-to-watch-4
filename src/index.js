@@ -30,7 +30,9 @@ const store = createStore(
 );
 
 store.dispatch(DataOperation.loadMovies());
+store.dispatch(DataOperation.loadPromoMovie());
 store.dispatch(UserOperation.checkAuth());
+store.dispatch(DataOperation.loadFavoriteMovies());
 
 ReactDOM.render(
     <Provider store={store}>
