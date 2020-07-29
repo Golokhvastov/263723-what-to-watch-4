@@ -2,9 +2,13 @@ import React from "react";
 import renderer from "react-test-renderer";
 import MoviePage from "./movie-page.jsx";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
+import {Router} from "react-router-dom";
+import history from "../../history.js";
 
 const mocks = {
   movie: {
+    id: 31,
+    isFavorite: true,
     title: `Test1`,
     posterImage: `test1.jpg`,
     backgroundImage: `test1.jpg`,
@@ -79,14 +83,20 @@ describe(`MoviePage render correctly`, () => {
   it(`with AUTH`, () => {
     const tree = renderer
       .create(
-          <MoviePage
-            movie = {mocks.movie}
-            onLogoClick = {() => {}}
-            movies = {mocks.movies}
-            onMovieTitleClick = {() => {}}
-            onPlayClick = {() => {}}
-            authorizationStatus = {AuthorizationStatus.AUTH}
-          />, {
+          <Router
+            history={history}
+          >
+            <MoviePage
+              movie = {mocks.movie}
+              onLogoClick = {() => {}}
+              similarMovies = {mocks.movies}
+              onMovieTitleClick = {() => {}}
+              onPlayClick = {() => {}}
+              authorizationStatus = {AuthorizationStatus.AUTH}
+              addMovieInFavorite = {() => {}}
+              removeMovieFromFavorite = {() => {}}
+            />
+          </Router>, {
             createNodeMock: () => {
               return {};
             }
@@ -97,14 +107,20 @@ describe(`MoviePage render correctly`, () => {
   it(`with NO_AUTH`, () => {
     const tree = renderer
       .create(
-          <MoviePage
-            movie = {mocks.movie}
-            onLogoClick = {() => {}}
-            movies = {mocks.movies}
-            onMovieTitleClick = {() => {}}
-            onPlayClick = {() => {}}
-            authorizationStatus = {AuthorizationStatus.NO_AUTH}
-          />, {
+          <Router
+            history={history}
+          >
+            <MoviePage
+              movie = {mocks.movie}
+              onLogoClick = {() => {}}
+              similarMovies = {mocks.movies}
+              onMovieTitleClick = {() => {}}
+              onPlayClick = {() => {}}
+              authorizationStatus = {AuthorizationStatus.NO_AUTH}
+              addMovieInFavorite = {() => {}}
+              removeMovieFromFavorite = {() => {}}
+            />
+          </Router>, {
             createNodeMock: () => {
               return {};
             }

@@ -6,3 +6,12 @@ export const Settings = {
   maxFiltersInMain: 10,
   startMoviePageTab: `Overview`,
 };
+
+export const AppRoute = {
+  ADD_REVIEW: `/review`,
+  FILM: `/films`,
+  LOGIN: `/login`,
+  MY_LIST: `/mylist`,
+  PLAYER: `/player`,
+  ROOT: `/`,
+};

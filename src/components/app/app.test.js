@@ -15,6 +15,7 @@ const mocks = {
   movies: [
     {
       id: 38,
+      isFavorite: true,
       title: `Test1`,
       previewImage: `test1.jpg`,
       posterImage: `test1.jpg`,
@@ -101,7 +102,7 @@ const mocks = {
 };
 
 describe(`App render correctly`, () => {
-  it(`activeMovie = null, playingMovie = null`, () => {
+  it(`with AUTH`, () => {
     const store = mockStore({
       [NameSpace.DATA]: {movies: mocks.movies},
     });
@@ -111,120 +112,12 @@ describe(`App render correctly`, () => {
           <Provider store={store}>
             <App
               movies = {mocks.movies}
-              activeMovie = {null}
-              selectMovie = {() => {}}
-              playingMovie = {null}
-              playMovie = {() => {}}
               authorizationStatus = {AuthorizationStatus.AUTH}
               login = {() => {}}
               postReview = {() => {}}
               waitingRequest = {false}
-            />
-          </Provider>, {
-            createNodeMock: () => {
-              return {};
-            }
-          }).toJSON();
-
-    expect(tree).toMatchSnapshot();
-  });
-
-  it(`activeMovie = mocks.movies[1], playingMovie = null`, () => {
-    const store = mockStore({});
-
-    const tree = renderer
-      .create(
-          <Provider store={store}>
-            <App
-              movies = {mocks.movies}
-              activeMovie = {mocks.movies[1]}
-              selectMovie = {() => {}}
-              playingMovie = {null}
-              playMovie = {() => {}}
-              authorizationStatus = {AuthorizationStatus.AUTH}
-              login = {() => {}}
-              postReview = {() => {}}
-              waitingRequest = {false}
-            />
-          </Provider>, {
-            createNodeMock: () => {
-              return {};
-            }
-          }).toJSON();
-
-    expect(tree).toMatchSnapshot();
-  });
-
-  it(`activeMovie = null, playingMovie = mocks.movies[0]`, () => {
-    const store = mockStore({});
-
-    const tree = renderer
-      .create(
-          <Provider store={store}>
-            <App
-              movies = {mocks.movies}
-              activeMovie = {null}
-              selectMovie = {() => {}}
-              playingMovie = {mocks.movies[0]}
-              playMovie = {() => {}}
-              authorizationStatus = {AuthorizationStatus.AUTH}
-              login = {() => {}}
-              postReview = {() => {}}
-              waitingRequest = {false}
-            />
-          </Provider>, {
-            createNodeMock: () => {
-              return {};
-            }
-          }).toJSON();
-
-    expect(tree).toMatchSnapshot();
-  });
-
-  it(`activeMovie = mocks.movies[0], playingMovie = mocks.movies[1]`, () => {
-    const store = mockStore({});
-
-    const tree = renderer
-      .create(
-          <Provider store={store}>
-            <App
-              movies = {mocks.movies}
-              activeMovie = {mocks.movies[0]}
-              selectMovie = {() => {}}
-              playingMovie = {mocks.movies[1]}
-              playMovie = {() => {}}
-              authorizationStatus = {AuthorizationStatus.AUTH}
-              login = {() => {}}
-              postReview = {() => {}}
-              waitingRequest = {false}
-            />
-          </Provider>, {
-            createNodeMock: () => {
-              return {};
-            }
-          }).toJSON();
-
-    expect(tree).toMatchSnapshot();
-  });
-
-  it(`with NO_AUTH`, () => {
-    const store = mockStore({
-      [NameSpace.USER]: {authorizationErrorStatus: null},
-    });
-
-    const tree = renderer
-      .create(
-          <Provider store={store}>
-            <App
-              movies = {mocks.movies}
-              activeMovie = {mocks.movies[0]}
-              selectMovie = {() => {}}
-              playingMovie = {mocks.movies[1]}
-              playMovie = {() => {}}
-              authorizationStatus = {AuthorizationStatus.NO_AUTH}
-              login = {() => {}}
-              postReview = {() => {}}
-              waitingRequest = {false}
+              addMovieInFavorite = {() => {}}
+              removeMovieFromFavorite = {() => {}}
             />
           </Provider>, {
             createNodeMock: () => {

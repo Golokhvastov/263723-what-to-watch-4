@@ -49,19 +49,19 @@ const Tabs = (props) => {
         </ul>
       </nav>
 
-      {activeTab === TabNames.OVERVIEW && (
+      {(activeTab === TabNames.OVERVIEW && movie) && (
         <TabOverview
           movie={movie}
         />
       )}
 
-      {activeTab === TabNames.DETAILS && (
+      {(activeTab === TabNames.DETAILS && movie) && (
         <TabDetails
           movie={movie}
         />
       )}
 
-      {activeTab === TabNames.REVIEWS && (
+      {(activeTab === TabNames.REVIEWS && movie) && (
         <TabReviews
           movie={movie}
         />

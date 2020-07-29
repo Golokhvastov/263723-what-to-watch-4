@@ -19,11 +19,15 @@ const mocks = {
   movieCardYear: 2011,
   movies: [
     {
+      id: 1,
       title: `Test1`,
       genre: `Test11`,
       previewImage: `test1.jpg`,
+      posterImage: `test12.jpg`,
+      backgroundImage: `test13.jpg`,
       preview: `test1.jpg`,
       year: 1981,
+      isFavorite: true,
     },
     {
       title: `Test2`,
@@ -56,6 +60,8 @@ it(`e2e test for Main`, () => {
           onMovieTitleClick = {movieTitleClickHandler}
           onPlayClick = {() => {}}
           authorizationStatus = {AuthorizationStatus.AUTH}
+          addMovieInFavorite = {() => {}}
+          removeMovieFromFavorite = {() => {}}
         />
       </Provider>
   );

@@ -1,23 +1,43 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {Link} from "react-router-dom";
 import Tabs from "../tabs/tabs.jsx";
 import MoviesList from "../movies-list/movies-list.jsx";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
-import {Settings} from "../../const.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
+import {Settings, AppRoute} from "../../const.js";
 
 const TabsWrapper = withActiveItem(Tabs);
 
 const MoviePage = (props) => {
-  const {movie, onLogoClick, movies, onMovieTitleClick, onPlayClick, authorizationStatus} = props;
   const {
-    title,
-    genre,
-    year,
-    posterImage,
-    backgroundImage,
-    backgroundColor,
-  } = movie;
+    movie,
+    onLogoClick,
+    similarMovies,
+    onMovieTitleClick,
+    onPlayClick,
+    authorizationStatus,
+    addMovieInFavorite,
+    removeMovieFromFavorite
+  } = props;
+
+  let title;
+  let genre;
+  let year;
+  let posterImage;
+  let backgroundImage;
+  let backgroundColor;
+  let isFavorite;
+
+  if (movie) {
+    title = movie.title;
+    genre = movie.genre;
+    year = movie.year;
+    posterImage = movie.posterImage;
+    backgroundImage = movie.backgroundImage;
+    backgroundColor = movie.backgroundColor;
+    isFavorite = movie.isFavorite;
+  }
 
   return (
     <>
@@ -30,29 +50,23 @@ const MoviePage = (props) => {
           <h1 className="visually-hidden">WTW</h1>
 
           <header className="page-header movie-card__head">
-            <div
-              className="logo"
-              onClick={(evt) => {
-                evt.preventDefault();
-                onLogoClick();
-              }}
-            >
-              <a href="main.html" className="logo__link">
+            <div className="logo">
+              <Link className="logo__link" to={AppRoute.ROOT} onClick={onLogoClick}>
                 <span className="logo__letter logo__letter--1">W</span>
                 <span className="logo__letter logo__letter--2">T</span>
                 <span className="logo__letter logo__letter--3">W</span>
-              </a>
+              </Link>
             </div>
 
             <div className="user-block">
               {authorizationStatus === AuthorizationStatus.AUTH
                 ? (
                   <div className="user-block__avatar">
-                    <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+                    <img src="/img/avatar.jpg" alt="User avatar" width="63" height="63" />
                   </div>
                 )
                 : (
-                  <a href="sign-in.html" className="user-block__link">Sign in</a>
+                  <Link className="user-block__link" to={AppRoute.LOGIN}>Sign in</Link>
                 )
               }
             </div>
@@ -77,12 +91,28 @@ const MoviePage = (props) => {
                   </svg>
                   <span>Play</span>
                 </button>
-                <button className="btn btn--list movie-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                </button>
+                {isFavorite === true
+                  ? (
+                    <button className="btn btn--list movie-card__button" type="button"
+                      onClick={() => removeMovieFromFavorite(movie.id)}
+                    >
+                      <svg viewBox="0 0 18 14" width="18" height="14">
+                        <use xlinkHref="#in-list"></use>
+                      </svg>
+                      <span>My list</span>
+                    </button>
+                  )
+                  : (
+                    <button className="btn btn--list movie-card__button" type="button"
+                      onClick={() => addMovieInFavorite(movie.id)}
+                    >
+                      <svg viewBox="0 0 19 20" width="19" height="20">
+                        <use xlinkHref="#add"></use>
+                      </svg>
+                      <span>My list</span>
+                    </button>
+                  )
+                }
                 {authorizationStatus === AuthorizationStatus.AUTH && (
                   <a href="add-review.html" className="btn movie-card__button">Add review</a>
                 )}
@@ -110,24 +140,19 @@ const MoviePage = (props) => {
           <h2 className="catalog__title">More like this</h2>
 
           <MoviesList
-            movies = {movies}
+            movies = {similarMovies}
             onMovieTitleClick = {onMovieTitleClick}
           />
+
         </section>
 
         <footer className="page-footer">
-          <div
-            className="logo"
-            onClick={(evt) => {
-              evt.preventDefault();
-              onLogoClick();
-            }}
-          >
-            <a href="main.html" className="logo__link logo__link--light">
+          <div className="logo">
+            <Link className="logo__link logo__link--light" to={AppRoute.ROOT} onClick={onLogoClick}>
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </a>
+            </Link>
           </div>
 
           <div className="copyright">
@@ -143,6 +168,8 @@ export default MoviePage;
 
 MoviePage.propTypes = {
   movie: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    isFavorite: PropTypes.bool.isRequired,
     title: PropTypes.string.isRequired,
     posterImage: PropTypes.string.isRequired,
     backgroundImage: PropTypes.string.isRequired,
@@ -162,8 +189,10 @@ MoviePage.propTypes = {
     ).isRequired,
   }).isRequired,
   onLogoClick: PropTypes.func.isRequired,
-  movies: PropTypes.array.isRequired,
+  similarMovies: PropTypes.array.isRequired,
   onMovieTitleClick: PropTypes.func.isRequired,
   onPlayClick: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
+  addMovieInFavorite: PropTypes.func.isRequired,
+  removeMovieFromFavorite: PropTypes.func.isRequired,
 };

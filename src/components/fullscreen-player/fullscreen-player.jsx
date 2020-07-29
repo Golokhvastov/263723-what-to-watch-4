@@ -13,6 +13,13 @@ const FullscreenPlayer = (props) => {
     children
   } = props;
 
+  let title;
+  let runTime = 1;
+
+  if (movie) {
+    title = movie.title;
+    runTime = movie.runTime;
+  }
 
   let seconds = progress % 60;
   let minutes = Math.floor(progress / 60) % 60;
@@ -28,7 +35,7 @@ const FullscreenPlayer = (props) => {
     hours = `0` + hours;
   }
 
-  const toggleProgress = (progress / (movie.runTime * 60)) * 100;
+  const toggleProgress = (progress / (runTime * 60)) * 100;
 
   return (
     <div className="player">
@@ -41,7 +48,7 @@ const FullscreenPlayer = (props) => {
       <div className="player__controls">
         <div className="player__controls-row">
           <div className="player__time">
-            <progress className="player__progress" value={progress} max={movie.runTime * 60}></progress>
+            <progress className="player__progress" value={progress} max={runTime * 60}></progress>
             <div className="player__toggler" style={{left: `${toggleProgress}%`}}>Toggler</div>
           </div>
           <div className="player__time-value">{`${hours}:${minutes}:${seconds}`}</div>
@@ -74,7 +81,7 @@ const FullscreenPlayer = (props) => {
               </button>)
           }
 
-          <div className="player__name">{movie.title}</div>
+          <div className="player__name">{title}</div>
 
           <button type="button" className="player__full-screen" onClick={(evt) => {
             if (document.fullscreenElement) {
