@@ -12,12 +12,14 @@ import PrivateRoute from "../private-route/private-route.jsx";
 import GuestRoute from "../guest-route/guest-route.jsx";
 import {Settings, AppRoute} from "../../const.js";
 import {getMovies, getPromoMovie, getFavoriteMovies, getReviews} from "../../reducer/data/selector.js";
+import {getPreviousPath} from "../../reducer/page/selector.js";
 import {getAuthorizationStatus} from "../../reducer/user/selector.js";
 import withVideo from "../../hocs/with-video/with-video.js";
 import withLoginSubmit from "../../hocs/with-login-submit/with-login-submit.js";
 import withAddReviewState from "../../hocs/with-add-review-state/with-add-review-state.js";
 import {Operation as UserOperation} from "../../reducer/user/user.js";
 import {Operation as DataOperation} from "../../reducer/data/data.js";
+import {ActionCreator as PageActionCreator} from "../../reducer/page/page.js";
 import history from "../../history.js";
 import {getNumberOfMovies, getFilteredMovies} from "../../reducer/data/selector.js";
 
@@ -36,8 +38,15 @@ const App = (props) => {
     loadReviewsForId,
     postReview,
     addMovieInFavorite,
-    removeMovieFromFavorite
+    removeMovieFromFavorite,
+    previousPath,
+    rememberPreviousPath
   } = props;
+
+  const historyPushWithSavePath = (newPagePath) => {
+    rememberPreviousPath(history.location.pathname);
+    history.push(newPagePath);
+  };
 
   return (
     <Router history={history}>
@@ -50,13 +59,16 @@ const App = (props) => {
             removeMovieFromFavorite = {removeMovieFromFavorite}
             onMovieTitleClick = {(movie) => {
               loadReviewsForId(Number(movie.id));
-              history.push(`${AppRoute.FILM}/${movie.id}`);
+              historyPushWithSavePath(`${AppRoute.FILM}/${movie.id}`);
             }}
             onPlayClick = {(movie) =>
-              history.push(`${AppRoute.FILM}/${movie.id}${AppRoute.PLAYER}`)
+              historyPushWithSavePath(`${AppRoute.FILM}/${movie.id}${AppRoute.PLAYER}`)
+            }
+            onSignInClick = {() =>
+              historyPushWithSavePath(AppRoute.LOGIN)
             }
             onAvatarClick = {() =>
-              history.push(AppRoute.MY_LIST)
+              historyPushWithSavePath(AppRoute.MY_LIST)
             }
           />
         </Route>
@@ -80,23 +92,26 @@ const App = (props) => {
                 addMovieInFavorite = {addMovieInFavorite}
                 removeMovieFromFavorite = {removeMovieFromFavorite}
                 onLogoClick = {() =>
-                  history.push(AppRoute.ROOT)
+                  historyPushWithSavePath(AppRoute.ROOT)
                 }
                 onMovieTitleClick = {(movie) => {
                   loadReviewsForId(Number(movie.id));
-                  history.push(`${AppRoute.FILM}/${movie.id}`);
+                  historyPushWithSavePath(`${AppRoute.FILM}/${movie.id}`);
                 }}
                 onPlayClick = {(movie) =>
-                  history.push(`${AppRoute.FILM}/${movie.id}${AppRoute.PLAYER}`)
+                  historyPushWithSavePath(`${AppRoute.FILM}/${movie.id}${AppRoute.PLAYER}`)
                 }
-                onAddReviewButtonClick = {(movie) =>
-                  history.push(`${AppRoute.FILM}/${movie.id}${AppRoute.ADD_REVIEW}`)
-                }
+                onAddReviewButtonClick = {(movie) => {
+                  historyPushWithSavePath(`${AppRoute.FILM}/${movie.id}${AppRoute.ADD_REVIEW}`);
+                }}
                 loadReviews = {() =>
                   loadReviewsForId(Number(routeProps.match.params.id))
                 }
+                onSignInClick = {() =>
+                  historyPushWithSavePath(AppRoute.LOGIN)
+                }
                 onAvatarClick = {() =>
-                  history.push(AppRoute.MY_LIST)
+                  historyPushWithSavePath(AppRoute.MY_LIST)
                 }
               />
             );
@@ -114,17 +129,20 @@ const App = (props) => {
               authorizationStatus = {authorizationStatus}
               onSubmit = {postReview}
               onSuccess = {() =>
-                history.push(`${AppRoute.FILM}/${routeProps.match.params.id}`)
+                historyPushWithSavePath(`${AppRoute.FILM}/${routeProps.match.params.id}`)
               }
               onLogoClick = {() =>
-                history.push(AppRoute.ROOT)
+                historyPushWithSavePath(AppRoute.ROOT)
               }
               onMovieTitleClick = {(movie) => {
                 loadReviewsForId(Number(movie.id));
-                history.push(`${AppRoute.FILM}/${movie.id}`);
+                historyPushWithSavePath(`${AppRoute.FILM}/${movie.id}`);
               }}
+              onSignInClick = {() =>
+                historyPushWithSavePath(AppRoute.LOGIN)
+              }
               onAvatarClick = {() =>
-                history.push(AppRoute.MY_LIST)
+                historyPushWithSavePath(AppRoute.MY_LIST)
               }
             />
           )}
@@ -140,9 +158,13 @@ const App = (props) => {
               }
               isPlaying = {false}
               videoClassName = {`player__video`}
-              onExitClick = {() =>
-                history.goBack()
-              }
+              onExitClick = {() => {
+                if (previousPath) {
+                  historyPushWithSavePath(previousPath);
+                } else {
+                  historyPushWithSavePath(`${AppRoute.FILM}/${routeProps.match.params.id}`);
+                }
+              }}
             />
           )}
         />
@@ -154,11 +176,11 @@ const App = (props) => {
             <MyList
               favoriteMovies = {favoriteMovies}
               onLogoClick = {() =>
-                history.push(AppRoute.ROOT)
+                historyPushWithSavePath(AppRoute.ROOT)
               }
               onMovieTitleClick = {(movie) => {
                 loadReviewsForId(Number(movie.id));
-                history.push(`${AppRoute.FILM}/${movie.id}`);
+                historyPushWithSavePath(`${AppRoute.FILM}/${movie.id}`);
               }}
             />
           )}
@@ -171,15 +193,15 @@ const App = (props) => {
             <SignInWrapper
               onSubmit = {login}
               onSuccess = {() => {
-                if (history.length > 1) {
-                  history.goBack();
+                if (previousPath) {
+                  historyPushWithSavePath(previousPath);
                 } else {
-                  history.push(AppRoute.ROOT);
+                  historyPushWithSavePath(AppRoute.ROOT);
                 }
               }}
               startItem = {true}
               onLogoClick = {() =>
-                history.push(AppRoute.ROOT)
+                historyPushWithSavePath(AppRoute.ROOT)
               }
             />
           )}
@@ -195,6 +217,7 @@ const mapStateToProps = (state) => ({
   favoriteMovies: getFavoriteMovies(state),
   authorizationStatus: getAuthorizationStatus(state),
   reviews: getReviews(state),
+  previousPath: getPreviousPath(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -212,6 +235,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   removeMovieFromFavorite: (filmId) => {
     dispatch(DataOperation.removeMovieFromFavoriteMovies(filmId));
+  },
+  rememberPreviousPath: (leavingPath) => {
+    dispatch(PageActionCreator.rememberPreviousPath(leavingPath));
   },
 });
 
@@ -259,4 +285,6 @@ App.propTypes = {
   waitingRequest: PropTypes.bool.isRequired,
   addMovieInFavorite: PropTypes.func.isRequired,
   removeMovieFromFavorite: PropTypes.func.isRequired,
+  previousPath: PropTypes.string,
+  rememberPreviousPath: PropTypes.func.isRequired,
 };

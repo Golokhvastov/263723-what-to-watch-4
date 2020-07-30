@@ -1,11 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {Link} from "react-router-dom";
 import Tabs from "../tabs/tabs.jsx";
 import MoviesList from "../movies-list/movies-list.jsx";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
-import {Settings, AppRoute} from "../../const.js";
+import {Settings} from "../../const.js";
 
 const TabsWrapper = withActiveItem(Tabs);
 
@@ -32,6 +31,7 @@ class MoviePage extends React.PureComponent {
       removeMovieFromFavorite,
       reviews,
       onAddReviewButtonClick,
+      onSignInClick,
       onAvatarClick
     } = this.props;
 
@@ -65,11 +65,16 @@ class MoviePage extends React.PureComponent {
 
             <header className="page-header movie-card__head">
               <div className="logo">
-                <Link className="logo__link" to={AppRoute.ROOT} onClick={onLogoClick}>
+                <a href="main.html" className="logo__link"
+                  onClick = {(evt) => {
+                    evt.preventDefault();
+                    onLogoClick();
+                  }}
+                >
                   <span className="logo__letter logo__letter--1">W</span>
                   <span className="logo__letter logo__letter--2">T</span>
                   <span className="logo__letter logo__letter--3">W</span>
-                </Link>
+                </a>
               </div>
 
               <div className="user-block">
@@ -80,7 +85,12 @@ class MoviePage extends React.PureComponent {
                     </div>
                   )
                   : (
-                    <Link className="user-block__link" to={AppRoute.LOGIN}>Sign in</Link>
+                    <a href="sign-in.html" className="user-block__link"
+                      onClick = {(evt) => {
+                        evt.preventDefault();
+                        onSignInClick();
+                      }}
+                    >Sign in</a>
                   )
                 }
               </div>
@@ -168,11 +178,16 @@ class MoviePage extends React.PureComponent {
 
           <footer className="page-footer">
             <div className="logo">
-              <Link className="logo__link logo__link--light" to={AppRoute.ROOT} onClick={onLogoClick}>
+              <a href="main.html" className="logo__link logo__link--light"
+                onClick = {(evt) => {
+                  evt.preventDefault();
+                  onLogoClick();
+                }}
+              >
                 <span className="logo__letter logo__letter--1">W</span>
                 <span className="logo__letter logo__letter--2">T</span>
                 <span className="logo__letter logo__letter--3">W</span>
-              </Link>
+              </a>
             </div>
 
             <div className="copyright">
@@ -223,5 +238,6 @@ MoviePage.propTypes = {
   ),
   loadReviews: PropTypes.func.isRequired,
   onAddReviewButtonClick: PropTypes.func.isRequired,
+  onSignInClick: PropTypes.func.isRequired,
   onAvatarClick: PropTypes.func.isRequired,
 };

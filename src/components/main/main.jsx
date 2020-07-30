@@ -1,9 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {Link} from "react-router-dom";
 import MoviesCatalog from "../movies-catalog/movies-catalog.jsx";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
-import {Settings, AppRoute} from "../../const.js";
+import {Settings} from "../../const.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 
 const MoviesCatalogWrapper = withActiveItem(MoviesCatalog);
@@ -16,6 +15,7 @@ const Main = (props) => {
     authorizationStatus,
     addMovieInFavorite,
     removeMovieFromFavorite,
+    onSignInClick,
     onAvatarClick
   } = props;
 
@@ -63,7 +63,12 @@ const Main = (props) => {
                 </div>
               )
               : (
-                <Link className="user-block__link" to={AppRoute.LOGIN}>Sign in</Link>
+                <a href="sign-in.html" className="user-block__link"
+                  onClick = {(evt) => {
+                    evt.preventDefault();
+                    onSignInClick();
+                  }}
+                >Sign in</a>
               )
             }
           </div>
@@ -163,5 +168,6 @@ Main.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
   addMovieInFavorite: PropTypes.func.isRequired,
   removeMovieFromFavorite: PropTypes.func.isRequired,
+  onSignInClick: PropTypes.func.isRequired,
   onAvatarClick: PropTypes.func.isRequired,
 };

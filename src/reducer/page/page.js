@@ -2,12 +2,14 @@ import {extend} from "../../utils/utils.js";
 
 const initialState = {
   selectedMovieId: null,
-  playingMovie: null
+  previousPath: null,
+  currentPath: null
 };
 
 const ActionType = {
   SELECT_MOVIE_ID: `SELECT_MOVIE_ID`,
-  PLAYING_MOVIE: `PLAYING_MOVIE`
+  REMEMBER_PREVIOUS_PATH: `REMEMBER_PREVIOUS_PATH`,
+  REMEMBER_CURRENT_PATH: `REMEMBER_CURRENT_PATH`
 };
 
 const ActionCreator = {
@@ -15,9 +17,13 @@ const ActionCreator = {
     type: ActionType.SELECT_MOVIE_ID,
     payload: filmId
   }),
-  playMovie: (movie) => ({
-    type: ActionType.PLAYING_MOVIE,
-    payload: movie
+  rememberPreviousPath: (leavingPath) => ({
+    type: ActionType.REMEMBER_PREVIOUS_PATH,
+    payload: leavingPath
+  }),
+  rememberCurrentPath: (newPagePath) => ({
+    type: ActionType.REMEMBER_CURRENT_PATH,
+    payload: newPagePath
   })
 };
 
@@ -27,9 +33,13 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         activeMovie: action.payload
       });
-    case ActionType.PLAYING_MOVIE:
+    case ActionType.REMEMBER_PREVIOUS_PATH:
       return extend(state, {
-        playingMovie: action.payload
+        previousPath: action.payload
+      });
+    case ActionType.REMEMBER_CURRENT_PATH:
+      return extend(state, {
+        currentPath: action.payload
       });
   }
 

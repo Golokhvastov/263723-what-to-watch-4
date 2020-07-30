@@ -1,7 +1,5 @@
 import React, {createRef} from "react";
 import PropTypes from "prop-types";
-import {Link} from "react-router-dom";
-import {AppRoute} from "../../const.js";
 
 class SignIn extends React.PureComponent {
   constructor(props) {
@@ -32,11 +30,16 @@ class SignIn extends React.PureComponent {
       <div className="user-page">
         <header className="page-header user-page__head">
           <div className="logo">
-            <Link className="logo__link" to={AppRoute.ROOT} onClick={onLogoClick}>
+            <a href="main.html" className="logo__link"
+              onClick = {(evt) => {
+                evt.preventDefault();
+                onLogoClick();
+              }}
+            >
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </Link>
+            </a>
           </div>
 
           <h1 className="page-title user-page__title">Sign in</h1>
@@ -76,11 +79,16 @@ class SignIn extends React.PureComponent {
 
         <footer className="page-footer">
           <div className="logo">
-            <Link className="logo__link logo__link--light" to={AppRoute.ROOT} onClick={onLogoClick}>
+            <a href="main.html" className="logo__link logo__link--light"
+              onClick = {(evt) => {
+                evt.preventDefault();
+                onLogoClick();
+              }}
+            >
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </Link>
+            </a>
           </div>
 
           <div className="copyright">

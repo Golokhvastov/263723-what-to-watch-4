@@ -1,8 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {Link} from "react-router-dom";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
-import {AppRoute} from "../../const.js";
 
 const AddReview = (props) => {
   const {
@@ -16,6 +14,7 @@ const AddReview = (props) => {
     isFormDisabled,
     onRatingChange,
     onReviewTextChange,
+    onSignInClick,
     onAvatarClick
   } = props;
 
@@ -61,11 +60,16 @@ const AddReview = (props) => {
 
         <header className="page-header">
           <div className="logo">
-            <Link className="logo__link" to={AppRoute.ROOT} onClick={onLogoClick}>
+            <a href="main.html" className="logo__link"
+              onClick = {(evt) => {
+                evt.preventDefault();
+                onLogoClick();
+              }}
+            >
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </Link>
+            </a>
           </div>
 
           <nav className="breadcrumbs">
@@ -92,7 +96,12 @@ const AddReview = (props) => {
                 </div>
               )
               : (
-                <Link className="user-block__link" to={AppRoute.LOGIN}>Sign in</Link>
+                <a href="sign-in.html" className="user-block__link"
+                  onClick = {(evt) => {
+                    evt.preventDefault();
+                    onSignInClick();
+                  }}
+                >Sign in</a>
               )
             }
           </div>
@@ -157,5 +166,6 @@ AddReview.propTypes = {
   isFormDisabled: PropTypes.bool.isRequired,
   onRatingChange: PropTypes.func.isRequired,
   onReviewTextChange: PropTypes.func.isRequired,
+  onSignInClick: PropTypes.func.isRequired,
   onAvatarClick: PropTypes.func.isRequired,
 };

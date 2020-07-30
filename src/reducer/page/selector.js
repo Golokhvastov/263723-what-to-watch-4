@@ -6,6 +6,10 @@ export const getSelectedMovieId = (state) => {
   return state[NAME_SPACE].selectMovieId;
 };
 
-export const getPlayingMovie = (state) => {
-  return state[NAME_SPACE].playingMovie;
+export const getPreviousPath = (state) => {
+  return state[NAME_SPACE].previousPath;
+};
+
+export const getСurrentPath = (state) => {
+  return state[NAME_SPACE].currentPath;
 };
