@@ -92,8 +92,15 @@ const AddReview = (props) => {
           <div className="user-block">
             {authorizationStatus === AuthorizationStatus.AUTH
               ? (
-                <div className="user-block__avatar" onClick={onAvatarClick}>
-                  <img src={userInfo.avatarUrl} alt="User avatar" width="63" height="63" />
+                <div className="user-block__avatar">
+                  <a href="login.html" className="user-block__link"
+                    onClick = {(evt) => {
+                      evt.preventDefault();
+                      onAvatarClick();
+                    }}
+                  >
+                    <img src={userInfo.avatarUrl} alt="User avatar" width="63" height="63" />
+                  </a>
                 </div>
               )
               : (
