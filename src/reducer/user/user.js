@@ -7,21 +7,15 @@ const AuthorizationStatus = {
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
-  authorizationErrorStatus: null,
 };
 
 const ActionType = {
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
-  CHANGE_AUTHORIZATION_ERROR_STATUS: `CHANGE_AUTHORIZATION_ERROR_STATUS`,
 };
 
 const ActionCreator = {
   requireAuthorization: (status) => ({
     type: ActionType.REQUIRED_AUTHORIZATION,
-    payload: status
-  }),
-  changeAuthorizationErrorStatus: (status) => ({
-    type: ActionType.CHANGE_AUTHORIZATION_ERROR_STATUS,
     payload: status
   }),
 };
@@ -37,18 +31,17 @@ const Operation = {
       });
   },
 
-  login: (authData) => (dispatch, getState, api) => {
+  login: (authData, onSuccess, onError) => (dispatch, getState, api) => {
     return api.post(`/login`, {
       email: authData.login,
       password: authData.password,
     })
       .then(() => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
-        dispatch(ActionCreator.changeAuthorizationErrorStatus(null));
+        onSuccess();
       })
       .catch((err) => {
-        const {response} = err;
-        dispatch(ActionCreator.changeAuthorizationErrorStatus(response.status));
+        onError();
         throw err;
       });
   },
@@ -59,10 +52,6 @@ const reducer = (state = initialState, action) => {
     case ActionType.REQUIRED_AUTHORIZATION:
       return extend(state, {
         authorizationStatus: action.payload
-      });
-    case ActionType.CHANGE_AUTHORIZATION_ERROR_STATUS:
-      return extend(state, {
-        authorizationErrorStatus: action.payload
       });
   }
 

@@ -11,7 +11,7 @@ import {Settings, AppRoute} from "../../const.js";
 import {getMovies, getPromoMovie, getFavoriteMovies, getReviews} from "../../reducer/data/selector.js";
 import {getAuthorizationStatus} from "../../reducer/user/selector.js";
 import withVideo from "../../hocs/with-video/with-video.js";
-import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
+import withLoginSubmit from "../../hocs/with-login-submit/with-login-submit.js";
 import withAddReviewState from "../../hocs/with-add-review-state/with-add-review-state.js";
 import {Operation as UserOperation} from "../../reducer/user/user.js";
 import {Operation as DataOperation} from "../../reducer/data/data.js";
@@ -19,7 +19,7 @@ import history from "../../history.js";
 import {getNumberOfMovies, getFilteredMovies} from "../../reducer/data/selector.js";
 
 const FullscreenPlayerWrapper = withVideo(FullscreenPlayer);
-const SignInWrapper = withActiveItem(SignIn);
+const SignInWrapper = withLoginSubmit(SignIn);
 const AddReviewWrapper = withAddReviewState(AddReview);
 
 const App = (props) => {
@@ -142,6 +142,13 @@ const App = (props) => {
         <Route exact path={AppRoute.LOGIN}>
           <SignInWrapper
             onSubmit = {login}
+            onSuccess = {() => {
+              if (history.length > 1) {
+                history.goBack();
+              } else {
+                history.push(AppRoute.ROOT)
+              }
+            }}
             startItem = {true}
             onLogoClick = {() =>
               history.push(AppRoute.ROOT)
@@ -162,8 +169,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  login: (authData) => {
-    dispatch(UserOperation.login(authData));
+  login: (authData, onSuccess, onError) => {
+    dispatch(UserOperation.login(authData, onSuccess, onError));
   },
   loadReviewsForId: (filmId) => {
     dispatch(DataOperation.loadReviewsForId(filmId));

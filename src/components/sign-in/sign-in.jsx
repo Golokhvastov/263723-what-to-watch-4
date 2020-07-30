@@ -1,9 +1,6 @@
 import React, {createRef} from "react";
 import PropTypes from "prop-types";
-import {connect} from "react-redux";
 import {Link} from "react-router-dom";
-import {getAuthorizationErrorStatus} from "../../reducer/user/selector.js";
-import {checkEmail} from "../../utils/utils.js";
 import {AppRoute} from "../../const.js";
 
 class SignIn extends React.PureComponent {
@@ -17,32 +14,18 @@ class SignIn extends React.PureComponent {
   }
 
   submitHandler(evt) {
-    const {
-      onSubmit,
-      activeItem: isEmailValid,
-      onActiveItemChange: onEmailValidChange
-    } = this.props;
-
     evt.preventDefault();
-
-    if (checkEmail(this.loginRef.current.value) === true) {
-      onSubmit({
-        login: this.loginRef.current.value,
-        password: this.passwordRef.current.value,
-      });
-      if (isEmailValid !== true) {
-        onEmailValidChange(true);
-      }
-    } else {
-      onEmailValidChange(false);
-    }
+    this.props.onSubmit(
+      this.loginRef.current.value,
+      this.passwordRef.current.value
+    );
   }
 
   render() {
     const {
       onLogoClick,
-      authorizationErrorStatus: errorStatus,
-      activeItem: isEmailValid,
+      isEmailValid,
+      isPasswordValid,
     } = this.props;
 
     return (
@@ -66,7 +49,7 @@ class SignIn extends React.PureComponent {
                 <p>Please enter a valid email address</p>
               </div>)
             }
-            {(errorStatus === 400 && isEmailValid === true) && (
+            {(isPasswordValid === false && isEmailValid === true) && (
               <div className="sign-in__message">
                 <p>We can’t recognize this email <br /> and password combination. Please try again.</p>
               </div>)
@@ -109,19 +92,11 @@ class SignIn extends React.PureComponent {
   }
 }
 
-const mapStateToProps = (state) => ({
-  authorizationErrorStatus: getAuthorizationErrorStatus(state),
-});
-
-export {SignIn};
-export default connect(
-    mapStateToProps
-)(SignIn);
+export default SignIn;
 
 SignIn.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   onLogoClick: PropTypes.func.isRequired,
-  authorizationErrorStatus: PropTypes.number,
-  activeItem: PropTypes.bool.isRequired,
-  onActiveItemChange: PropTypes.func.isRequired,
+  isEmailValid: PropTypes.bool.isRequired,
+  isPasswordValid: PropTypes.bool.isRequired,
 };
