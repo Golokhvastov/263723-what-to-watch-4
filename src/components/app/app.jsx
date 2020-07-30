@@ -8,7 +8,7 @@ import FullscreenPlayer from "../fullscreen-player/fullscreen-player.jsx";
 import SignIn from "../sign-in/sign-in.jsx";
 import AddReview from "../add-review/add-review.jsx";
 import {Settings, AppRoute} from "../../const.js";
-import {getMovies, getPromoMovie, getFavoriteMovies, getWaitingRequest} from "../../reducer/data/selector.js";
+import {getMovies, getPromoMovie, getFavoriteMovies, getReviews, getWaitingRequest} from "../../reducer/data/selector.js";
 import {getAuthorizationStatus} from "../../reducer/user/selector.js";
 import withVideo from "../../hocs/with-video/with-video.js";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
@@ -28,9 +28,11 @@ const App = (props) => {
     movies,
     promoMovie,
     favoriteMovies,
+    reviews,
     authorizationStatus,
     login,
     waitingRequest,
+    loadReviewsForId,
     postReview,
     addMovieInFavorite,
     removeMovieFromFavorite
@@ -45,9 +47,10 @@ const App = (props) => {
             authorizationStatus = {authorizationStatus}
             addMovieInFavorite = {addMovieInFavorite}
             removeMovieFromFavorite = {removeMovieFromFavorite}
-            onMovieTitleClick = {(movie) =>
-              history.push(`${AppRoute.FILM}/${movie.id}`)
-            }
+            onMovieTitleClick = {(movie) => {
+              loadReviewsForId(Number(movie.id));
+              history.push(`${AppRoute.FILM}/${movie.id}`);
+            }}
             onPlayClick = {(movie) =>
               history.push(`${AppRoute.FILM}/${movie.id}${AppRoute.PLAYER}`)
             }
@@ -66,21 +69,24 @@ const App = (props) => {
 
             return (
               <MoviePage
-                movie = {
-                  activeMovie
-                }
+                movie = {activeMovie}
                 similarMovies = {similarMovies}
+                reviews = {reviews}
                 authorizationStatus = {authorizationStatus}
                 addMovieInFavorite = {addMovieInFavorite}
                 removeMovieFromFavorite = {removeMovieFromFavorite}
                 onLogoClick = {() =>
                   history.push(AppRoute.ROOT)
                 }
-                onMovieTitleClick = {(movie) =>
-                  history.push(`${AppRoute.FILM}/${movie.id}`)
-                }
+                onMovieTitleClick = {(movie) => {
+                  loadReviewsForId(Number(movie.id));
+                  history.push(`${AppRoute.FILM}/${movie.id}`);
+                }}
                 onPlayClick = {(movie) =>
                   history.push(`${AppRoute.FILM}/${movie.id}${AppRoute.PLAYER}`)
+                }
+                loadReviews = {() =>
+                  loadReviewsForId(Number(routeProps.match.params.id))
                 }
               />
             );
@@ -147,12 +153,16 @@ const mapStateToProps = (state) => ({
   promoMovie: getPromoMovie(state),
   favoriteMovies: getFavoriteMovies(state),
   authorizationStatus: getAuthorizationStatus(state),
+  reviews: getReviews(state),
   waitingRequest: getWaitingRequest(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   login: (authData) => {
     dispatch(UserOperation.login(authData));
+  },
+  loadReviewsForId: (filmId) => {
+    dispatch(DataOperation.loadReviewsForId(filmId));
   },
   postReview: (newReviewData, filmId) => {
     dispatch(DataActionCreator.startWaitingRequest());
@@ -198,8 +208,14 @@ App.propTypes = {
         previewImage: PropTypes.string.isRequired,
       })
   ).isRequired,
+  reviews: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+      })
+  ),
   authorizationStatus: PropTypes.string.isRequired,
   login: PropTypes.func.isRequired,
+  loadReviewsForId: PropTypes.func.isRequired,
   postReview: PropTypes.func.isRequired,
   waitingRequest: PropTypes.bool.isRequired,
   addMovieInFavorite: PropTypes.func.isRequired,

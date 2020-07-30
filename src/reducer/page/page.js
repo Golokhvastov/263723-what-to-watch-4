@@ -1,19 +1,19 @@
 import {extend} from "../../utils/utils.js";
 
 const initialState = {
-  activeMovie: null,
+  selectedMovieId: null,
   playingMovie: null
 };
 
 const ActionType = {
-  SELECT_MOVIE: `SELECT_MOVIE`,
+  SELECT_MOVIE_ID: `SELECT_MOVIE_ID`,
   PLAYING_MOVIE: `PLAYING_MOVIE`
 };
 
 const ActionCreator = {
-  selectMovie: (movie) => ({
-    type: ActionType.SELECT_MOVIE,
-    payload: movie
+  selectMovieId: (filmId) => ({
+    type: ActionType.SELECT_MOVIE_ID,
+    payload: filmId
   }),
   playMovie: (movie) => ({
     type: ActionType.PLAYING_MOVIE,
@@ -23,7 +23,7 @@ const ActionCreator = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.SELECT_MOVIE:
+    case ActionType.SELECT_MOVIE_ID:
       return extend(state, {
         activeMovie: action.payload
       });

@@ -19,6 +19,7 @@ const TabNamesArray = [
 const Tabs = (props) => {
   const {
     movie,
+    reviews,
     activeItem: activeTab,
     onActiveItemChange: onActiveTabChange
   } = props;
@@ -63,7 +64,7 @@ const Tabs = (props) => {
 
       {(activeTab === TabNames.REVIEWS && movie) && (
         <TabReviews
-          movie={movie}
+          reviews={reviews}
         />
       )}
 
@@ -101,5 +102,10 @@ Tabs.propTypes = {
     ).isRequired
   }).isRequired,
   activeItem: PropTypes.string.isRequired,
-  onActiveItemChange: PropTypes.func.isRequired
+  onActiveItemChange: PropTypes.func.isRequired,
+  reviews: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+      })
+  ),
 };

@@ -8,12 +8,14 @@ const initialState = {
   promoMovie: null,
   favoriteMovies: [],
   waitingRequest: false,
+  reviewsForId: [],
 };
 
 const ActionType = {
   LOAD_MOVIES: `LOAD_MOVIES`,
   LOAD_PROMO_MOVIE: `LOAD_PROMO_MOVIE`,
   LOAD_FAVORITE_MOVIES: `LOAD_FAVORITE_MOVIES`,
+  LOAD_REVIEWS_FOR_ID: `LOAD_REVIEWS_FOR_ID`,
   CHANGE_FILM_IN_MOVIES: `CHANGE_FILM_IN_MOVIES`,
   ADD_FILM_IN_FAVORITE_MOVIES: `ADD_FILM_IN_FAVORITE_MOVIES`,
   REMOVE_FILM_FROM_FAVORITE_MOVIES: `REMOVE_FILM_FROM_FAVORITE_MOVIES`,
@@ -32,6 +34,10 @@ const ActionCreator = {
   }),
   loadFavoriteMovies: (movies) => ({
     type: ActionType.LOAD_FAVORITE_MOVIES,
+    payload: movies
+  }),
+  loadReviewsForId: (movies) => ({
+    type: ActionType.LOAD_REVIEWS_FOR_ID,
     payload: movies
   }),
   changeFilmInMovies: (movie) => ({
@@ -70,6 +76,12 @@ const Operation = {
   loadFavoriteMovies: () => (dispatch, getState, api) => {
     return api.get(`/favorite`).then((response) => {
       dispatch(ActionCreator.loadFavoriteMovies(response.data));
+    });
+  },
+
+  loadReviewsForId: (filmId) => (dispatch, getState, api) => {
+    return api.get(`/comments/${filmId}`).then((response) => {
+      dispatch(ActionCreator.loadReviewsForId(response.data));
     });
   },
 
@@ -129,6 +141,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_FAVORITE_MOVIES:
       return extend(state, {
         favoriteMovies: action.payload
+      });
+    case ActionType.LOAD_REVIEWS_FOR_ID:
+      return extend(state, {
+        reviewsForId: action.payload
       });
     case ActionType.CHANGE_FILM_IN_MOVIES:
       return extend(state, {

@@ -60,6 +60,33 @@ export const getFavoriteMovies = (state) => {
   return adaptMovies(state[NAME_SPACE].favoriteMovies);
 };
 
+const adaptReview = (review) => {
+  if (review) {
+    if (review.user) {
+      return {
+        id: review.id,
+        author: {
+          id: review.user.id,
+          name: review.user.name,
+        },
+        date: review.date,
+        rating: review.rating,
+        text: review.comment,
+      };
+    }
+  }
+
+  return review;
+};
+
+const adaptReviews = (reviews) => {
+  return reviews.map((review) => adaptReview(review));
+};
+
+export const getReviews = (state) => {
+  return adaptReviews(state[NAME_SPACE].reviewsForId);
+};
+
 export const getWaitingRequest = (state) => {
   return state[NAME_SPACE].waitingRequest;
 };
