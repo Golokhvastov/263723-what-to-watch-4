@@ -111,6 +111,13 @@ export const getNumberOfMovies = (movies, maxMovies) => {
   return movies.slice(0, maxMovies);
 };
 
+export const getSimilarMovies = (movies, prototypeMovie, maxMovies) => {
+  const filteredMovies = getFilteredMovies(movies, prototypeMovie.genre);
+  const moviesWithoutPrototype = filteredMovies.filter((movie) => movie.id !== prototypeMovie.id);
+
+  return getNumberOfMovies(moviesWithoutPrototype, maxMovies);
+};
+
 export const getGenresList = createSelector(
     getMovies,
     (movies) => {

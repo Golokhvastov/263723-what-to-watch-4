@@ -21,7 +21,7 @@ import {Operation as UserOperation} from "../../reducer/user/user.js";
 import {Operation as DataOperation} from "../../reducer/data/data.js";
 import {ActionCreator as PageActionCreator} from "../../reducer/page/page.js";
 import history from "../../history.js";
-import {getNumberOfMovies, getFilteredMovies} from "../../reducer/data/selector.js";
+import {getSimilarMovies} from "../../reducer/data/selector.js";
 
 const FullscreenPlayerWrapper = withVideo(FullscreenPlayer);
 const SignInWrapper = withLoginSubmit(SignIn);
@@ -83,7 +83,7 @@ const App = (props) => {
             const activeMovie = movies.find((movie) => movie.id === Number(routeProps.match.params.id));
             let similarMovies = [];
             if (activeMovie) {
-              similarMovies = getNumberOfMovies(getFilteredMovies(movies, activeMovie.genre), Settings.maxSimilarMovies);
+              similarMovies = getSimilarMovies(movies, activeMovie, Settings.maxSimilarMovies);
             }
 
             return (
