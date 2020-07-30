@@ -6,7 +6,7 @@ import {getAuthorizationStatus} from "../../reducer/user/selector.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 import {AppRoute} from "../../const.js";
 
-const PrivateRoute = (props) => {
+const GuestRoute = (props) => {
   const {render, path, exact, authorizationStatus} = props;
 
   return (
@@ -14,9 +14,9 @@ const PrivateRoute = (props) => {
       exact={exact}
       path={path}
       render={(routeProps) => {
-        return (authorizationStatus === AuthorizationStatus.AUTH
+        return (authorizationStatus === AuthorizationStatus.NO_AUTH
           ? render(routeProps)
-          : <Redirect to={AppRoute.LOGIN} />
+          : <Redirect to={AppRoute.ROOT} />
         );
       }}
     />
@@ -27,12 +27,12 @@ const mapStateToProps = (state) => ({
   authorizationStatus: getAuthorizationStatus(state),
 });
 
-export {PrivateRoute};
+export {GuestRoute};
 export default connect(
     mapStateToProps
-)(PrivateRoute);
+)(GuestRoute);
 
-PrivateRoute.propTypes = {
+GuestRoute.propTypes = {
   render: PropTypes.func.isRequired,
   path: PropTypes.string.isRequired,
   exact: PropTypes.bool.isRequired,

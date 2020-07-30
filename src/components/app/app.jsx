@@ -9,6 +9,7 @@ import SignIn from "../sign-in/sign-in.jsx";
 import AddReview from "../add-review/add-review.jsx";
 import MyList from "../my-list/my-list.jsx";
 import PrivateRoute from "../private-route/private-route.jsx";
+import GuestRoute from "../guest-route/guest-route.jsx";
 import {Settings, AppRoute} from "../../const.js";
 import {getMovies, getPromoMovie, getFavoriteMovies, getReviews} from "../../reducer/data/selector.js";
 import {getAuthorizationStatus} from "../../reducer/user/selector.js";
@@ -149,7 +150,7 @@ const App = (props) => {
         <PrivateRoute
           exact
           path={AppRoute.MY_LIST}
-          render={(routeProps) => (
+          render={() => (
             <MyList
               favoriteMovies = {favoriteMovies}
               onLogoClick = {() =>
@@ -163,22 +164,26 @@ const App = (props) => {
           )}
         />
 
-        <Route exact path={AppRoute.LOGIN}>
-          <SignInWrapper
-            onSubmit = {login}
-            onSuccess = {() => {
-              if (history.length > 1) {
-                history.goBack();
-              } else {
-                history.push(AppRoute.ROOT);
+        <GuestRoute
+          exact
+          path={AppRoute.LOGIN}
+          render={() => (
+            <SignInWrapper
+              onSubmit = {login}
+              onSuccess = {() => {
+                if (history.length > 1) {
+                  history.goBack();
+                } else {
+                  history.push(AppRoute.ROOT);
+                }
+              }}
+              startItem = {true}
+              onLogoClick = {() =>
+                history.push(AppRoute.ROOT)
               }
-            }}
-            startItem = {true}
-            onLogoClick = {() =>
-              history.push(AppRoute.ROOT)
-            }
-          />
-        </Route>
+            />
+          )}
+        />
       </Switch>
     </Router>
   );
