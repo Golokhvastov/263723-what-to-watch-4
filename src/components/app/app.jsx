@@ -8,6 +8,7 @@ import FullscreenPlayer from "../fullscreen-player/fullscreen-player.jsx";
 import SignIn from "../sign-in/sign-in.jsx";
 import AddReview from "../add-review/add-review.jsx";
 import MyList from "../my-list/my-list.jsx";
+import PrivateRoute from "../private-route/private-route.jsx";
 import {Settings, AppRoute} from "../../const.js";
 import {getMovies, getPromoMovie, getFavoriteMovies, getReviews} from "../../reducer/data/selector.js";
 import {getAuthorizationStatus} from "../../reducer/user/selector.js";
@@ -101,7 +102,7 @@ const App = (props) => {
           }}
         />
 
-        <Route
+        <PrivateRoute
           exact
           path={`${AppRoute.FILM}/:id${AppRoute.ADD_REVIEW}`}
           render={(routeProps) => (
@@ -145,18 +146,22 @@ const App = (props) => {
           )}
         />
 
-        <Route exact path={AppRoute.MY_LIST}>
-          <MyList
-            favoriteMovies = {favoriteMovies}
-            onLogoClick = {() =>
-              history.push(AppRoute.ROOT)
-            }
-            onMovieTitleClick = {(movie) => {
-              loadReviewsForId(Number(movie.id));
-              history.push(`${AppRoute.FILM}/${movie.id}`);
-            }}
-          />
-        </Route>
+        <PrivateRoute
+          exact
+          path={AppRoute.MY_LIST}
+          render={(routeProps) => (
+            <MyList
+              favoriteMovies = {favoriteMovies}
+              onLogoClick = {() =>
+                history.push(AppRoute.ROOT)
+              }
+              onMovieTitleClick = {(movie) => {
+                loadReviewsForId(Number(movie.id));
+                history.push(`${AppRoute.FILM}/${movie.id}`);
+              }}
+            />
+          )}
+        />
 
         <Route exact path={AppRoute.LOGIN}>
           <SignInWrapper
