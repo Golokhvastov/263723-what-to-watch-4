@@ -8,18 +8,19 @@ import FullscreenPlayer from "../fullscreen-player/fullscreen-player.jsx";
 import SignIn from "../sign-in/sign-in.jsx";
 import AddReview from "../add-review/add-review.jsx";
 import {Settings, AppRoute} from "../../const.js";
-import {getMovies, getPromoMovie, getFavoriteMovies, getReviews, getWaitingRequest} from "../../reducer/data/selector.js";
+import {getMovies, getPromoMovie, getFavoriteMovies, getReviews} from "../../reducer/data/selector.js";
 import {getAuthorizationStatus} from "../../reducer/user/selector.js";
 import withVideo from "../../hocs/with-video/with-video.js";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
+import withAddReviewState from "../../hocs/with-add-review-state/with-add-review-state.js";
 import {Operation as UserOperation} from "../../reducer/user/user.js";
-import {Operation as DataOperation, ActionCreator as DataActionCreator} from "../../reducer/data/data.js";
+import {Operation as DataOperation} from "../../reducer/data/data.js";
 import history from "../../history.js";
 import {getNumberOfMovies, getFilteredMovies} from "../../reducer/data/selector.js";
 
 const FullscreenPlayerWrapper = withVideo(FullscreenPlayer);
 const SignInWrapper = withActiveItem(SignIn);
-const AddReviewWrapper = withActiveItem(AddReview);
+const AddReviewWrapper = withAddReviewState(AddReview);
 
 const App = (props) => {
   const {
@@ -29,7 +30,6 @@ const App = (props) => {
     reviews,
     authorizationStatus,
     login,
-    waitingRequest,
     loadReviewsForId,
     postReview,
     addMovieInFavorite,
@@ -103,12 +103,10 @@ const App = (props) => {
                 movies.find((movie) => movie.id === Number(routeProps.match.params.id))
               }
               authorizationStatus = {authorizationStatus}
-              startItem = {{
-                rating: null,
-                reviewText: null,
-              }}
-              waitingRequest = {waitingRequest}
               onSubmit = {postReview}
+              onSuccess = {() =>
+                history.push(`${AppRoute.FILM}/${routeProps.match.params.id}`)
+              }
               onLogoClick = {() =>
                 history.push(AppRoute.ROOT)
               }
@@ -161,7 +159,6 @@ const mapStateToProps = (state) => ({
   favoriteMovies: getFavoriteMovies(state),
   authorizationStatus: getAuthorizationStatus(state),
   reviews: getReviews(state),
-  waitingRequest: getWaitingRequest(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -171,9 +168,8 @@ const mapDispatchToProps = (dispatch) => ({
   loadReviewsForId: (filmId) => {
     dispatch(DataOperation.loadReviewsForId(filmId));
   },
-  postReview: (newReviewData, filmId) => {
-    dispatch(DataActionCreator.startWaitingRequest());
-    dispatch(DataOperation.postReview(newReviewData, filmId));
+  postReview: (commentData, onSuccess, onError) => {
+    dispatch(DataOperation.postReview(commentData, onSuccess, onError));
   },
   addMovieInFavorite: (filmId) => {
     dispatch(DataOperation.addMovieToFavoriteMovies(filmId));

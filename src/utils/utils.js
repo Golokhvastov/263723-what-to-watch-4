@@ -15,3 +15,10 @@ export const formatReviewDate = (date) => {
   });
   return formatDate;
 };
+
+export const checkText = (text) => {
+  if (text.length >= 50 && text.length <= 400) {
+    return true;
+  }
+  return false;
+};

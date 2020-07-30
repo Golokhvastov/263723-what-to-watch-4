@@ -80,10 +80,6 @@ export const getReviews = (state) => {
   return adaptReviews(state[NAME_SPACE].reviewsForId);
 };
 
-export const getWaitingRequest = (state) => {
-  return state[NAME_SPACE].waitingRequest;
-};
-
 export const getTextRating = (value) => {
   if (value >= 0 && value < 3) {
     return `Bad`;

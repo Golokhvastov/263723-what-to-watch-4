@@ -7,7 +7,6 @@ const initialState = {
   movies: [],
   promoMovie: null,
   favoriteMovies: [],
-  waitingRequest: false,
   reviewsForId: [],
 };
 
@@ -19,8 +18,6 @@ const ActionType = {
   CHANGE_FILM_IN_MOVIES: `CHANGE_FILM_IN_MOVIES`,
   ADD_FILM_IN_FAVORITE_MOVIES: `ADD_FILM_IN_FAVORITE_MOVIES`,
   REMOVE_FILM_FROM_FAVORITE_MOVIES: `REMOVE_FILM_FROM_FAVORITE_MOVIES`,
-  START_WAITING_REQUEST: `START_WAITING_REQUEST`,
-  STOP_WAITING_REQUEST: `STOP_WAITING_REQUEST`,
 };
 
 const ActionCreator = {
@@ -51,12 +48,6 @@ const ActionCreator = {
   removeFilmFromFavoriteMovies: (movie) => ({
     type: ActionType.REMOVE_FILM_FROM_FAVORITE_MOVIES,
     payload: movie
-  }),
-  startWaitingRequest: () => ({
-    type: ActionType.START_WAITING_REQUEST
-  }),
-  stopWaitingRequest: () => ({
-    type: ActionType.STOP_WAITING_REQUEST
   }),
 };
 
@@ -113,16 +104,16 @@ const Operation = {
       });
   },
 
-  postReview: (newReviewData, filmId) => (dispatch, getState, api) => {
-    return api.post(`/comments/${filmId}`, {
-      rating: newReviewData.rating,
-      comment: newReviewData.comment,
+  postReview: (commentData, onSuccess, onError) => (dispatch, getState, api) => {
+    return api.post(`/comments/${commentData.filmId}`, {
+      rating: commentData.rating,
+      comment: commentData.comment,
     })
       .then(() => {
-        dispatch(ActionCreator.stopWaitingRequest());
+        onSuccess();
       })
       .catch((err) => {
-        dispatch(ActionCreator.stopWaitingRequest());
+        onError();
         throw err;
       });
   },
@@ -166,14 +157,6 @@ const reducer = (state = initialState, action) => {
         favoriteMovies: [
           ...state.favoriteMovies.filter((movie) => movie.id !== action.payload.id)
         ]
-      });
-    case ActionType.START_WAITING_REQUEST:
-      return extend(state, {
-        waitingRequest: true
-      });
-    case ActionType.STOP_WAITING_REQUEST:
-      return extend(state, {
-        waitingRequest: false
       });
   }
 
