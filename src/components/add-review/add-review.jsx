@@ -9,18 +9,27 @@ const AddReview = (props) => {
     movie,
     onSubmit,
     onLogoClick,
+    onMovieTitleClick,
     authorizationStatus,
     activeItem,
     onActiveItemChange,
     waitingRequest
   } = props;
-  const {
-    id,
-    title,
-    posterImage,
-    backgroundImage,
-    backgroundColor,
-  } = movie;
+
+  let id;
+  let title;
+  let posterImage;
+  let backgroundImage;
+  let backgroundColor;
+
+  if (movie) {
+    id = movie.id;
+    title = movie.title;
+    posterImage = movie.posterImage;
+    backgroundImage = movie.backgroundImage;
+    backgroundColor = movie.backgroundColor;
+  }
+
   const {
     rating,
     reviewText,
@@ -91,7 +100,12 @@ const AddReview = (props) => {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <a href="movie-page.html" className="breadcrumbs__link">{title}</a>
+                <a href="movie-page.html" className="breadcrumbs__link"
+                  onClick = {(evt) => {
+                    evt.preventDefault();
+                    onMovieTitleClick(movie);
+                  }}
+                >{title}</a>
               </li>
               <li className="breadcrumbs__item">
                 <a className="breadcrumbs__link">Add review</a>
@@ -103,7 +117,7 @@ const AddReview = (props) => {
             {authorizationStatus === AuthorizationStatus.AUTH
               ? (
                 <div className="user-block__avatar">
-                  <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+                  <img src="/img/avatar.jpg" alt="User avatar" width="63" height="63" />
                 </div>
               )
               : (
@@ -164,6 +178,7 @@ AddReview.propTypes = {
   }).isRequired,
   onSubmit: PropTypes.func.isRequired,
   onLogoClick: PropTypes.func.isRequired,
+  onMovieTitleClick: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   activeItem: PropTypes.shape({
     rating: PropTypes.string,

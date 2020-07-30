@@ -30,7 +30,8 @@ class MoviePage extends React.PureComponent {
       authorizationStatus,
       addMovieInFavorite,
       removeMovieFromFavorite,
-      reviews
+      reviews,
+      onAddReviewButtonClick
     } = this.props;
 
     let title;
@@ -126,7 +127,12 @@ class MoviePage extends React.PureComponent {
                     )
                   }
                   {authorizationStatus === AuthorizationStatus.AUTH && (
-                    <a href="add-review.html" className="btn movie-card__button">Add review</a>
+                    <a href="add-review.html" className="btn movie-card__button"
+                      onClick = {(evt) => {
+                        evt.preventDefault();
+                        onAddReviewButtonClick(movie);
+                      }}
+                    >Add review</a>
                   )}
                 </div>
               </div>
@@ -215,4 +221,5 @@ MoviePage.propTypes = {
       })
   ),
   loadReviews: PropTypes.func.isRequired,
+  onAddReviewButtonClick: PropTypes.func.isRequired,
 };
