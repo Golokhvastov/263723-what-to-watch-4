@@ -5,6 +5,7 @@ import MoviesList from "../movies-list/movies-list.jsx";
 const MyList = (props) => {
   const {
     favoriteMovies,
+    userInfo,
     onLogoClick,
     onMovieTitleClick,
   } = props;
@@ -29,7 +30,7 @@ const MyList = (props) => {
 
         <div className="user-block">
           <div className="user-block__avatar">
-            <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+            <img src={userInfo.avatarUrl} alt="User avatar" width="63" height="63" />
           </div>
         </div>
       </header>
@@ -75,6 +76,9 @@ MyList.propTypes = {
         previewImage: PropTypes.string.isRequired,
       })
   ).isRequired,
+  userInfo: PropTypes.shape({
+    avatarUrl: PropTypes.string.isRequired,
+  }),
   onLogoClick: PropTypes.func.isRequired,
   onMovieTitleClick: PropTypes.func.isRequired,
 };

@@ -7,10 +7,12 @@ const AuthorizationStatus = {
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
+  userInfo: {},
 };
 
 const ActionType = {
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
+  LOAD_USER_INFO: `LOAD_USER_INFO`,
 };
 
 const ActionCreator = {
@@ -18,13 +20,18 @@ const ActionCreator = {
     type: ActionType.REQUIRED_AUTHORIZATION,
     payload: status
   }),
+  loadUserInfo: (userData) => ({
+    type: ActionType.LOAD_USER_INFO,
+    payload: userData
+  }),
 };
 
 const Operation = {
   checkAuth: () => (dispatch, getState, api) => {
     return api.get(`/login`)
-      .then(() => {
+      .then((response) => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
+        dispatch(ActionCreator.loadUserInfo(response.data));
       })
       .catch((err) => {
         throw err;
@@ -36,8 +43,9 @@ const Operation = {
       email: authData.login,
       password: authData.password,
     })
-      .then(() => {
+      .then((response) => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
+        dispatch(ActionCreator.loadUserInfo(response.data));
         onSuccess();
       })
       .catch((err) => {
@@ -52,6 +60,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.REQUIRED_AUTHORIZATION:
       return extend(state, {
         authorizationStatus: action.payload
+      });
+    case ActionType.LOAD_USER_INFO:
+      return extend(state, {
+        userInfo: action.payload
       });
   }
 

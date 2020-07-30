@@ -27,6 +27,7 @@ class MoviePage extends React.PureComponent {
       onMovieTitleClick,
       onPlayClick,
       authorizationStatus,
+      userInfo,
       addMovieInFavorite,
       removeMovieFromFavorite,
       reviews,
@@ -81,7 +82,7 @@ class MoviePage extends React.PureComponent {
                 {authorizationStatus === AuthorizationStatus.AUTH
                   ? (
                     <div className="user-block__avatar" onClick={onAvatarClick}>
-                      <img src="/img/avatar.jpg" alt="User avatar" width="63" height="63" />
+                      <img src={userInfo.avatarUrl} alt="User avatar" width="63" height="63" />
                     </div>
                   )
                   : (
@@ -229,6 +230,9 @@ MoviePage.propTypes = {
   onMovieTitleClick: PropTypes.func.isRequired,
   onPlayClick: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
+  userInfo: PropTypes.shape({
+    avatarUrl: PropTypes.string.isRequired,
+  }),
   addMovieInFavorite: PropTypes.func.isRequired,
   removeMovieFromFavorite: PropTypes.func.isRequired,
   reviews: PropTypes.arrayOf(

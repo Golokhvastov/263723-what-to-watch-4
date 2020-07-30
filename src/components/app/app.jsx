@@ -13,7 +13,7 @@ import GuestRoute from "../guest-route/guest-route.jsx";
 import {Settings, AppRoute} from "../../const.js";
 import {getMovies, getPromoMovie, getFavoriteMovies, getReviews} from "../../reducer/data/selector.js";
 import {getPreviousPath} from "../../reducer/page/selector.js";
-import {getAuthorizationStatus} from "../../reducer/user/selector.js";
+import {getAuthorizationStatus, getUserInfo} from "../../reducer/user/selector.js";
 import withVideo from "../../hocs/with-video/with-video.js";
 import withLoginSubmit from "../../hocs/with-login-submit/with-login-submit.js";
 import withAddReviewState from "../../hocs/with-add-review-state/with-add-review-state.js";
@@ -34,6 +34,7 @@ const App = (props) => {
     favoriteMovies,
     reviews,
     authorizationStatus,
+    userInfo,
     login,
     loadReviewsForId,
     loadFavoriteMovies,
@@ -56,6 +57,7 @@ const App = (props) => {
           <Main
             promoMovie = {promoMovie}
             authorizationStatus = {authorizationStatus}
+            userInfo = {userInfo}
             addMovieInFavorite = {addMovieInFavorite}
             removeMovieFromFavorite = {removeMovieFromFavorite}
             onMovieTitleClick = {(movie) => {
@@ -90,6 +92,7 @@ const App = (props) => {
                 similarMovies = {similarMovies}
                 reviews = {reviews}
                 authorizationStatus = {authorizationStatus}
+                userInfo = {userInfo}
                 addMovieInFavorite = {addMovieInFavorite}
                 removeMovieFromFavorite = {removeMovieFromFavorite}
                 onLogoClick = {() =>
@@ -128,6 +131,7 @@ const App = (props) => {
                 movies.find((movie) => movie.id === Number(routeProps.match.params.id))
               }
               authorizationStatus = {authorizationStatus}
+              userInfo = {userInfo}
               onSubmit = {postReview}
               onSuccess = {() =>
                 historyPushWithSavePath(`${AppRoute.FILM}/${routeProps.match.params.id}`)
@@ -176,6 +180,7 @@ const App = (props) => {
           render={() => (
             <MyList
               favoriteMovies = {favoriteMovies}
+              userInfo = {userInfo}
               onLogoClick = {() =>
                 historyPushWithSavePath(AppRoute.ROOT)
               }
@@ -218,6 +223,7 @@ const mapStateToProps = (state) => ({
   promoMovie: getPromoMovie(state),
   favoriteMovies: getFavoriteMovies(state),
   authorizationStatus: getAuthorizationStatus(state),
+  userInfo: getUserInfo(state),
   reviews: getReviews(state),
   previousPath: getPreviousPath(state),
 });
@@ -284,6 +290,9 @@ App.propTypes = {
       })
   ),
   authorizationStatus: PropTypes.string.isRequired,
+  userInfo: PropTypes.shape({
+    avatarUrl: PropTypes.string.isRequired,
+  }),
   login: PropTypes.func.isRequired,
   loadReviewsForId: PropTypes.func.isRequired,
   loadFavoriteMovies: PropTypes.func.isRequired,

@@ -13,6 +13,7 @@ const Main = (props) => {
     onMovieTitleClick,
     onPlayClick,
     authorizationStatus,
+    userInfo,
     addMovieInFavorite,
     removeMovieFromFavorite,
     onSignInClick,
@@ -59,7 +60,7 @@ const Main = (props) => {
             {authorizationStatus === AuthorizationStatus.AUTH
               ? (
                 <div className="user-block__avatar" onClick={onAvatarClick}>
-                  <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+                  <img src={userInfo.avatarUrl} alt="User avatar" width="63" height="63" />
                 </div>
               )
               : (
@@ -166,6 +167,9 @@ Main.propTypes = {
   onMovieTitleClick: PropTypes.func.isRequired,
   onPlayClick: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
+  userInfo: PropTypes.shape({
+    avatarUrl: PropTypes.string.isRequired,
+  }),
   addMovieInFavorite: PropTypes.func.isRequired,
   removeMovieFromFavorite: PropTypes.func.isRequired,
   onSignInClick: PropTypes.func.isRequired,
