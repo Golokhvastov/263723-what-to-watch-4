@@ -3,21 +3,27 @@ import PropTypes from "prop-types";
 import {Route, Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 import {getAuthorizationStatus} from "../../reducer/user/selector.js";
+import {getPreviousPath} from "../../reducer/page/selector.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 import {AppRoute} from "../../const.js";
 
 const GuestRoute = (props) => {
-  const {render, path, exact, authorizationStatus} = props;
+  const {render, path, exact, authorizationStatus, previousPath} = props;
 
   return (
     <Route
       exact={exact}
       path={path}
       render={(routeProps) => {
-        return (authorizationStatus === AuthorizationStatus.NO_AUTH
-          ? render(routeProps)
-          : <Redirect to={AppRoute.ROOT} />
-        );
+        if (authorizationStatus === AuthorizationStatus.NO_AUTH) {
+          return render(routeProps);
+        } else {
+          return (
+            previousPath
+              ? <Redirect to={previousPath} />
+              : <Redirect to={AppRoute.ROOT} />
+          );
+        }
       }}
     />
   );
@@ -25,6 +31,7 @@ const GuestRoute = (props) => {
 
 const mapStateToProps = (state) => ({
   authorizationStatus: getAuthorizationStatus(state),
+  previousPath: getPreviousPath(state),
 });
 
 export {GuestRoute};
@@ -37,4 +44,5 @@ GuestRoute.propTypes = {
   path: PropTypes.string.isRequired,
   exact: PropTypes.bool.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
+  previousPath: PropTypes.string.isRequired,
 };
