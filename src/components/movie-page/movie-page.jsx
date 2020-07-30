@@ -31,7 +31,8 @@ class MoviePage extends React.PureComponent {
       addMovieInFavorite,
       removeMovieFromFavorite,
       reviews,
-      onAddReviewButtonClick
+      onAddReviewButtonClick,
+      onAvatarClick
     } = this.props;
 
     let title;
@@ -74,7 +75,7 @@ class MoviePage extends React.PureComponent {
               <div className="user-block">
                 {authorizationStatus === AuthorizationStatus.AUTH
                   ? (
-                    <div className="user-block__avatar">
+                    <div className="user-block__avatar" onClick={onAvatarClick}>
                       <img src="/img/avatar.jpg" alt="User avatar" width="63" height="63" />
                     </div>
                   )
@@ -222,4 +223,5 @@ MoviePage.propTypes = {
   ),
   loadReviews: PropTypes.func.isRequired,
   onAddReviewButtonClick: PropTypes.func.isRequired,
+  onAvatarClick: PropTypes.func.isRequired,
 };

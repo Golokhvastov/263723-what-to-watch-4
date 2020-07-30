@@ -7,6 +7,7 @@ import MoviePage from "../movie-page/movie-page.jsx";
 import FullscreenPlayer from "../fullscreen-player/fullscreen-player.jsx";
 import SignIn from "../sign-in/sign-in.jsx";
 import AddReview from "../add-review/add-review.jsx";
+import MyList from "../my-list/my-list.jsx";
 import {Settings, AppRoute} from "../../const.js";
 import {getMovies, getPromoMovie, getFavoriteMovies, getReviews} from "../../reducer/data/selector.js";
 import {getAuthorizationStatus} from "../../reducer/user/selector.js";
@@ -52,6 +53,9 @@ const App = (props) => {
             onPlayClick = {(movie) =>
               history.push(`${AppRoute.FILM}/${movie.id}${AppRoute.PLAYER}`)
             }
+            onAvatarClick = {() =>
+              history.push(AppRoute.MY_LIST)
+            }
           />
         </Route>
 
@@ -89,6 +93,9 @@ const App = (props) => {
                 loadReviews = {() =>
                   loadReviewsForId(Number(routeProps.match.params.id))
                 }
+                onAvatarClick = {() =>
+                  history.push(AppRoute.MY_LIST)
+                }
               />
             );
           }}
@@ -114,6 +121,9 @@ const App = (props) => {
                 loadReviewsForId(Number(movie.id));
                 history.push(`${AppRoute.FILM}/${movie.id}`);
               }}
+              onAvatarClick = {() =>
+                history.push(AppRoute.MY_LIST)
+              }
             />
           )}
         />
@@ -136,7 +146,16 @@ const App = (props) => {
         />
 
         <Route exact path={AppRoute.MY_LIST}>
-
+          <MyList
+            favoriteMovies = {favoriteMovies}
+            onLogoClick = {() =>
+              history.push(AppRoute.ROOT)
+            }
+            onMovieTitleClick = {(movie) => {
+              loadReviewsForId(Number(movie.id));
+              history.push(`${AppRoute.FILM}/${movie.id}`);
+            }}
+          />
         </Route>
 
         <Route exact path={AppRoute.LOGIN}>
@@ -146,7 +165,7 @@ const App = (props) => {
               if (history.length > 1) {
                 history.goBack();
               } else {
-                history.push(AppRoute.ROOT)
+                history.push(AppRoute.ROOT);
               }
             }}
             startItem = {true}

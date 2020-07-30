@@ -15,7 +15,8 @@ const AddReview = (props) => {
     isButtonDisabled,
     isFormDisabled,
     onRatingChange,
-    onReviewTextChange
+    onReviewTextChange,
+    onAvatarClick
   } = props;
 
   let title;
@@ -86,7 +87,7 @@ const AddReview = (props) => {
           <div className="user-block">
             {authorizationStatus === AuthorizationStatus.AUTH
               ? (
-                <div className="user-block__avatar">
+                <div className="user-block__avatar" onClick={onAvatarClick}>
                   <img src="/img/avatar.jpg" alt="User avatar" width="63" height="63" />
                 </div>
               )
@@ -156,4 +157,5 @@ AddReview.propTypes = {
   isFormDisabled: PropTypes.bool.isRequired,
   onRatingChange: PropTypes.func.isRequired,
   onReviewTextChange: PropTypes.func.isRequired,
+  onAvatarClick: PropTypes.func.isRequired,
 };

@@ -16,8 +16,8 @@ class SignIn extends React.PureComponent {
   submitHandler(evt) {
     evt.preventDefault();
     this.props.onSubmit(
-      this.loginRef.current.value,
-      this.passwordRef.current.value
+        this.loginRef.current.value,
+        this.passwordRef.current.value
     );
   }
 

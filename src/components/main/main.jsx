@@ -15,7 +15,8 @@ const Main = (props) => {
     onPlayClick,
     authorizationStatus,
     addMovieInFavorite,
-    removeMovieFromFavorite
+    removeMovieFromFavorite,
+    onAvatarClick
   } = props;
 
   let id;
@@ -57,7 +58,7 @@ const Main = (props) => {
           <div className="user-block">
             {authorizationStatus === AuthorizationStatus.AUTH
               ? (
-                <div className="user-block__avatar">
+                <div className="user-block__avatar" onClick={onAvatarClick}>
                   <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
                 </div>
               )
@@ -162,4 +163,5 @@ Main.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
   addMovieInFavorite: PropTypes.func.isRequired,
   removeMovieFromFavorite: PropTypes.func.isRequired,
+  onAvatarClick: PropTypes.func.isRequired,
 };
