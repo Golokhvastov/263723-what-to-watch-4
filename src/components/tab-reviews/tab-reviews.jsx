@@ -51,9 +51,15 @@ const TabOverview = (props) => {
 export default TabOverview;
 
 TabOverview.propTypes = {
+
   reviews: PropTypes.arrayOf(
       PropTypes.shape({
-        id: PropTypes.number.isRequired,
+        rating: PropTypes.number.isRequired,
+        date: PropTypes.string.isRequired,
+        author: PropTypes.shape({
+          name: PropTypes.string.isRequired,
+        }),
+        text: PropTypes.string.isRequired
       })
-  ).isRequired,
+  ).isRequired
 };

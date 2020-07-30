@@ -92,14 +92,6 @@ Tabs.propTypes = {
         PropTypes.string.isRequired
     ).isRequired,
     runTime: PropTypes.number.isRequired,
-    reviews: PropTypes.arrayOf(
-        PropTypes.shape({
-          rating: PropTypes.number.isRequired,
-          date: PropTypes.string.isRequired,
-          author: PropTypes.string.isRequired,
-          text: PropTypes.string.isRequired
-        })
-    ).isRequired
   }).isRequired,
   activeItem: PropTypes.string.isRequired,
   onActiveItemChange: PropTypes.func.isRequired,

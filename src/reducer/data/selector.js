@@ -1,6 +1,7 @@
 import {createSelector} from "reselect";
 import NameSpace from "../name-space.js";
 import {Settings} from "../../const.js";
+import {formatReviewDate} from "../../utils/utils.js";
 
 const NAME_SPACE = NameSpace.DATA;
 
@@ -24,14 +25,6 @@ const adaptMovie = (movie) => {
           score: movie.rating,
           votes: movie.scores_count,
         },
-        reviews: [
-          {
-            rating: 7.6,
-            date: `December 20, 2016`,
-            author: `Paula Fleri-Soler`,
-            text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`
-          }
-        ],
         runTime: movie.run_time,
         src: movie.video_link,
         starring: movie.starring,
@@ -69,7 +62,7 @@ const adaptReview = (review) => {
           id: review.user.id,
           name: review.user.name,
         },
-        date: review.date,
+        date: formatReviewDate(review.date),
         rating: review.rating,
         text: review.comment,
       };
