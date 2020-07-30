@@ -16,16 +16,13 @@ const withLoginSubmit = (Component) => {
 
     submitHandler(login, password) {
       const {
-        onSubmit
+        onSubmit,
+        onSuccess
       } = this.props;
 
       const authData = {
         login,
         password,
-      };
-      const onSuccess = () => {
-        this.setState({isPasswordValid: true});
-        this.props.onSuccess();
       };
       const onError = () => {
         this.setState({isPasswordValid: false});

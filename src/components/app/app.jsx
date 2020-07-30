@@ -36,6 +36,7 @@ const App = (props) => {
     authorizationStatus,
     login,
     loadReviewsForId,
+    loadFavoriteMovies,
     postReview,
     addMovieInFavorite,
     removeMovieFromFavorite,
@@ -193,6 +194,7 @@ const App = (props) => {
             <SignInWrapper
               onSubmit = {login}
               onSuccess = {() => {
+                loadFavoriteMovies();
                 if (previousPath) {
                   historyPushWithSavePath(previousPath);
                 } else {
@@ -226,6 +228,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   loadReviewsForId: (filmId) => {
     dispatch(DataOperation.loadReviewsForId(filmId));
+  },
+  loadFavoriteMovies: () => {
+    dispatch(DataOperation.loadFavoriteMovies());
   },
   postReview: (commentData, onSuccess, onError) => {
     dispatch(DataOperation.postReview(commentData, onSuccess, onError));
@@ -281,6 +286,7 @@ App.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
   login: PropTypes.func.isRequired,
   loadReviewsForId: PropTypes.func.isRequired,
+  loadFavoriteMovies: PropTypes.func.isRequired,
   postReview: PropTypes.func.isRequired,
   waitingRequest: PropTypes.bool.isRequired,
   addMovieInFavorite: PropTypes.func.isRequired,
