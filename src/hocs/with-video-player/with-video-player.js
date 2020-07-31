@@ -42,6 +42,7 @@ const withVideoPlayer = (Component) => {
           isPlaying = {this.state.isPlaying}
           width={`100%`}
           height={`100%`}
+          volume={0}
         />
       );
     }

@@ -170,7 +170,7 @@ const App = (props) => {
               movie = {
                 movies.find((movie) => movie.id === Number(routeProps.match.params.id))
               }
-              isPlaying = {false}
+              isPlaying = {true}
               videoClassName = {`player__video`}
               onExitClick = {() => {
                 if (previousPath) {

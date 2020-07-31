@@ -36,7 +36,9 @@ const withVideo = (Component) => {
         video.poster = this.props.movie.posterImage;
       }
 
-      video.volume = 0;
+      if (this.props.volume >= 0) {
+        video.volume = this.props.volume;
+      }
 
       video.oncanplaythrough = () => this.setState({
         isLoading: false
@@ -122,6 +124,7 @@ const withVideo = (Component) => {
     width: PropTypes.string,
     height: PropTypes.string,
     videoClassName: PropTypes.string,
+    volume: PropTypes.number,
   };
 
   return WithVideo;
