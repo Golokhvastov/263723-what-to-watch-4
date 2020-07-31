@@ -123,28 +123,29 @@ class MoviePage extends React.PureComponent {
                     </svg>
                     <span>Play</span>
                   </button>
-                  {isFavorite === true
-                    ? (
-                      <button className="btn btn--list movie-card__button" type="button"
-                        onClick={() => removeMovieFromFavorite(movie.id)}
-                      >
+                  <button className="btn btn--list movie-card__button" type="button"
+                    onClick={() => {
+                      if (isFavorite) {
+                        removeMovieFromFavorite(movie.id);
+                      } else {
+                        addMovieInFavorite(movie.id);
+                      }
+                    }}
+                  >
+                    {isFavorite === true
+                      ? (
                         <svg viewBox="0 0 18 14" width="18" height="14">
                           <use xlinkHref="#in-list"></use>
                         </svg>
-                        <span>My list</span>
-                      </button>
-                    )
-                    : (
-                      <button className="btn btn--list movie-card__button" type="button"
-                        onClick={() => addMovieInFavorite(movie.id)}
-                      >
+                      )
+                      : (
                         <svg viewBox="0 0 19 20" width="19" height="20">
                           <use xlinkHref="#add"></use>
                         </svg>
-                        <span>My list</span>
-                      </button>
-                    )
-                  }
+                      )
+                    }
+                    <span>My list</span>
+                  </button>
                   {authorizationStatus === AuthorizationStatus.AUTH && (
                     <a href="add-review.html" className="btn movie-card__button"
                       onClick = {(evt) => {

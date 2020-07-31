@@ -106,28 +106,29 @@ const Main = (props) => {
                   </svg>
                   <span>Play</span>
                 </button>
-                {isFavorite === true
-                  ? (
-                    <button className="btn btn--list movie-card__button" type="button"
-                      onClick={() => removeMovieFromFavorite(id)}
-                    >
+                <button className="btn btn--list movie-card__button" type="button"
+                  onClick={() => {
+                    if (isFavorite) {
+                      removeMovieFromFavorite(id);
+                    } else {
+                      addMovieInFavorite(id);
+                    }
+                  }}
+                >
+                  {isFavorite === true
+                    ? (
                       <svg viewBox="0 0 18 14" width="18" height="14">
                         <use xlinkHref="#in-list"></use>
                       </svg>
-                      <span>My list</span>
-                    </button>
-                  )
-                  : (
-                    <button className="btn btn--list movie-card__button" type="button"
-                      onClick={() => addMovieInFavorite(id)}
-                    >
+                    )
+                    : (
                       <svg viewBox="0 0 19 20" width="19" height="20">
                         <use xlinkHref="#add"></use>
                       </svg>
-                      <span>My list</span>
-                    </button>
-                  )
-                }
+                    )
+                  }
+                  <span>My list</span>
+                </button>
               </div>
             </div>
           </div>
