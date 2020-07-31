@@ -381,7 +381,12 @@ App.propTypes = {
   ).isRequired,
   reviews: PropTypes.arrayOf(
       PropTypes.shape({
-        id: PropTypes.number.isRequired,
+        rating: PropTypes.number.isRequired,
+        date: PropTypes.string.isRequired,
+        author: PropTypes.shape({
+          name: PropTypes.string.isRequired,
+        }),
+        text: PropTypes.string.isRequired
       })
   ),
   authorizationStatus: PropTypes.string.isRequired,

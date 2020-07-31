@@ -56,12 +56,14 @@ it(`e2e test for Main`, () => {
   const main = mount(
       <Provider store={store}>
         <Main
-          mainMovie = {mocks.movies[0]}
+          promoMovie = {mocks.movies[0]}
           onMovieTitleClick = {movieTitleClickHandler}
           onPlayClick = {() => {}}
-          authorizationStatus = {AuthorizationStatus.AUTH}
+          authorizationStatus = {AuthorizationStatus.NO_AUTH}
           addMovieInFavorite = {() => {}}
           removeMovieFromFavorite = {() => {}}
+          onSignInClick = {() => {}}
+          onAvatarClick = {() => {}}
         />
       </Provider>
   );

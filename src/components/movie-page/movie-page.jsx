@@ -237,7 +237,12 @@ MoviePage.propTypes = {
   removeMovieFromFavorite: PropTypes.func.isRequired,
   reviews: PropTypes.arrayOf(
       PropTypes.shape({
-        id: PropTypes.number.isRequired,
+        rating: PropTypes.number.isRequired,
+        date: PropTypes.string.isRequired,
+        author: PropTypes.shape({
+          name: PropTypes.string.isRequired,
+        }),
+        text: PropTypes.string.isRequired
       })
   ),
   loadReviews: PropTypes.func.isRequired,

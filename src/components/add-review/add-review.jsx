@@ -166,7 +166,6 @@ AddReview.propTypes = {
     backgroundColor: PropTypes.string.isRequired
   }).isRequired,
   onSubmit: PropTypes.func.isRequired,
-  onSuccess: PropTypes.func.isRequired,
   onLogoClick: PropTypes.func.isRequired,
   onMovieTitleClick: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,

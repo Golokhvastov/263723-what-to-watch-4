@@ -74,7 +74,10 @@ const mocks = {
       previewImage: `test3.jpg`,
       preview: `test3.jpg`,
     },
-  ]
+  ],
+  userInfo: {
+    avatarUrl: `test avatarUrl.jpg`,
+  },
 };
 
 describe(`Main render correctly`, () => {
@@ -90,12 +93,15 @@ describe(`Main render correctly`, () => {
               history={history}
             >
               <Main
-                mainMovie = {mocks.movies[0]}
+                promoMovie = {mocks.movies[0]}
                 onMovieTitleClick = {() => {}}
                 onPlayClick = {() => {}}
                 authorizationStatus = {AuthorizationStatus.AUTH}
+                userInfo = {mocks.userInfo}
                 addMovieInFavorite = {() => {}}
                 removeMovieFromFavorite = {() => {}}
+                onSignInClick = {() => {}}
+                onAvatarClick = {() => {}}
               />
             </Router>
           </Provider>, {
@@ -118,12 +124,15 @@ describe(`Main render correctly`, () => {
               history={history}
             >
               <Main
-                mainMovie = {mocks.movies[0]}
+                promoMovie = {mocks.movies[0]}
                 onMovieTitleClick = {() => {}}
                 onPlayClick = {() => {}}
                 authorizationStatus = {AuthorizationStatus.NO_AUTH}
+                userInfo = {null}
                 addMovieInFavorite = {() => {}}
                 removeMovieFromFavorite = {() => {}}
+                onSignInClick = {() => {}}
+                onAvatarClick = {() => {}}
               />
             </Router>
           </Provider>, {

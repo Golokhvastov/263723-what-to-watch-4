@@ -298,7 +298,7 @@ exports[`Tabs render correctly Tabs with Reviews 1`] = `
           <p
             className="review__text"
           >
-            Test5
+            Test text 1
           </p>
           <footer
             className="review__details"
@@ -306,7 +306,7 @@ exports[`Tabs render correctly Tabs with Reviews 1`] = `
             <cite
               className="review__author"
             >
-              Test5
+              Test author 1
             </cite>
             <time
               className="review__date"
@@ -331,7 +331,7 @@ exports[`Tabs render correctly Tabs with Reviews 1`] = `
           <p
             className="review__text"
           >
-            Test6
+            Test text 2
           </p>
           <footer
             className="review__details"
@@ -339,7 +339,7 @@ exports[`Tabs render correctly Tabs with Reviews 1`] = `
             <cite
               className="review__author"
             >
-              Test6
+              Test author 2
             </cite>
             <time
               className="review__date"
@@ -368,7 +368,7 @@ exports[`Tabs render correctly Tabs with Reviews 1`] = `
           <p
             className="review__text"
           >
-            Test7
+            Test text 3
           </p>
           <footer
             className="review__details"
@@ -376,7 +376,7 @@ exports[`Tabs render correctly Tabs with Reviews 1`] = `
             <cite
               className="review__author"
             >
-              Test7
+              Test author 3
             </cite>
             <time
               className="review__date"

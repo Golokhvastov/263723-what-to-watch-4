@@ -5,6 +5,7 @@ import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import NameSpace from "../../reducer/name-space.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
+import {ServerStatus} from "../../reducer/data/data.js";
 
 const mockStore = configureStore([]);
 
@@ -98,7 +99,36 @@ const mocks = {
       preview: `test3.jpg`,
       src: `test300.jpg`,
     },
-  ]
+  ],
+  reviews: [
+    {
+      rating: 7.9,
+      date: `December 10, 2010`,
+      author: {
+        name: `Test author 1`,
+      },
+      text: `Test text 1`
+    },
+    {
+      rating: 8.0,
+      date: `December 20, 2020`,
+      author: {
+        name: `Test author 2`,
+      },
+      text: `Test text 2`
+    },
+    {
+      rating: 9.0,
+      date: `December 30, 2030`,
+      author: {
+        name: `Test author 3`,
+      },
+      text: `Test text 3`
+    }
+  ],
+  userInfo: {
+    avatarUrl: `test avatarUrl.jpg`,
+  },
 };
 
 describe(`App render correctly`, () => {
@@ -111,13 +141,21 @@ describe(`App render correctly`, () => {
       .create(
           <Provider store={store}>
             <App
+              serverStatus = {ServerStatus.AVAILABLE}
               movies = {mocks.movies}
+              promoMovie = {mocks.movies[0]}
+              favoriteMovies = {mocks.movies}
+              reviews = {mocks.reviews}
               authorizationStatus = {AuthorizationStatus.AUTH}
+              userInfo = {mocks.userInfo}
               login = {() => {}}
+              loadReviewsForId = {() => {}}
+              loadFavoriteMovies = {() => {}}
               postReview = {() => {}}
-              waitingRequest = {false}
               addMovieInFavorite = {() => {}}
               removeMovieFromFavorite = {() => {}}
+              previousPath = {`/`}
+              savePreviousPath = {() => {}}
             />
           </Provider>, {
             createNodeMock: () => {
