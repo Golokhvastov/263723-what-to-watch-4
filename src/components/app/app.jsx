@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {Router, Switch, Route} from "react-router-dom";
+import {Router, Switch, Route, Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 import Main from "../main/main.jsx";
 import MoviePage from "../movie-page/movie-page.jsx";
@@ -52,6 +52,10 @@ const App = (props) => {
     history.push(newPagePath);
   };
 
+  const goTo404 = () => {
+    return <Redirect to={AppRoute.ERROR} />;
+  };
+
   return (
     <Router history={history}>
       {serverStatus === ServerStatus.NOT_AVAILABLE && (
@@ -77,7 +81,17 @@ const App = (props) => {
             onAvatarClick = {() =>
               historyPushWithSavePath(AppRoute.MY_LIST)
             }
-          />
+          >
+            <div className="movie-card__desc">
+              <h2 className="movie-card__title">Ожидаем данные с сервера.</h2>
+              <p className="movie-card__meta"></p>
+              <p className="movie-card__meta">{`Данные промофильма ${promoMovie ? `получены` : `ожидаются`}.`}</p>
+              <p className="movie-card__meta">{`Загруженно фильмов: ${movies.length}`}</p>
+              <p className="movie-card__meta"></p>
+              <p className="movie-card__meta"></p>
+              <p className="movie-card__meta">Вы будете перенаправлены на запрошеную страницу после получения данных.</p>
+            </div>
+          </WaitData>
         )
         : (
           <Switch>
@@ -109,98 +123,111 @@ const App = (props) => {
               path={`${AppRoute.FILM}/:id`}
               render={(routeProps) => {
                 const activeMovie = movies.find((movie) => movie.id === Number(routeProps.match.params.id));
-                let similarMovies = [];
-                if (activeMovie) {
-                  similarMovies = getSimilarMovies(movies, activeMovie, Settings.maxSimilarMovies);
-                }
 
-                return (
-                  <MoviePage
-                    movie = {activeMovie}
-                    similarMovies = {similarMovies}
-                    reviews = {reviews}
-                    authorizationStatus = {authorizationStatus}
-                    userInfo = {userInfo}
-                    addMovieInFavorite = {addMovieInFavorite}
-                    removeMovieFromFavorite = {removeMovieFromFavorite}
-                    onLogoClick = {() =>
-                      historyPushWithSavePath(AppRoute.ROOT)
-                    }
-                    onMovieTitleClick = {(movie) => {
-                      loadReviewsForId(Number(movie.id));
-                      historyPushWithSavePath(`${AppRoute.FILM}/${movie.id}`);
-                    }}
-                    onPlayClick = {(movie) =>
-                      historyPushWithSavePath(`${AppRoute.PLAYER}/${movie.id}`)
-                    }
-                    onAddReviewButtonClick = {(movie) => {
-                      historyPushWithSavePath(`${AppRoute.FILM}/${movie.id}${AppRoute.ADD_REVIEW}`);
-                    }}
-                    loadReviews = {() =>
-                      loadReviewsForId(Number(routeProps.match.params.id))
-                    }
-                    onSignInClick = {() =>
-                      historyPushWithSavePath(AppRoute.LOGIN)
-                    }
-                    onAvatarClick = {() =>
-                      historyPushWithSavePath(AppRoute.MY_LIST)
-                    }
-                  />
-                );
+                if (activeMovie) {
+                  const similarMovies = getSimilarMovies(movies, activeMovie, Settings.maxSimilarMovies);
+                  return (
+                    <MoviePage
+                      movie = {activeMovie}
+                      similarMovies = {similarMovies}
+                      reviews = {reviews}
+                      authorizationStatus = {authorizationStatus}
+                      userInfo = {userInfo}
+                      addMovieInFavorite = {addMovieInFavorite}
+                      removeMovieFromFavorite = {removeMovieFromFavorite}
+                      onLogoClick = {() =>
+                        historyPushWithSavePath(AppRoute.ROOT)
+                      }
+                      onMovieTitleClick = {(movie) => {
+                        loadReviewsForId(Number(movie.id));
+                        historyPushWithSavePath(`${AppRoute.FILM}/${movie.id}`);
+                      }}
+                      onPlayClick = {(movie) =>
+                        historyPushWithSavePath(`${AppRoute.PLAYER}/${movie.id}`)
+                      }
+                      onAddReviewButtonClick = {(movie) => {
+                        historyPushWithSavePath(`${AppRoute.FILM}/${movie.id}${AppRoute.ADD_REVIEW}`);
+                      }}
+                      loadReviews = {() =>
+                        loadReviewsForId(Number(routeProps.match.params.id))
+                      }
+                      onSignInClick = {() =>
+                        historyPushWithSavePath(AppRoute.LOGIN)
+                      }
+                      onAvatarClick = {() =>
+                        historyPushWithSavePath(AppRoute.MY_LIST)
+                      }
+                    />
+                  );
+                } else {
+                  return goTo404();
+                }
               }}
             />
 
             <PrivateRoute
               exact
               path={`${AppRoute.FILM}/:id${AppRoute.ADD_REVIEW}`}
-              render={(routeProps) => (
-                <AddReviewWrapper
-                  movie = {
-                    movies.find((movie) => movie.id === Number(routeProps.match.params.id))
-                  }
-                  authorizationStatus = {authorizationStatus}
-                  userInfo = {userInfo}
-                  onSubmit = {postReview}
-                  onSuccess = {() => {
-                    loadReviewsForId(Number(routeProps.match.params.id));
-                    historyPushWithSavePath(`${AppRoute.FILM}/${routeProps.match.params.id}`);
-                  }}
-                  onLogoClick = {() =>
-                    historyPushWithSavePath(AppRoute.ROOT)
-                  }
-                  onMovieTitleClick = {(movie) => {
-                    loadReviewsForId(Number(movie.id));
-                    historyPushWithSavePath(`${AppRoute.FILM}/${movie.id}`);
-                  }}
-                  onSignInClick = {() =>
-                    historyPushWithSavePath(AppRoute.LOGIN)
-                  }
-                  onAvatarClick = {() =>
-                    historyPushWithSavePath(AppRoute.MY_LIST)
-                  }
-                />
-              )}
+              render={(routeProps) => {
+                const activeMovie = movies.find((movie) => movie.id === Number(routeProps.match.params.id));
+
+                if (activeMovie) {
+                  return (
+                    <AddReviewWrapper
+                      movie = {activeMovie}
+                      authorizationStatus = {authorizationStatus}
+                      userInfo = {userInfo}
+                      onSubmit = {postReview}
+                      onSuccess = {() => {
+                        loadReviewsForId(Number(routeProps.match.params.id));
+                        historyPushWithSavePath(`${AppRoute.FILM}/${routeProps.match.params.id}`);
+                      }}
+                      onLogoClick = {() =>
+                        historyPushWithSavePath(AppRoute.ROOT)
+                      }
+                      onMovieTitleClick = {(movie) => {
+                        loadReviewsForId(Number(movie.id));
+                        historyPushWithSavePath(`${AppRoute.FILM}/${movie.id}`);
+                      }}
+                      onSignInClick = {() =>
+                        historyPushWithSavePath(AppRoute.LOGIN)
+                      }
+                      onAvatarClick = {() =>
+                        historyPushWithSavePath(AppRoute.MY_LIST)
+                      }
+                    />
+                  );
+                } else {
+                  return goTo404();
+                }
+              }}
             />
 
             <Route
               exact
               path={`${AppRoute.PLAYER}/:id`}
-              render={(routeProps) => (
-                <FullscreenPlayerWrapper
-                  movie = {
-                    movies.find((movie) => movie.id === Number(routeProps.match.params.id))
-                  }
-                  isPlaying = {true}
-                  videoClassName = {`player__video`}
-                  onExitClick = {() => {
-                    if (previousPath) {
-                      historyPushWithSavePath(previousPath);
-                    } else {
-                      historyPushWithSavePath(`${AppRoute.FILM}/${routeProps.match.params.id}`);
-                    }
-                  }}
-                />
-              )}
+              render={(routeProps) => {
+                const activeMovie = movies.find((movie) => movie.id === Number(routeProps.match.params.id));
+
+                if (activeMovie) {
+                  return (
+                    <FullscreenPlayerWrapper
+                      movie = {activeMovie}
+                      isPlaying = {true}
+                      videoClassName = {`player__video`}
+                      onExitClick = {() => {
+                        if (previousPath) {
+                          historyPushWithSavePath(previousPath);
+                        } else {
+                          historyPushWithSavePath(`${AppRoute.FILM}/${routeProps.match.params.id}`);
+                        }
+                      }}
+                    />
+                  );
+                } else {
+                  return goTo404();
+                }
+              }}
             />
 
             <PrivateRoute
@@ -245,21 +272,36 @@ const App = (props) => {
 
             <Route
               render={() => (
-                <>
-                  <h1>
-                    404.
-                    <br />
-                    <small>Page not found</small>
-                  </h1>
-                  <a href="main.html"
-                    onClick = {(evt) => {
-                      evt.preventDefault();
-                      historyPushWithSavePath(AppRoute.ROOT);
-                    }}
-                  >
-                    Go to main page
-                  </a>
-                </>
+                <WaitData
+                  promoMovie = {promoMovie}
+                  movies = {movies}
+                  authorizationStatus = {authorizationStatus}
+                  userInfo = {userInfo}
+                  onLogoClick = {() =>
+                    historyPushWithSavePath(AppRoute.ROOT)
+                  }
+                  onSignInClick = {() =>
+                    historyPushWithSavePath(AppRoute.LOGIN)
+                  }
+                  onAvatarClick = {() =>
+                    historyPushWithSavePath(AppRoute.MY_LIST)
+                  }
+                >
+                  <div className="movie-card__desc">
+                    <h2 className="movie-card__title">404.</h2>
+                    <p className="movie-card__meta">Page not found</p>
+                    <p className="movie-card__meta"></p>
+                    <p className="movie-card__meta"></p>
+                    <a href="main.html"
+                      onClick = {(evt) => {
+                        evt.preventDefault();
+                        historyPushWithSavePath(AppRoute.ROOT);
+                      }}
+                    >
+                      Go to main page
+                    </a>
+                  </div>
+                </WaitData>
               )}
             />
           </Switch>

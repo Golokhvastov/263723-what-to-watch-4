@@ -14,4 +14,5 @@ export const AppRoute = {
   MY_LIST: `/mylist`,
   PLAYER: `/player`,
   ROOT: `/`,
+  ERROR: `/404`,
 };

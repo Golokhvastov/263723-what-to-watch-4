@@ -4,8 +4,7 @@ import {AuthorizationStatus} from "../../reducer/user/user.js";
 
 const WaitData = (props) => {
   const {
-    promoMovie,
-    movies,
+    children,
     authorizationStatus,
     userInfo,
     onLogoClick,
@@ -66,15 +65,7 @@ const WaitData = (props) => {
             <div className="movie-card__poster">
             </div>
 
-            <div className="movie-card__desc">
-              <h2 className="movie-card__title">Ожидаем данные с сервера.</h2>
-              <p className="movie-card__meta"></p>
-              <p className="movie-card__meta">{`Данные промофильма ${promoMovie ? `получены` : `ожидаются`}.`}</p>
-              <p className="movie-card__meta">{`Загруженно фильмов: ${movies.length}`}</p>
-              <p className="movie-card__meta"></p>
-              <p className="movie-card__meta"></p>
-              <p className="movie-card__meta">Вы будете перенаправлены на запрошеную страницу после получения данных.</p>
-            </div>
+            {children}
           </div>
         </div>
       </section>
@@ -120,8 +111,10 @@ const WaitData = (props) => {
 export default WaitData;
 
 WaitData.propTypes = {
-  movies: PropTypes.array,
-  promoMovie: PropTypes.object,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]).isRequired,
   authorizationStatus: PropTypes.string,
   userInfo: PropTypes.shape({
     avatarUrl: PropTypes.string,
