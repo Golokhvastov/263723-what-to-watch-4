@@ -42,6 +42,6 @@ ReactDOM.render(
 );
 
 // if (history.location.pathname !== AppRoute.LOGIN) {
-//   store.dispatch(PageActionCreator.rememberPreviousPath(history.location.pathname));
+//   store.dispatch(PageActionCreator.savePreviousPath(history.location.pathname));
 //   history.push(AppRoute.LOGIN);
 // }

@@ -44,11 +44,11 @@ const App = (props) => {
     addMovieInFavorite,
     removeMovieFromFavorite,
     previousPath,
-    rememberPreviousPath
+    savePreviousPath
   } = props;
 
   const historyPushWithSavePath = (newPagePath) => {
-    rememberPreviousPath(history.location.pathname);
+    savePreviousPath(history.location.pathname);
     history.push(newPagePath);
   };
 
@@ -341,8 +341,8 @@ const mapDispatchToProps = (dispatch) => ({
   removeMovieFromFavorite: (filmId) => {
     dispatch(DataOperation.removeMovieFromFavoriteMovies(filmId));
   },
-  rememberPreviousPath: (leavingPath) => {
-    dispatch(PageActionCreator.rememberPreviousPath(leavingPath));
+  savePreviousPath: (leavingPath) => {
+    dispatch(PageActionCreator.savePreviousPath(leavingPath));
   },
 });
 
@@ -395,5 +395,5 @@ App.propTypes = {
   addMovieInFavorite: PropTypes.func.isRequired,
   removeMovieFromFavorite: PropTypes.func.isRequired,
   previousPath: PropTypes.string,
-  rememberPreviousPath: PropTypes.func.isRequired,
+  savePreviousPath: PropTypes.func.isRequired,
 };

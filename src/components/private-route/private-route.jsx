@@ -8,7 +8,7 @@ import {AuthorizationStatus} from "../../reducer/user/user.js";
 import {AppRoute} from "../../const.js";
 
 const PrivateRoute = (props) => {
-  const {render, path, exact, authorizationStatus, rememberPreviousPath} = props;
+  const {render, path, exact, authorizationStatus, savePreviousPath} = props;
 
   return (
     <Route
@@ -18,7 +18,7 @@ const PrivateRoute = (props) => {
         if (authorizationStatus === AuthorizationStatus.AUTH) {
           return render(routeProps);
         } else {
-          rememberPreviousPath(routeProps.location.pathname);
+          savePreviousPath(routeProps.location.pathname);
           return <Redirect to={AppRoute.LOGIN} />;
         }
       }}
@@ -31,8 +31,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  rememberPreviousPath: (leavingPath) => {
-    dispatch(ActionCreator.rememberPreviousPath(leavingPath));
+  savePreviousPath: (leavingPath) => {
+    dispatch(ActionCreator.savePreviousPath(leavingPath));
   },
 });
 
@@ -47,5 +47,5 @@ PrivateRoute.propTypes = {
   path: PropTypes.string.isRequired,
   exact: PropTypes.bool.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
-  rememberPreviousPath: PropTypes.func.isRequired,
+  savePreviousPath: PropTypes.func.isRequired,
 };
