@@ -83,11 +83,11 @@ const FullscreenPlayer = (props) => {
 
           <div className="player__name">{title}</div>
 
-          <button type="button" className="player__full-screen" onClick={(evt) => {
+          <button type="button" className="player__full-screen" onClick={() => {
             if (document.fullscreenElement) {
               document.exitFullscreen();
             } else {
-              evt.target.parentElement.parentElement.parentElement.parentElement.requestFullscreen();
+              document.querySelector(`.player`).requestFullscreen();
             }
           }}>
             <svg viewBox="0 0 27 27" width="27" height="27">

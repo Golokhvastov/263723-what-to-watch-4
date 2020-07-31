@@ -14,7 +14,6 @@ const withVideo = (Component) => {
       };
       this.playClickHandler = this.playClickHandler.bind(this);
       this.pauseClickHandler = this.pauseClickHandler.bind(this);
-      this.fullscreenButtonHandler = this.fullscreenButtonHandler.bind(this);
     }
 
     playClickHandler() {
@@ -108,7 +107,6 @@ const withVideo = (Component) => {
           isPlaying = {isPlaying}
           onPlayClick = {this.playClickHandler}
           onPauseClick = {this.pauseClickHandler}
-          onFullscreen = {this.fullscreenButtonHandler}
         >
           <video ref={this._videoRef} width={this.props.width} height={this.props.height}
             className={this.props.videoClassName}
