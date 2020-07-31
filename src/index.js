@@ -7,6 +7,7 @@ import App from "./components/app/app.jsx";
 import reducer from "./reducer/reducer.js";
 import {ActionCreator as UserActionCreator, AuthorizationStatus} from "./reducer/user/user.js";
 import {ActionCreator as PageActionCreator} from "./reducer/page/page.js";
+import {ActionCreator as DataActionCreator, ServerStatus} from "./reducer/data/data.js";
 import {Operation as DataOperation} from "./reducer/data/data.js";
 import {Operation as UserOperation} from "./reducer/user/user.js";
 import {createAPI} from "./api.js";
@@ -21,7 +22,11 @@ const onUnauthorized = () => {
   }
 };
 
-const api = createAPI(onUnauthorized);
+const onServerUnavailable = () => {
+  store.dispatch(DataActionCreator.saveServerStatus(ServerStatus.NOT_AVAILABLE));
+};
+
+const api = createAPI(onUnauthorized, onServerUnavailable);
 
 const store = createStore(
     reducer,

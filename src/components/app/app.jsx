@@ -11,14 +11,14 @@ import MyList from "../my-list/my-list.jsx";
 import PrivateRoute from "../private-route/private-route.jsx";
 import GuestRoute from "../guest-route/guest-route.jsx";
 import {Settings, AppRoute} from "../../const.js";
-import {getMovies, getPromoMovie, getFavoriteMovies, getReviews} from "../../reducer/data/selector.js";
+import {getServerStatus, getMovies, getPromoMovie, getFavoriteMovies, getReviews} from "../../reducer/data/selector.js";
 import {getPreviousPath} from "../../reducer/page/selector.js";
 import {getAuthorizationStatus, getUserInfo} from "../../reducer/user/selector.js";
 import withVideo from "../../hocs/with-video/with-video.js";
 import withLoginSubmit from "../../hocs/with-login-submit/with-login-submit.js";
 import withAddReviewState from "../../hocs/with-add-review-state/with-add-review-state.js";
 import {Operation as UserOperation} from "../../reducer/user/user.js";
-import {Operation as DataOperation} from "../../reducer/data/data.js";
+import {Operation as DataOperation, ServerStatus} from "../../reducer/data/data.js";
 import {ActionCreator as PageActionCreator} from "../../reducer/page/page.js";
 import history from "../../history.js";
 import {getSimilarMovies} from "../../reducer/data/selector.js";
@@ -29,6 +29,7 @@ const AddReviewWrapper = withAddReviewState(AddReview);
 
 const App = (props) => {
   const {
+    serverStatus,
     movies,
     promoMovie,
     favoriteMovies,
@@ -52,6 +53,13 @@ const App = (props) => {
 
   return (
     <Router history={history}>
+      {serverStatus === ServerStatus.NOT_AVAILABLE && (
+        <div>
+          <p style={{color: `#FF0000`}}>Unfortunately, the server is temporarily unavailable.</p>
+          <p style={{color: `#FF0000`}}>Try again later.</p>
+        </div>
+      )}
+
       <Switch>
         <Route exact path={AppRoute.ROOT}>
           <Main
@@ -214,12 +222,33 @@ const App = (props) => {
             />
           )}
         />
+
+        <Route
+          render={() => (
+            <>
+              <h1>
+                404.
+                <br />
+                <small>Page not found</small>
+              </h1>
+              <a href="main.html"
+                onClick = {(evt) => {
+                  evt.preventDefault();
+                  historyPushWithSavePath(AppRoute.ROOT);
+                }}
+              >
+                Go to main page
+              </a>
+            </>
+          )}
+        />
       </Switch>
     </Router>
   );
 };
 
 const mapStateToProps = (state) => ({
+  serverStatus: getServerStatus(state),
   movies: getMovies(state),
   promoMovie: getPromoMovie(state),
   favoriteMovies: getFavoriteMovies(state),
@@ -260,6 +289,7 @@ export default connect(
 )(App);
 
 App.propTypes = {
+  serverStatus: PropTypes.string.isRequired,
   movies: PropTypes.arrayOf(
       PropTypes.shape({
         title: PropTypes.string.isRequired,

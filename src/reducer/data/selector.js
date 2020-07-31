@@ -5,6 +5,10 @@ import {formatReviewDate} from "../../utils/utils.js";
 
 const NAME_SPACE = NameSpace.DATA;
 
+export const getServerStatus = (state) => {
+  return state[NAME_SPACE].serverStatus;
+};
+
 const adaptMovie = (movie) => {
   if (movie) {
     if (movie.video_link) {

@@ -3,7 +3,13 @@ import NameSpace from "../name-space.js";
 
 const NAME_SPACE = NameSpace.DATA;
 
+const ServerStatus = {
+  AVAILABLE: `AVAILABLE`,
+  NOT_AVAILABLE: `NOT_AVAILABLE`,
+};
+
 const initialState = {
+  serverStatus: ServerStatus.AVAILABLE,
   movies: [],
   promoMovie: null,
   favoriteMovies: [],
@@ -11,6 +17,7 @@ const initialState = {
 };
 
 const ActionType = {
+  SAVE_SERVER_STATUS: `SAVE_SERVER_STATUS`,
   LOAD_MOVIES: `LOAD_MOVIES`,
   LOAD_PROMO_MOVIE: `LOAD_PROMO_MOVIE`,
   LOAD_FAVORITE_MOVIES: `LOAD_FAVORITE_MOVIES`,
@@ -21,6 +28,10 @@ const ActionType = {
 };
 
 const ActionCreator = {
+  saveServerStatus: (newStatus) => ({
+    type: ActionType.SAVE_SERVER_STATUS,
+    payload: newStatus
+  }),
   loadMovies: (movies) => ({
     type: ActionType.LOAD_MOVIES,
     payload: movies
@@ -121,6 +132,10 @@ const Operation = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case ActionType.SAVE_SERVER_STATUS:
+      return extend(state, {
+        serverStatus: action.payload
+      });
     case ActionType.LOAD_MOVIES:
       return extend(state, {
         movies: action.payload
@@ -163,4 +178,4 @@ const reducer = (state = initialState, action) => {
   return state;
 };
 
-export {reducer, ActionType, ActionCreator, Operation};
+export {reducer, ActionType, ActionCreator, Operation, ServerStatus};
