@@ -11,6 +11,7 @@ const withAddReviewState = (Component) => {
         reviewText: ``,
         isButtonDisabled: true,
         isFormDisabled: false,
+        isServerError: false,
       };
       this.ratingChangeHandler = this.ratingChangeHandler.bind(this);
       this.reviewTextChangeHandler = this.reviewTextChangeHandler.bind(this);
@@ -28,7 +29,8 @@ const withAddReviewState = (Component) => {
     submitHandler() {
       const {
         movie,
-        onSubmit
+        onSubmit,
+        onSuccess
       } = this.props;
 
       const commentData = {
@@ -36,12 +38,9 @@ const withAddReviewState = (Component) => {
         rating: this.state.rating,
         comment: this.state.reviewText,
       };
-      const onSuccess = () => {
-        this.setState({isFormDisabled: false});
-        this.props.onSuccess();
-      };
       const onError = () => {
         this.setState({isFormDisabled: false});
+        this.setState({isServerError: true});
       };
 
       if (!this.state.isButtonDisabled) {
@@ -67,6 +66,7 @@ const withAddReviewState = (Component) => {
           reviewText = {this.state.reviewText}
           isButtonDisabled = {this.state.isButtonDisabled}
           isFormDisabled = {this.state.isFormDisabled}
+          isServerError = {this.state.isServerError}
           onRatingChange = {this.ratingChangeHandler}
           onReviewTextChange = {this.reviewTextChangeHandler}
           onSubmit = {this.submitHandler}

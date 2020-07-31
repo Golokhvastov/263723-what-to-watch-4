@@ -133,9 +133,10 @@ const App = (props) => {
               authorizationStatus = {authorizationStatus}
               userInfo = {userInfo}
               onSubmit = {postReview}
-              onSuccess = {() =>
-                historyPushWithSavePath(`${AppRoute.FILM}/${routeProps.match.params.id}`)
-              }
+              onSuccess = {() => {
+                loadReviewsForId(Number(routeProps.match.params.id));
+                historyPushWithSavePath(`${AppRoute.FILM}/${routeProps.match.params.id}`);
+              }}
               onLogoClick = {() =>
                 historyPushWithSavePath(AppRoute.ROOT)
               }

@@ -13,6 +13,7 @@ const AddReview = (props) => {
     rating,
     isButtonDisabled,
     isFormDisabled,
+    isServerError,
     onRatingChange,
     onReviewTextChange,
     onSignInClick,
@@ -145,8 +146,14 @@ const AddReview = (props) => {
                 disabled={(isButtonDisabled || isFormDisabled) ? true : false}
               >Post</button>
             </div>
-
           </div>
+
+          {isServerError && (
+            <div>
+              <p style={{color: `#FF0000`}}>The data saving operation failed.</p>
+              <p style={{color: `#FF0000`}}>Change the request and try again in a few minutes.</p>
+            </div>
+          )}
         </form>
       </div>
 
@@ -175,6 +182,7 @@ AddReview.propTypes = {
   reviewText: PropTypes.string,
   isButtonDisabled: PropTypes.bool.isRequired,
   isFormDisabled: PropTypes.bool.isRequired,
+  isServerError: PropTypes.bool.isRequired,
   onRatingChange: PropTypes.func.isRequired,
   onReviewTextChange: PropTypes.func.isRequired,
   onSignInClick: PropTypes.func.isRequired,
