@@ -16,10 +16,6 @@ import {AppRoute} from "./const.js";
 
 const onUnauthorized = () => {
   store.dispatch(UserActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
-  if (history.location.pathname !== AppRoute.LOGIN) {
-    store.dispatch(PageActionCreator.rememberPreviousPath(history.location.pathname));
-    history.push(AppRoute.LOGIN);
-  }
 };
 
 const onServerUnavailable = () => {
@@ -47,3 +43,8 @@ ReactDOM.render(
     </Provider>,
     document.querySelector(`#root`)
 );
+
+// if (history.location.pathname !== AppRoute.LOGIN) {
+//   store.dispatch(PageActionCreator.rememberPreviousPath(history.location.pathname));
+//   history.push(AppRoute.LOGIN);
+// }
