@@ -160,7 +160,7 @@ class MoviePage extends React.PureComponent {
               <TabsWrapper
                 movie={movie}
                 reviews={reviews}
-                startItem = {Settings.startMoviePageTab}
+                startItem = {Settings.START_MOVIE_PAGE_TAB}
               />
             </div>
           </div>

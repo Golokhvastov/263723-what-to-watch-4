@@ -125,7 +125,7 @@ const App = (props) => {
                 const activeMovie = movies.find((movie) => movie.id === Number(routeProps.match.params.id));
 
                 if (activeMovie) {
-                  const similarMovies = getSimilarMovies(movies, activeMovie, Settings.maxSimilarMovies);
+                  const similarMovies = getSimilarMovies(movies, activeMovie, Settings.MAX_SIMILAR_MOVIES);
                   return (
                     <MoviePage
                       movie = {activeMovie}

@@ -106,7 +106,7 @@ const getArg2 = (arg1, arg2) => arg2;
 export const getFilteredMovies = createSelector(
     [getArg, getArg2],
     (movies, genre) => {
-      if (genre !== Settings.allGenres) {
+      if (genre !== Settings.ALL_GENRES) {
         return movies.filter((movie) => movie.genre === genre);
       }
       return movies;
@@ -129,8 +129,8 @@ export const getGenresList = createSelector(
     (movies) => {
       const genres = movies.map((movie) => movie.genre);
       let uniqueGenres = genres.filter((value, index, array) => array.indexOf(value) === index);
-      uniqueGenres.unshift(Settings.allGenres);
+      uniqueGenres.unshift(Settings.ALL_GENRES);
 
-      return uniqueGenres.slice(0, Settings.maxFiltersInMain);
+      return uniqueGenres.slice(0, Settings.MAX_GENRES_IN_MAIN);
     }
 );

@@ -131,7 +131,7 @@ const Main = (props) => {
 
         <MoviesCatalogWrapper
           onMovieTitleClick = {onMovieTitleClick}
-          startItem = {Settings.allGenres}
+          startItem = {Settings.ALL_GENRES}
         />
 
         <footer className="page-footer">

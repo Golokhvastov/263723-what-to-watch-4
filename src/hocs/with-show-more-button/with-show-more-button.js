@@ -9,7 +9,7 @@ const withShowMoreButton = (Component) => {
     constructor(props) {
       super(props);
       this.state = {
-        shownMoviesCount: Settings.startMoviesCount,
+        shownMoviesCount: Settings.START_MOVIES_COUNT,
         activeGenre: props.activeGenre,
       };
       this.showMoreButtonClickHandler = this.showMoreButtonClickHandler.bind(this);
@@ -17,14 +17,14 @@ const withShowMoreButton = (Component) => {
 
     showMoreButtonClickHandler() {
       this.setState(
-          (prevState) => ({shownMoviesCount: prevState.shownMoviesCount + Settings.incrementMovieForButtonClick})
+          (prevState) => ({shownMoviesCount: prevState.shownMoviesCount + Settings.INCREMENT_MOVIES_COUNT_FOR_BUTTON_CLICK})
       );
     }
 
     componentDidUpdate() {
       if (this.props.activeGenre !== this.state.activeGenre) {
         this.setState({
-          shownMoviesCount: Settings.startMoviesCount,
+          shownMoviesCount: Settings.START_MOVIES_COUNT,
           activeGenre: this.props.activeGenre
         });
       }
