@@ -50,19 +50,19 @@ const Tabs = (props) => {
         </ul>
       </nav>
 
-      {(activeTab === TabNames.OVERVIEW && movie) && (
+      {(activeTab === TabNames.OVERVIEW) && (
         <TabOverview
           movie={movie}
         />
       )}
 
-      {(activeTab === TabNames.DETAILS && movie) && (
+      {(activeTab === TabNames.DETAILS) && (
         <TabDetails
           movie={movie}
         />
       )}
 
-      {(activeTab === TabNames.REVIEWS && movie) && (
+      {(activeTab === TabNames.REVIEWS) && (
         <TabReviews
           reviews={reviews}
         />

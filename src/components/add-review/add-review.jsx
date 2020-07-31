@@ -20,17 +20,12 @@ const AddReview = (props) => {
     onAvatarClick
   } = props;
 
-  let title;
-  let posterImage;
-  let backgroundImage;
-  let backgroundColor;
-
-  if (movie) {
-    title = movie.title;
-    posterImage = movie.posterImage;
-    backgroundImage = movie.backgroundImage;
-    backgroundColor = movie.backgroundColor;
-  }
+  const {
+    title,
+    posterImage,
+    backgroundImage,
+    backgroundColor,
+  } = movie;
 
   const _renderStars = () => {
     let result = [];
@@ -176,7 +171,7 @@ AddReview.propTypes = {
   onMovieTitleClick: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   userInfo: PropTypes.shape({
-    avatarUrl: PropTypes.string.isRequired,
+    avatarUrl: PropTypes.string,
   }),
   rating: PropTypes.string,
   reviewText: PropTypes.string,

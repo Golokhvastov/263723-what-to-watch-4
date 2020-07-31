@@ -13,13 +13,10 @@ const FullscreenPlayer = (props) => {
     children
   } = props;
 
-  let title;
-  let runTime = 1;
-
-  if (movie) {
-    title = movie.title;
-    runTime = movie.runTime;
-  }
+  const {
+    title,
+    runTime,
+  } = movie;
 
   let seconds = progress % 60;
   let minutes = Math.floor(progress / 60) % 60;

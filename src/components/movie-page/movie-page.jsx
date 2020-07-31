@@ -36,23 +36,15 @@ class MoviePage extends React.PureComponent {
       onAvatarClick
     } = this.props;
 
-    let title;
-    let genre;
-    let year;
-    let posterImage;
-    let backgroundImage;
-    let backgroundColor;
-    let isFavorite;
-
-    if (movie) {
-      title = movie.title;
-      genre = movie.genre;
-      year = movie.year;
-      posterImage = movie.posterImage;
-      backgroundImage = movie.backgroundImage;
-      backgroundColor = movie.backgroundColor;
-      isFavorite = movie.isFavorite;
-    }
+    const {
+      title,
+      genre,
+      year,
+      posterImage,
+      backgroundImage,
+      backgroundColor,
+      isFavorite,
+    } = movie;
 
     return (
       <>
@@ -239,7 +231,7 @@ MoviePage.propTypes = {
   onPlayClick: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   userInfo: PropTypes.shape({
-    avatarUrl: PropTypes.string.isRequired,
+    avatarUrl: PropTypes.string,
   }),
   addMovieInFavorite: PropTypes.func.isRequired,
   removeMovieFromFavorite: PropTypes.func.isRequired,

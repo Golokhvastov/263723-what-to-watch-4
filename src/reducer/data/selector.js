@@ -91,8 +91,10 @@ export const getTextRating = (value) => {
     return `Normal`;
   } else if (value >= 5 && value < 8) {
     return `Good`;
-  } else if (value >= 8 && value <= 10) {
+  } else if (value >= 8 && value < 10) {
     return `Very good`;
+  } else if (value === 10) {
+    return `Amesome`;
   }
 
   return ``;

@@ -20,23 +20,15 @@ const Main = (props) => {
     onAvatarClick
   } = props;
 
-  let id;
-  let title;
-  let genre;
-  let year;
-  let posterImage;
-  let backgroundImage;
-  let isFavorite;
-
-  if (promoMovie) {
-    id = promoMovie.id;
-    title = promoMovie.title;
-    genre = promoMovie.genre;
-    year = promoMovie.year;
-    posterImage = promoMovie.posterImage;
-    backgroundImage = promoMovie.backgroundImage;
-    isFavorite = promoMovie.isFavorite;
-  }
+  const {
+    id,
+    title,
+    genre,
+    year,
+    posterImage,
+    backgroundImage,
+    isFavorite,
+  } = promoMovie;
 
   return (
     <>
@@ -176,7 +168,7 @@ Main.propTypes = {
   onPlayClick: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   userInfo: PropTypes.shape({
-    avatarUrl: PropTypes.string.isRequired,
+    avatarUrl: PropTypes.string,
   }),
   addMovieInFavorite: PropTypes.func.isRequired,
   removeMovieFromFavorite: PropTypes.func.isRequired,
