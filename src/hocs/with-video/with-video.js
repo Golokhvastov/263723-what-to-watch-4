@@ -14,6 +14,7 @@ const withVideo = (Component) => {
       };
       this.playClickHandler = this.playClickHandler.bind(this);
       this.pauseClickHandler = this.pauseClickHandler.bind(this);
+      this.fullscreenButtonHandler = this.fullscreenButtonHandler.bind(this);
     }
 
     playClickHandler() {
@@ -97,6 +98,7 @@ const withVideo = (Component) => {
 
     render() {
       const {progress, isLoading, isPlaying} = this.state;
+      const {controls} = this.props;
 
       return (
         <Component
@@ -106,9 +108,11 @@ const withVideo = (Component) => {
           isPlaying = {isPlaying}
           onPlayClick = {this.playClickHandler}
           onPauseClick = {this.pauseClickHandler}
+          onFullscreen = {this.fullscreenButtonHandler}
         >
           <video ref={this._videoRef} width={this.props.width} height={this.props.height}
             className={this.props.videoClassName}
+            controls={controls}
           />
         </Component>
       );
@@ -125,6 +129,7 @@ const withVideo = (Component) => {
     height: PropTypes.string,
     videoClassName: PropTypes.string,
     volume: PropTypes.number,
+    controls: PropTypes.bool,
   };
 
   return WithVideo;
