@@ -72,7 +72,7 @@ MyList.propTypes = {
   favoriteMovies: PropTypes.arrayOf(
       PropTypes.shape({
         title: PropTypes.string.isRequired,
-        src: PropTypes.string.isRequired,
+        preview: PropTypes.string.isRequired,
         previewImage: PropTypes.string.isRequired,
       })
   ).isRequired,
