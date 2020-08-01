@@ -16,61 +16,67 @@ const TabNamesArray = [
   `Reviews`
 ];
 
-const Tabs = (props) => {
-  const {
-    movie,
-    reviews,
-    activeItem: activeTab,
-    onActiveItemChange: onActiveTabChange
-  } = props;
+class Tabs extends React.PureComponent {
+  constructor(props) {
+    super(props);
+  }
 
-  return (
-    <div className="movie-card__desc">
-      <nav className="movie-nav movie-card__nav">
-        <ul className="movie-nav__list">
-          {TabNamesArray.map((tabName, i) => {
-            return (
-              <li
-                key={tabName + i}
-                className={`movie-nav__item ${tabName === activeTab ? `movie-nav__item--active` : ``}`}
-              >
-                <a
-                  href="#"
-                  className="movie-nav__link"
-                  onClick={(evt) => {
-                    evt.preventDefault();
-                    onActiveTabChange(tabName);
-                  }}
+  render() {
+    const {
+      movie,
+      reviews,
+      activeItem: activeTab,
+      onActiveItemChange: onActiveTabChange
+    } = this.props;
+
+    return (
+      <div className="movie-card__desc">
+        <nav className="movie-nav movie-card__nav">
+          <ul className="movie-nav__list">
+            {TabNamesArray.map((tabName, i) => {
+              return (
+                <li
+                  key={tabName + i}
+                  className={`movie-nav__item ${tabName === activeTab ? `movie-nav__item--active` : ``}`}
                 >
-                  {tabName}
-                </a>
-              </li>
-            );
-          })}
-        </ul>
-      </nav>
+                  <a
+                    href="#"
+                    className="movie-nav__link"
+                    onClick={(evt) => {
+                      evt.preventDefault();
+                      onActiveTabChange(tabName);
+                    }}
+                  >
+                    {tabName}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
 
-      {(activeTab === TabNames.OVERVIEW) && (
-        <TabOverview
-          movie={movie}
-        />
-      )}
+        {(activeTab === TabNames.OVERVIEW) && (
+          <TabOverview
+            movie={movie}
+          />
+        )}
 
-      {(activeTab === TabNames.DETAILS) && (
-        <TabDetails
-          movie={movie}
-        />
-      )}
+        {(activeTab === TabNames.DETAILS) && (
+          <TabDetails
+            movie={movie}
+          />
+        )}
 
-      {(activeTab === TabNames.REVIEWS) && (
-        <TabReviews
-          reviews={reviews}
-        />
-      )}
+        {(activeTab === TabNames.REVIEWS) && (
+          <TabReviews
+            reviews={reviews}
+          />
+        )}
 
-    </div>
-  );
-};
+      </div>
+    );
+  }
+}
 
 export default Tabs;
 

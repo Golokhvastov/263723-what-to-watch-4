@@ -8,35 +8,41 @@ import {getMovies, getGenresList, getFilteredMovies} from "../../reducer/data/se
 
 const MoviesListWrapper = withShowMoreButton(MoviesList);
 
-const MoviesCatalog = (props) => {
-  const {
-    movies,
-    genresList,
-    activeItem: activeGenre,
-    onActiveItemChange: selectGenre,
-    onMovieTitleClick
-  } = props;
+class MoviesCatalog extends React.PureComponent {
+  constructor(props) {
+    super(props);
+  }
 
-  return (
-    <section className="catalog">
-      <h2 className="catalog__title visually-hidden">Catalog</h2>
+  render() {
+    const {
+      movies,
+      genresList,
+      activeItem: activeGenre,
+      onActiveItemChange: selectGenre,
+      onMovieTitleClick
+    } = this.props;
 
-      <GenresList
-        activeGenre = {activeGenre}
-        genres = {genresList}
-        onGenreClick = {(selectedGenre) => {
-          selectGenre(selectedGenre);
-        }}
-      />
+    return (
+      <section className="catalog">
+        <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-      <MoviesListWrapper
-        movies = {getFilteredMovies(movies, activeGenre)}
-        onMovieTitleClick = {onMovieTitleClick}
-        activeGenre = {activeGenre}
-      />
-    </section>
-  );
-};
+        <GenresList
+          activeGenre = {activeGenre}
+          genres = {genresList}
+          onGenreClick = {(selectedGenre) => {
+            selectGenre(selectedGenre);
+          }}
+        />
+
+        <MoviesListWrapper
+          movies = {getFilteredMovies(movies, activeGenre)}
+          onMovieTitleClick = {onMovieTitleClick}
+          activeGenre = {activeGenre}
+        />
+      </section>
+    );
+  }
+}
 
 const mapStateToProps = (state) => ({
   movies: getMovies(state),

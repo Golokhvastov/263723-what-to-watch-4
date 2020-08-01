@@ -1,15 +1,21 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const ShowMore = (props) => {
-  const {onButtonClick} = props;
+class ShowMore extends React.PureComponent {
+  constructor(props) {
+    super(props);
+  }
 
-  return (
-    <div className="catalog__more">
-      <button className="catalog__button" type="button" onClick={onButtonClick}>Show more</button>
-    </div>
-  );
-};
+  render() {
+    const {onButtonClick} = this.props;
+
+    return (
+      <div className="catalog__more">
+        <button className="catalog__button" type="button" onClick={onButtonClick}>Show more</button>
+      </div>
+    );
+  }
+}
 
 export default ShowMore;
 
