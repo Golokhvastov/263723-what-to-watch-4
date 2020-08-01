@@ -25,27 +25,33 @@ const mocks = {
     ],
     runTime: 120,
     preview: `Test4`,
-    reviews: [
-      {
-        rating: 7.9,
-        date: `December 10, 2010`,
-        author: `Test5`,
-        text: `Test5`
+  },
+  reviews: [
+    {
+      rating: 7.9,
+      date: `December 10, 2010`,
+      author: {
+        name: `Test author 1`,
       },
-      {
-        rating: 8.0,
-        date: `December 20, 2020`,
-        author: `Test6`,
-        text: `Test6`
+      text: `Test text 1`
+    },
+    {
+      rating: 8.0,
+      date: `December 20, 2020`,
+      author: {
+        name: `Test author 2`,
       },
-      {
-        rating: 9.0,
-        date: `December 30, 2030`,
-        author: `Test7`,
-        text: `Test7`
-      }
-    ]
-  }
+      text: `Test text 2`
+    },
+    {
+      rating: 9.0,
+      date: `December 30, 2030`,
+      author: {
+        name: `Test author 3`,
+      },
+      text: `Test text 3`
+    }
+  ]
 };
 
 describe(`Tabs render correctly`, () => {
@@ -54,6 +60,7 @@ describe(`Tabs render correctly`, () => {
       .create(
           <Tabs
             movie={mocks.movie}
+            reviews={mocks.reviews}
             activeItem = "Overview"
             onActiveItemChange = {() => {}}
           />
@@ -67,6 +74,7 @@ describe(`Tabs render correctly`, () => {
       .create(
           <Tabs
             movie={mocks.movie}
+            reviews={mocks.reviews}
             activeItem = "Details"
             onActiveItemChange = {() => {}}
           />
@@ -80,6 +88,7 @@ describe(`Tabs render correctly`, () => {
       .create(
           <Tabs
             movie={mocks.movie}
+            reviews={mocks.reviews}
             activeItem = "Reviews"
             onActiveItemChange = {() => {}}
           />

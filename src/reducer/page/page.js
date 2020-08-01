@@ -1,35 +1,25 @@
 import {extend} from "../../utils/utils.js";
 
 const initialState = {
-  activeMovie: null,
-  playingMovie: null
+  previousPath: null,
 };
 
 const ActionType = {
-  SELECT_MOVIE: `SELECT_MOVIE`,
-  PLAYING_MOVIE: `PLAYING_MOVIE`
+  SAVE_PREVIOUS_PATH: `REMEMBER_PREVIOUS_PATH`,
 };
 
 const ActionCreator = {
-  selectMovie: (movie) => ({
-    type: ActionType.SELECT_MOVIE,
-    payload: movie
+  savePreviousPath: (leavingPath) => ({
+    type: ActionType.SAVE_PREVIOUS_PATH,
+    payload: leavingPath
   }),
-  playMovie: (movie) => ({
-    type: ActionType.PLAYING_MOVIE,
-    payload: movie
-  })
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.SELECT_MOVIE:
+    case ActionType.SAVE_PREVIOUS_PATH:
       return extend(state, {
-        activeMovie: action.payload
-      });
-    case ActionType.PLAYING_MOVIE:
-      return extend(state, {
-        playingMovie: action.payload
+        previousPath: action.payload
       });
   }
 

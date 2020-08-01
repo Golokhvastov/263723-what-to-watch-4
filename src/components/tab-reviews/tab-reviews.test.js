@@ -4,55 +4,67 @@ import TabReviews from "./tab-reviews.jsx";
 
 const mocks = {
   movie: {
-    title: `Test1`,
-    previewImage: `test1.jpg`,
-    genre: `Test genre`,
-    year: 1999,
-    rating: {
-      score: 5.5,
-      votes: 110
-    },
+    id: 11,
+    posterImage: `test posterImage 1.jpg`,
+    previewImage: `test previewImage 1.jpg`,
+    backgroundImage: `test backgroundImage 1.jpg`,
+    backgroundColor: `test backgroundColor 1.jpg`,
+    isFavorite: false,
     descriptions: [
-      `Test description1`,
-      `Test description2`,
+      `Test description 1-1`,
+      `Test description 1-2`,
     ],
-    director: `Test director`,
+    director: `Test director 1`,
+    genre: `Test genre 1`,
+    preview: `Test preview 1`,
+    rating: {
+      score: 1.0,
+      votes: 112
+    },
+    runTime: 113,
+    src: `Test src 1`,
     starring: [
-      `Test starring 1`,
-      `Test starring 2`,
-      `Test starring 3`,
-      `Test starring 4`,
+      `Test starring 1-1`,
+      `Test starring 1-2`,
+      `Test starring 1-3`,
+      `Test starring 1-4`,
     ],
-    runTime: 120,
-    preview: `Test4`,
-    reviews: [
-      {
-        rating: 7.9,
-        date: `December 10, 2010`,
-        author: `Test5`,
-        text: `Test5`
+    title: `Test1`,
+    year: 2001,
+  },
+  reviews: [
+    {
+      rating: 7.9,
+      date: `December 10, 2010`,
+      author: {
+        name: `Test author 1`,
       },
-      {
-        rating: 8.0,
-        date: `December 20, 2020`,
-        author: `Test6`,
-        text: `Test6`
+      text: `Test text 1`
+    },
+    {
+      rating: 8.0,
+      date: `December 20, 2020`,
+      author: {
+        name: `Test author 2`,
       },
-      {
-        rating: 9.0,
-        date: `December 30, 2030`,
-        author: `Test7`,
-        text: `Test7`
-      }
-    ]
-  }
+      text: `Test text 2`
+    },
+    {
+      rating: 9.0,
+      date: `December 30, 2030`,
+      author: {
+        name: `Test author 3`,
+      },
+      text: `Test text 3`
+    }
+  ]
 };
 
 it(`TabReviews render correctly`, () => {
   const tree = renderer
     .create(
         <TabReviews
-          movie={mocks.movie}
+          reviews={mocks.reviews}
         />
     ).toJSON();
 

@@ -19,6 +19,7 @@ const TabNamesArray = [
 const Tabs = (props) => {
   const {
     movie,
+    reviews,
     activeItem: activeTab,
     onActiveItemChange: onActiveTabChange
   } = props;
@@ -49,21 +50,21 @@ const Tabs = (props) => {
         </ul>
       </nav>
 
-      {(activeTab === TabNames.OVERVIEW && movie) && (
+      {(activeTab === TabNames.OVERVIEW) && (
         <TabOverview
           movie={movie}
         />
       )}
 
-      {(activeTab === TabNames.DETAILS && movie) && (
+      {(activeTab === TabNames.DETAILS) && (
         <TabDetails
           movie={movie}
         />
       )}
 
-      {(activeTab === TabNames.REVIEWS && movie) && (
+      {(activeTab === TabNames.REVIEWS) && (
         <TabReviews
-          movie={movie}
+          reviews={reviews}
         />
       )}
 
@@ -75,8 +76,6 @@ export default Tabs;
 
 Tabs.propTypes = {
   movie: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    previewImage: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
     year: PropTypes.number.isRequired,
     rating: PropTypes.shape({
@@ -91,15 +90,17 @@ Tabs.propTypes = {
         PropTypes.string.isRequired
     ).isRequired,
     runTime: PropTypes.number.isRequired,
-    reviews: PropTypes.arrayOf(
-        PropTypes.shape({
-          rating: PropTypes.number.isRequired,
-          date: PropTypes.string.isRequired,
-          author: PropTypes.string.isRequired,
-          text: PropTypes.string.isRequired
-        })
-    ).isRequired
   }).isRequired,
   activeItem: PropTypes.string.isRequired,
-  onActiveItemChange: PropTypes.func.isRequired
+  onActiveItemChange: PropTypes.func.isRequired,
+  reviews: PropTypes.arrayOf(
+      PropTypes.shape({
+        rating: PropTypes.number.isRequired,
+        date: PropTypes.string.isRequired,
+        author: PropTypes.shape({
+          name: PropTypes.string.isRequired,
+        }),
+        text: PropTypes.string.isRequired
+      })
+  ),
 };

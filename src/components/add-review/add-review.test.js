@@ -5,12 +5,17 @@ import {AuthorizationStatus} from "../../reducer/user/user.js";
 import {Router} from "react-router-dom";
 import history from "../../history.js";
 
-const movie = {
-  id: 38,
-  title: `Test1`,
-  posterImage: `test1.jpg`,
-  backgroundImage: `test1.jpg`,
-  backgroundColor: `test1.jpg`,
+const mocks = {
+  movie: {
+    id: 38,
+    title: `Test1`,
+    posterImage: `test1.jpg`,
+    backgroundImage: `test1.jpg`,
+    backgroundColor: `test1.jpg`,
+  },
+  userInfo: {
+    avatarUrl: `test avatarUrl.jpg`,
+  },
 };
 
 it(`AddReview render correctly`, () => {
@@ -20,18 +25,21 @@ it(`AddReview render correctly`, () => {
           history={history}
         >
           <AddReview
-            movie = {movie}
+            movie = {mocks.movie}
             onSubmit = {() => {}}
             onLogoClick = {() => {}}
+            onMovieTitleClick = {() => {}}
             authorizationStatus = {AuthorizationStatus.AUTH}
-            activeItem = {{
-              rating: null,
-              reviewText: null,
-              isRatingChanged: null,
-              isTextCorrect: null,
-            }}
-            onActiveItemChange = {() => {}}
-            waitingRequest = {false}
+            userInfo = {mocks.userInfo}
+            rating = {null}
+            reviewText = {null}
+            isButtonDisabled = {true}
+            isFormDisabled = {false}
+            isServerError = {false}
+            onRatingChange = {() => {}}
+            onReviewTextChange = {() => {}}
+            onSignInClick = {() => {}}
+            onAvatarClick = {() => {}}
           />
         </Router>
     ).toJSON();

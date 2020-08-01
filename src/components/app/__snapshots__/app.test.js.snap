@@ -50,12 +50,18 @@ Array [
         <div
           className="user-block__avatar"
         >
-          <img
-            alt="User avatar"
-            height="63"
-            src="img/avatar.jpg"
-            width="63"
-          />
+          <a
+            className="user-block__link"
+            href="login.html"
+            onClick={[Function]}
+          >
+            <img
+              alt="User avatar"
+              height="63"
+              src="test avatarUrl.jpg"
+              width="63"
+            />
+          </a>
         </div>
       </div>
     </header>
@@ -188,17 +194,6 @@ Array [
             Test22
           </a>
         </li>
-        <li
-          className="catalog__genres-item "
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            Test33
-          </a>
-        </li>
       </ul>
       <div
         className="catalog__movies-list"
@@ -254,33 +249,6 @@ Array [
               href="movie-page.html"
             >
               Test2
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <img
-              alt="Test3"
-              height="175"
-              src="test3.jpg"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-            >
-              Test3
             </a>
           </h3>
         </article>

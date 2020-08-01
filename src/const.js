@@ -1,10 +1,10 @@
 export const Settings = {
-  maxSimilarMovies: 4,
-  startMoviesCount: 8,
-  incrementMovieForButtonClick: 8,
-  allGenres: `All genres`,
-  maxFiltersInMain: 10,
-  startMoviePageTab: `Overview`,
+  MAX_SIMILAR_MOVIES: 4,
+  START_MOVIES_COUNT: 8,
+  INCREMENT_MOVIES_COUNT_FOR_BUTTON_CLICK: 8,
+  ALL_GENRES: `All genres`,
+  MAX_GENRES_IN_MAIN: 10,
+  START_MOVIE_PAGE_TAB: `Overview`,
 };
 
 export const AppRoute = {
@@ -14,4 +14,5 @@ export const AppRoute = {
   MY_LIST: `/mylist`,
   PLAYER: `/player`,
   ROOT: `/`,
+  ERROR: `/404`,
 };

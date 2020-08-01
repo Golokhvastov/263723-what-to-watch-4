@@ -76,7 +76,36 @@ const mocks = {
       previewImage: `test10.jpg`,
       preview: `test10.mp4`
     },
-  ]
+  ],
+  reviews: [
+    {
+      rating: 7.9,
+      date: `December 10, 2010`,
+      author: {
+        name: `Test author 1`,
+      },
+      text: `Test text 1`
+    },
+    {
+      rating: 8.0,
+      date: `December 20, 2020`,
+      author: {
+        name: `Test author 2`,
+      },
+      text: `Test text 2`
+    },
+    {
+      rating: 9.0,
+      date: `December 30, 2030`,
+      author: {
+        name: `Test author 3`,
+      },
+      text: `Test text 3`
+    }
+  ],
+  userInfo: {
+    avatarUrl: `test avatarUrl.jpg`,
+  },
 };
 
 describe(`MoviePage render correctly`, () => {
@@ -93,8 +122,14 @@ describe(`MoviePage render correctly`, () => {
               onMovieTitleClick = {() => {}}
               onPlayClick = {() => {}}
               authorizationStatus = {AuthorizationStatus.AUTH}
+              userInfo = {mocks.userInfo}
               addMovieInFavorite = {() => {}}
               removeMovieFromFavorite = {() => {}}
+              reviews = {mocks.reviews}
+              loadReviews = {() => {}}
+              onAddReviewButtonClick = {() => {}}
+              onSignInClick = {() => {}}
+              onAvatarClick = {() => {}}
             />
           </Router>, {
             createNodeMock: () => {
@@ -117,8 +152,14 @@ describe(`MoviePage render correctly`, () => {
               onMovieTitleClick = {() => {}}
               onPlayClick = {() => {}}
               authorizationStatus = {AuthorizationStatus.NO_AUTH}
+              userInfo = {null}
               addMovieInFavorite = {() => {}}
               removeMovieFromFavorite = {() => {}}
+              reviews = {mocks.reviews}
+              loadReviews = {() => {}}
+              onAddReviewButtonClick = {() => {}}
+              onSignInClick = {() => {}}
+              onAvatarClick = {() => {}}
             />
           </Router>, {
             createNodeMock: () => {

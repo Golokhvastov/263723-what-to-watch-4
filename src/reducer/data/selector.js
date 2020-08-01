@@ -1,37 +1,34 @@
 import {createSelector} from "reselect";
 import NameSpace from "../name-space.js";
 import {Settings} from "../../const.js";
+import {formatReviewDate} from "../../utils/utils.js";
 
 const NAME_SPACE = NameSpace.DATA;
 
-const adaptMovies = (movies) => {
-  const result = movies.map((movie) => {
+export const getServerStatus = (state) => {
+  return state[NAME_SPACE].serverStatus;
+};
+
+const adaptMovie = (movie) => {
+  if (movie) {
     if (movie.video_link) {
       return {
         id: movie.id,
-        posterImage: movie.poster_image,
-        previewImage: movie.preview_image,
         backgroundImage: movie.background_image,
         backgroundColor: movie.background_color,
-        isFavorite: movie.is_favorite,
         descriptions: [
           movie.description
         ],
         director: movie.director,
         genre: movie.genre,
+        isFavorite: movie.is_favorite,
         preview: movie.preview_video_link,
+        previewImage: movie.preview_image,
+        posterImage: movie.poster_image,
         rating: {
           score: movie.rating,
           votes: movie.scores_count,
         },
-        reviews: [
-          {
-            rating: 7.6,
-            date: `December 20, 2016`,
-            author: `Paula Fleri-Soler`,
-            text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`
-          }
-        ],
         runTime: movie.run_time,
         src: movie.video_link,
         starring: movie.starring,
@@ -39,18 +36,52 @@ const adaptMovies = (movies) => {
         year: movie.released,
       };
     }
-    return movie;
-  });
+  }
 
-  return result;
+  return movie;
+};
+
+const adaptMovies = (movies) => {
+  return movies.map((movie) => adaptMovie(movie));
 };
 
 export const getMovies = (state) => {
   return adaptMovies(state[NAME_SPACE].movies);
 };
 
-export const getWaitingRequest = (state) => {
-  return state[NAME_SPACE].waitingRequest;
+export const getPromoMovie = (state) => {
+  return adaptMovie(state[NAME_SPACE].promoMovie);
+};
+
+export const getFavoriteMovies = (state) => {
+  return adaptMovies(state[NAME_SPACE].favoriteMovies);
+};
+
+const adaptReview = (review) => {
+  if (review) {
+    if (review.user) {
+      return {
+        id: review.id,
+        author: {
+          id: review.user.id,
+          name: review.user.name,
+        },
+        date: formatReviewDate(review.date),
+        rating: review.rating,
+        text: review.comment,
+      };
+    }
+  }
+
+  return review;
+};
+
+const adaptReviews = (reviews) => {
+  return reviews.map((review) => adaptReview(review));
+};
+
+export const getReviews = (state) => {
+  return adaptReviews(state[NAME_SPACE].reviewsForId);
 };
 
 export const getTextRating = (value) => {
@@ -60,8 +91,10 @@ export const getTextRating = (value) => {
     return `Normal`;
   } else if (value >= 5 && value < 8) {
     return `Good`;
-  } else if (value >= 8 && value <= 10) {
+  } else if (value >= 8 && value < 10) {
     return `Very good`;
+  } else if (value === 10) {
+    return `Amesome`;
   }
 
   return ``;
@@ -73,7 +106,7 @@ const getArg2 = (arg1, arg2) => arg2;
 export const getFilteredMovies = createSelector(
     [getArg, getArg2],
     (movies, genre) => {
-      if (genre !== Settings.allGenres) {
+      if (genre !== Settings.ALL_GENRES) {
         return movies.filter((movie) => movie.genre === genre);
       }
       return movies;
@@ -84,13 +117,20 @@ export const getNumberOfMovies = (movies, maxMovies) => {
   return movies.slice(0, maxMovies);
 };
 
+export const getSimilarMovies = (movies, prototypeMovie, maxMovies) => {
+  const filteredMovies = getFilteredMovies(movies, prototypeMovie.genre);
+  const moviesWithoutPrototype = filteredMovies.filter((movie) => movie.id !== prototypeMovie.id);
+
+  return getNumberOfMovies(moviesWithoutPrototype, maxMovies);
+};
+
 export const getGenresList = createSelector(
     getMovies,
     (movies) => {
       const genres = movies.map((movie) => movie.genre);
       let uniqueGenres = genres.filter((value, index, array) => array.indexOf(value) === index);
-      uniqueGenres.unshift(Settings.allGenres);
+      uniqueGenres.unshift(Settings.ALL_GENRES);
 
-      return uniqueGenres.slice(0, Settings.maxFiltersInMain);
+      return uniqueGenres.slice(0, Settings.MAX_GENRES_IN_MAIN);
     }
 );

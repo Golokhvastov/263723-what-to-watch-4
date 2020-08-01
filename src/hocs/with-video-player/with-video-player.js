@@ -42,6 +42,8 @@ const withVideoPlayer = (Component) => {
           isPlaying = {this.state.isPlaying}
           width={`100%`}
           height={`100%`}
+          volume={0}
+          controls={true}
         />
       );
     }
@@ -52,7 +54,7 @@ const withVideoPlayer = (Component) => {
           {...this.props}
           onCardMouseEnter = {this.cardMouseEnterHandler}
           onCardMouseLeave = {this.cardMouseLeaveHandler}
-          renderVideo = {(src, posterSrc) => this.renderVideo(src, posterSrc)}
+          renderVideo = {this.renderVideo}
           isPlaying = {this.state.isPlaying}
         />
       );

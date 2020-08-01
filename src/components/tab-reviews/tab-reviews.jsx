@@ -2,8 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const TabOverview = (props) => {
-  const {movie} = props;
-  const {reviews} = movie;
+  const {reviews} = props;
   const reviewsPart1 = reviews.slice(0, (reviews.length + 1) / 2);
   const reviewsPart2 = reviews.slice((reviews.length + 1) / 2, reviews.length);
 
@@ -17,7 +16,7 @@ const TabOverview = (props) => {
                 <p className="review__text">{review.text}</p>
 
                 <footer className="review__details">
-                  <cite className="review__author">{review.author}</cite>
+                  <cite className="review__author">{review.author.name}</cite>
                   <time className="review__date" dateTime="2016-12-24">{review.date}</time>
                 </footer>
               </blockquote>
@@ -35,7 +34,7 @@ const TabOverview = (props) => {
                 <p className="review__text">{review.text}</p>
 
                 <footer className="review__details">
-                  <cite className="review__author">{review.author}</cite>
+                  <cite className="review__author">{review.author.name}</cite>
                   <time className="review__date" dateTime="2016-12-24">{review.date}</time>
                 </footer>
               </blockquote>
@@ -52,30 +51,15 @@ const TabOverview = (props) => {
 export default TabOverview;
 
 TabOverview.propTypes = {
-  movie: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    previewImage: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    year: PropTypes.number.isRequired,
-    rating: PropTypes.shape({
-      score: PropTypes.number.isRequired,
-      votes: PropTypes.number.isRequired
-    }).isRequired,
-    descriptions: PropTypes.arrayOf(
-        PropTypes.string.isRequired
-    ).isRequired,
-    director: PropTypes.string.isRequired,
-    starring: PropTypes.arrayOf(
-        PropTypes.string.isRequired
-    ).isRequired,
-    runTime: PropTypes.number.isRequired,
-    reviews: PropTypes.arrayOf(
-        PropTypes.shape({
-          rating: PropTypes.number.isRequired,
-          date: PropTypes.string.isRequired,
-          author: PropTypes.string.isRequired,
-          text: PropTypes.string.isRequired
-        })
-    )
-  }).isRequired,
+
+  reviews: PropTypes.arrayOf(
+      PropTypes.shape({
+        rating: PropTypes.number.isRequired,
+        date: PropTypes.string.isRequired,
+        author: PropTypes.shape({
+          name: PropTypes.string.isRequired,
+        }),
+        text: PropTypes.string.isRequired
+      })
+  ).isRequired
 };

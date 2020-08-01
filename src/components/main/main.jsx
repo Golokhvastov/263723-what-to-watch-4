@@ -1,40 +1,34 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {Link} from "react-router-dom";
 import MoviesCatalog from "../movies-catalog/movies-catalog.jsx";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
-import {Settings, AppRoute} from "../../const.js";
+import {Settings} from "../../const.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 
 const MoviesCatalogWrapper = withActiveItem(MoviesCatalog);
 
 const Main = (props) => {
   const {
-    mainMovie,
+    promoMovie,
     onMovieTitleClick,
     onPlayClick,
     authorizationStatus,
+    userInfo,
     addMovieInFavorite,
-    removeMovieFromFavorite
+    removeMovieFromFavorite,
+    onSignInClick,
+    onAvatarClick
   } = props;
 
-  let id;
-  let title;
-  let genre;
-  let year;
-  let posterImage;
-  let backgroundImage;
-  let isFavorite;
-
-  if (mainMovie) {
-    id = mainMovie.id;
-    title = mainMovie.title;
-    genre = mainMovie.genre;
-    year = mainMovie.year;
-    posterImage = mainMovie.posterImage;
-    backgroundImage = mainMovie.backgroundImage;
-    isFavorite = mainMovie.isFavorite;
-  }
+  const {
+    id,
+    title,
+    genre,
+    year,
+    posterImage,
+    backgroundImage,
+    isFavorite,
+  } = promoMovie;
 
   return (
     <>
@@ -58,11 +52,23 @@ const Main = (props) => {
             {authorizationStatus === AuthorizationStatus.AUTH
               ? (
                 <div className="user-block__avatar">
-                  <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+                  <a href="login.html" className="user-block__link"
+                    onClick = {(evt) => {
+                      evt.preventDefault();
+                      onAvatarClick();
+                    }}
+                  >
+                    <img src={userInfo.avatarUrl} alt="User avatar" width="63" height="63" />
+                  </a>
                 </div>
               )
               : (
-                <Link className="user-block__link" to={AppRoute.LOGIN}>Sign in</Link>
+                <a href="sign-in.html" className="user-block__link"
+                  onClick = {(evt) => {
+                    evt.preventDefault();
+                    onSignInClick();
+                  }}
+                >Sign in</a>
               )
             }
           </div>
@@ -85,35 +91,36 @@ const Main = (props) => {
                 <button
                   className="btn btn--play movie-card__button"
                   type="button"
-                  onClick={() => onPlayClick(mainMovie)}
+                  onClick={() => onPlayClick(promoMovie)}
                 >
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
                   <span>Play</span>
                 </button>
-                {isFavorite === true
-                  ? (
-                    <button className="btn btn--list movie-card__button" type="button"
-                      onClick={() => removeMovieFromFavorite(id)}
-                    >
+                <button className="btn btn--list movie-card__button" type="button"
+                  onClick={() => {
+                    if (isFavorite) {
+                      removeMovieFromFavorite(id);
+                    } else {
+                      addMovieInFavorite(id);
+                    }
+                  }}
+                >
+                  {isFavorite === true
+                    ? (
                       <svg viewBox="0 0 18 14" width="18" height="14">
                         <use xlinkHref="#in-list"></use>
                       </svg>
-                      <span>My list</span>
-                    </button>
-                  )
-                  : (
-                    <button className="btn btn--list movie-card__button" type="button"
-                      onClick={() => addMovieInFavorite(id)}
-                    >
+                    )
+                    : (
                       <svg viewBox="0 0 19 20" width="19" height="20">
                         <use xlinkHref="#add"></use>
                       </svg>
-                      <span>My list</span>
-                    </button>
-                  )
-                }
+                    )
+                  }
+                  <span>My list</span>
+                </button>
               </div>
             </div>
           </div>
@@ -124,7 +131,7 @@ const Main = (props) => {
 
         <MoviesCatalogWrapper
           onMovieTitleClick = {onMovieTitleClick}
-          startItem = {Settings.allGenres}
+          startItem = {Settings.ALL_GENRES}
         />
 
         <footer className="page-footer">
@@ -148,7 +155,7 @@ const Main = (props) => {
 export default Main;
 
 Main.propTypes = {
-  mainMovie: PropTypes.shape({
+  promoMovie: PropTypes.shape({
     id: PropTypes.number.isRequired,
     isFavorite: PropTypes.bool.isRequired,
     title: PropTypes.string.isRequired,
@@ -156,10 +163,15 @@ Main.propTypes = {
     backgroundImage: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
     year: PropTypes.number.isRequired,
-  }),
+  }).isRequired,
   onMovieTitleClick: PropTypes.func.isRequired,
   onPlayClick: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
+  userInfo: PropTypes.shape({
+    avatarUrl: PropTypes.string,
+  }),
   addMovieInFavorite: PropTypes.func.isRequired,
   removeMovieFromFavorite: PropTypes.func.isRequired,
+  onSignInClick: PropTypes.func.isRequired,
+  onAvatarClick: PropTypes.func.isRequired,
 };

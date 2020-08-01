@@ -7,12 +7,12 @@ const AuthorizationStatus = {
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
-  authorizationErrorStatus: null,
+  userInfo: {},
 };
 
 const ActionType = {
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
-  CHANGE_AUTHORIZATION_ERROR_STATUS: `CHANGE_AUTHORIZATION_ERROR_STATUS`,
+  LOAD_USER_INFO: `LOAD_USER_INFO`,
 };
 
 const ActionCreator = {
@@ -20,35 +20,36 @@ const ActionCreator = {
     type: ActionType.REQUIRED_AUTHORIZATION,
     payload: status
   }),
-  changeAuthorizationErrorStatus: (status) => ({
-    type: ActionType.CHANGE_AUTHORIZATION_ERROR_STATUS,
-    payload: status
+  loadUserInfo: (userData) => ({
+    type: ActionType.LOAD_USER_INFO,
+    payload: userData
   }),
 };
 
 const Operation = {
   checkAuth: () => (dispatch, getState, api) => {
     return api.get(`/login`)
-      .then(() => {
+      .then((response) => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
+        dispatch(ActionCreator.loadUserInfo(response.data));
       })
       .catch((err) => {
         throw err;
       });
   },
 
-  login: (authData) => (dispatch, getState, api) => {
+  login: (authData, onSuccess, onError) => (dispatch, getState, api) => {
     return api.post(`/login`, {
       email: authData.login,
       password: authData.password,
     })
-      .then(() => {
+      .then((response) => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
-        dispatch(ActionCreator.changeAuthorizationErrorStatus(null));
+        dispatch(ActionCreator.loadUserInfo(response.data));
+        onSuccess();
       })
       .catch((err) => {
-        const {response} = err;
-        dispatch(ActionCreator.changeAuthorizationErrorStatus(response.status));
+        onError();
         throw err;
       });
   },
@@ -60,9 +61,9 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         authorizationStatus: action.payload
       });
-    case ActionType.CHANGE_AUTHORIZATION_ERROR_STATUS:
+    case ActionType.LOAD_USER_INFO:
       return extend(state, {
-        authorizationErrorStatus: action.payload
+        userInfo: action.payload
       });
   }
 

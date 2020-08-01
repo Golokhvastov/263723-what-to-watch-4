@@ -13,13 +13,10 @@ const FullscreenPlayer = (props) => {
     children
   } = props;
 
-  let title;
-  let runTime = 1;
-
-  if (movie) {
-    title = movie.title;
-    runTime = movie.runTime;
-  }
+  const {
+    title,
+    runTime,
+  } = movie;
 
   let seconds = progress % 60;
   let minutes = Math.floor(progress / 60) % 60;
@@ -83,11 +80,11 @@ const FullscreenPlayer = (props) => {
 
           <div className="player__name">{title}</div>
 
-          <button type="button" className="player__full-screen" onClick={(evt) => {
+          <button type="button" className="player__full-screen" onClick={() => {
             if (document.fullscreenElement) {
               document.exitFullscreen();
             } else {
-              evt.target.parentElement.parentElement.parentElement.parentElement.requestFullscreen();
+              document.querySelector(`.player`).requestFullscreen();
             }
           }}>
             <svg viewBox="0 0 27 27" width="27" height="27">
@@ -106,10 +103,8 @@ export default FullscreenPlayer;
 FullscreenPlayer.propTypes = {
   movie: PropTypes.shape({
     title: PropTypes.string.isRequired,
-    src: PropTypes.string.isRequired,
-    previewImage: PropTypes.string.isRequired,
     runTime: PropTypes.number.isRequired,
-  }),
+  }).isRequired,
   onExitClick: PropTypes.func.isRequired,
   progress: PropTypes.number.isRequired,
   isLoading: PropTypes.bool.isRequired,
@@ -121,10 +116,3 @@ FullscreenPlayer.propTypes = {
     PropTypes.node
   ]).isRequired,
 };
-
-// <video src="#" className="player__video" poster="img/player-poster.jpg"></video>
-
-// <svg viewBox="0 0 14 21" width="14" height="21">
-//   <use xlink:href="#pause"></use>
-// </svg>
-// <span>Pause</span>

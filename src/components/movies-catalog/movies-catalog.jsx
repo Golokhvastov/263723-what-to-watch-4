@@ -52,6 +52,7 @@ MoviesCatalog.propTypes = {
   movies: PropTypes.arrayOf(
       PropTypes.shape({
         title: PropTypes.string.isRequired,
+        preview: PropTypes.string.isRequired,
         previewImage: PropTypes.string.isRequired
       })
   ).isRequired,

@@ -38,6 +38,14 @@ const withVideo = (Component) => {
 
       video.volume = 0;
 
+      this.timerId = setTimeout(() => {
+        if (this.props.volume >= 0) {
+          video.volume = this.props.volume;
+        } else {
+          video.volume = 1;
+        }
+      }, 500);
+
       video.oncanplaythrough = () => this.setState({
         isLoading: false
       });
@@ -58,15 +66,6 @@ const withVideo = (Component) => {
     componentDidUpdate() {
       const video = this._videoRef.current;
 
-      if (this.props.movie) {
-        if (video.src !== this.props.movie.src) {
-          video.src = this.props.movie.src;
-        }
-        if (video.poster !== this.props.movie.posterImage) {
-          video.poster = this.props.movie.posterImage;
-        }
-      }
-
       if (this.props.isPlaying !== this.state.startIsPlaying) {
         this.setState({
           isPlaying: this.props.isPlaying,
@@ -78,7 +77,6 @@ const withVideo = (Component) => {
         video.play();
       } else {
         video.pause();
-        // video.src = video.src;
       }
     }
 
@@ -91,10 +89,13 @@ const withVideo = (Component) => {
       video.ontimeupdate = null;
       video.volume = null;
       video.src = null;
+
+      clearTimeout(this.timerId);
     }
 
     render() {
       const {progress, isLoading, isPlaying} = this.state;
+      const {controls} = this.props;
 
       return (
         <Component
@@ -107,6 +108,7 @@ const withVideo = (Component) => {
         >
           <video ref={this._videoRef} width={this.props.width} height={this.props.height}
             className={this.props.videoClassName}
+            controls={controls}
           />
         </Component>
       );
@@ -117,28 +119,16 @@ const withVideo = (Component) => {
     movie: PropTypes.shape({
       src: PropTypes.string.isRequired,
       posterImage: PropTypes.string.isRequired,
-    }),
+    }).isRequired,
     isPlaying: PropTypes.bool.isRequired,
     width: PropTypes.string,
     height: PropTypes.string,
     videoClassName: PropTypes.string,
+    volume: PropTypes.number,
+    controls: PropTypes.bool,
   };
 
   return WithVideo;
 };
 
 export default withVideo;
-
-// if (this.props.isPlaying) {
-//   clearTimeout(this.timerId);
-//   this.timerId = setTimeout(() => {
-//     video.currentTime = null;
-//     video.play();
-//   }, 1000);
-// } else {
-//   clearTimeout(this.timerId);
-//   video.pause();
-//   this.timerId = setTimeout(() => {
-//     video.src = video.src;
-//   }, 500);
-// }
