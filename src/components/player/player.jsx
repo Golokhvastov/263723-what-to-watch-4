@@ -1,15 +1,21 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Player = (props) => {
-  const {children} = props;
+class Player extends React.PureComponent {
+  constructor(props) {
+    super(props);
+  }
 
-  return (
-    <>
-      {children}
-    </>
-  );
-};
+  render() {
+    const {children} = this.props;
+
+    return (
+      <>
+        {children}
+      </>
+    );
+  }
+}
 
 export default Player;
 

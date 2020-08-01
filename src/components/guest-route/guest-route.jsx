@@ -44,5 +44,5 @@ GuestRoute.propTypes = {
   path: PropTypes.string.isRequired,
   exact: PropTypes.bool.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
-  previousPath: PropTypes.string.isRequired,
+  previousPath: PropTypes.string,
 };
