@@ -14,17 +14,17 @@ const adaptMovie = (movie) => {
     if (movie.video_link) {
       return {
         id: movie.id,
-        posterImage: movie.poster_image,
-        previewImage: movie.preview_image,
         backgroundImage: movie.background_image,
         backgroundColor: movie.background_color,
-        isFavorite: movie.is_favorite,
         descriptions: [
           movie.description
         ],
         director: movie.director,
         genre: movie.genre,
+        isFavorite: movie.is_favorite,
         preview: movie.preview_video_link,
+        previewImage: movie.preview_image,
+        posterImage: movie.poster_image,
         rating: {
           score: movie.rating,
           votes: movie.scores_count,

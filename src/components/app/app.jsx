@@ -68,8 +68,6 @@ const App = (props) => {
       {movies.length === 0 || !promoMovie
         ? (
           <WaitData
-            promoMovie = {promoMovie}
-            movies = {movies}
             authorizationStatus = {authorizationStatus}
             userInfo = {userInfo}
             onLogoClick = {() =>
@@ -273,8 +271,6 @@ const App = (props) => {
             <Route
               render={() => (
                 <WaitData
-                  promoMovie = {promoMovie}
-                  movies = {movies}
                   authorizationStatus = {authorizationStatus}
                   userInfo = {userInfo}
                   onLogoClick = {() =>
@@ -356,26 +352,44 @@ App.propTypes = {
   serverStatus: PropTypes.string.isRequired,
   movies: PropTypes.arrayOf(
       PropTypes.shape({
-        title: PropTypes.string.isRequired,
+        id: PropTypes.number.isRequired,
+        backgroundImage: PropTypes.string.isRequired,
+        backgroundColor: PropTypes.string.isRequired,
+        descriptions: PropTypes.arrayOf(
+            PropTypes.string.isRequired
+        ).isRequired,
+        director: PropTypes.string.isRequired,
         genre: PropTypes.string.isRequired,
-        year: PropTypes.number.isRequired,
-        src: PropTypes.string.isRequired,
+        isFavorite: PropTypes.bool.isRequired,
+        preview: PropTypes.string.isRequired,
         previewImage: PropTypes.string.isRequired,
+        posterImage: PropTypes.string.isRequired,
+        rating: PropTypes.shape({
+          score: PropTypes.number.isRequired,
+          votes: PropTypes.number.isRequired
+        }).isRequired,
+        runTime: PropTypes.number.isRequired,
+        src: PropTypes.string.isRequired,
+        starring: PropTypes.arrayOf(
+            PropTypes.string.isRequired
+        ).isRequired,
+        title: PropTypes.string.isRequired,
+        year: PropTypes.number.isRequired,
       })
   ).isRequired,
   promoMovie: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    isFavorite: PropTypes.bool.isRequired,
     title: PropTypes.string.isRequired,
+    posterImage: PropTypes.string.isRequired,
+    backgroundImage: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
     year: PropTypes.number.isRequired,
-    src: PropTypes.string.isRequired,
-    previewImage: PropTypes.string.isRequired,
   }),
   favoriteMovies: PropTypes.arrayOf(
       PropTypes.shape({
         title: PropTypes.string.isRequired,
-        genre: PropTypes.string.isRequired,
-        year: PropTypes.number.isRequired,
-        src: PropTypes.string.isRequired,
+        preview: PropTypes.string.isRequired,
         previewImage: PropTypes.string.isRequired,
       })
   ).isRequired,

@@ -194,17 +194,6 @@ Array [
             Test22
           </a>
         </li>
-        <li
-          className="catalog__genres-item "
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            Test33
-          </a>
-        </li>
       </ul>
       <div
         className="catalog__movies-list"
@@ -260,33 +249,6 @@ Array [
               href="movie-page.html"
             >
               Test2
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <img
-              alt="Test3"
-              height="175"
-              src="test3.jpg"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-            >
-              Test3
             </a>
           </h3>
         </article>

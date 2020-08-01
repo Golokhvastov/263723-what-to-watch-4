@@ -224,6 +224,7 @@ MoviePage.propTypes = {
     starring: PropTypes.arrayOf(
         PropTypes.string.isRequired
     ).isRequired,
+    runTime: PropTypes.number.isRequired,
   }).isRequired,
   onLogoClick: PropTypes.func.isRequired,
   similarMovies: PropTypes.array.isRequired,

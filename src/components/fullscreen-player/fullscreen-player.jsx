@@ -103,10 +103,8 @@ export default FullscreenPlayer;
 FullscreenPlayer.propTypes = {
   movie: PropTypes.shape({
     title: PropTypes.string.isRequired,
-    src: PropTypes.string.isRequired,
-    previewImage: PropTypes.string.isRequired,
     runTime: PropTypes.number.isRequired,
-  }),
+  }).isRequired,
   onExitClick: PropTypes.func.isRequired,
   progress: PropTypes.number.isRequired,
   isLoading: PropTypes.bool.isRequired,
@@ -118,10 +116,3 @@ FullscreenPlayer.propTypes = {
     PropTypes.node
   ]).isRequired,
 };
-
-// <video src="#" className="player__video" poster="img/player-poster.jpg"></video>
-
-// <svg viewBox="0 0 14 21" width="14" height="21">
-//   <use xlink:href="#pause"></use>
-// </svg>
-// <span>Pause</span>

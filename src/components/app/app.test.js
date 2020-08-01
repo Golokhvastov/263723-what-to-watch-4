@@ -42,22 +42,10 @@ const mocks = {
       preview: `test1.jpg`,
       src: `test100.jpg`,
       runTime: 19,
-      reviews: [
-        {
-          rating: 8.9,
-          date: `December 24, 2016`,
-          author: `Kate Muir`,
-          text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`
-        },
-        {
-          rating: 7.6,
-          date: `December 20, 2016`,
-          author: `Paula Fleri-Soler`,
-          text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`
-        },
-      ]
     },
     {
+      id: 2,
+      isFavorite: false,
       title: `Test2`,
       previewImage: `test2.jpg`,
       posterImage: `test2.jpg`,
@@ -82,22 +70,6 @@ const mocks = {
       preview: `test2.jpg`,
       src: `test200.jpg`,
       runTime: 28,
-      reviews: [
-        {
-          rating: 7.9,
-          date: `December 29, 2029`,
-          author: `Test29`,
-          text: `Test29 travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`
-        },
-      ]
-    },
-    {
-      title: `Test3`,
-      genre: `Test33`,
-      year: 2030,
-      previewImage: `test3.jpg`,
-      preview: `test3.jpg`,
-      src: `test300.jpg`,
     },
   ],
   reviews: [

@@ -31,7 +31,6 @@ const withActiveItem = (Component) => {
       PropTypes.string,
       PropTypes.number,
       PropTypes.bool,
-      PropTypes.object,
     ]).isRequired,
   };
 

@@ -119,7 +119,7 @@ const withVideo = (Component) => {
     movie: PropTypes.shape({
       src: PropTypes.string.isRequired,
       posterImage: PropTypes.string.isRequired,
-    }),
+    }).isRequired,
     isPlaying: PropTypes.bool.isRequired,
     width: PropTypes.string,
     height: PropTypes.string,
@@ -132,17 +132,3 @@ const withVideo = (Component) => {
 };
 
 export default withVideo;
-
-// if (this.props.isPlaying) {
-//   clearTimeout(this.timerId);
-//   this.timerId = setTimeout(() => {
-//     video.currentTime = null;
-//     video.play();
-//   }, 1000);
-// } else {
-//   clearTimeout(this.timerId);
-//   video.pause();
-//   this.timerId = setTimeout(() => {
-//     video.src = video.src;
-//   }, 500);
-// }
