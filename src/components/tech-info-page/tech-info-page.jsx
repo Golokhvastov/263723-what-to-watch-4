@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 
-const WaitData = (props) => {
+const TechInfoPage = (props) => {
   const {
     children,
     authorizationStatus,
@@ -108,9 +108,9 @@ const WaitData = (props) => {
   );
 };
 
-export default WaitData;
+export default TechInfoPage;
 
-WaitData.propTypes = {
+TechInfoPage.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node

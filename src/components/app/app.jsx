@@ -10,7 +10,7 @@ import AddReview from "../add-review/add-review.jsx";
 import MyList from "../my-list/my-list.jsx";
 import PrivateRoute from "../private-route/private-route.jsx";
 import GuestRoute from "../guest-route/guest-route.jsx";
-import WaitData from "../wait-data/wait-data.jsx";
+import TechInfoPage from "../tech-info-page/tech-info-page.jsx";
 import {Settings, AppRoute} from "../../const.js";
 import {getServerStatus, getMovies, getPromoMovie, getFavoriteMovies, getReviews} from "../../reducer/data/selector.js";
 import {getPreviousPath} from "../../reducer/page/selector.js";
@@ -67,7 +67,7 @@ const App = (props) => {
 
       {movies.length === 0 || !promoMovie
         ? (
-          <WaitData
+          <TechInfoPage
             authorizationStatus = {authorizationStatus}
             userInfo = {userInfo}
             onLogoClick = {() =>
@@ -89,7 +89,7 @@ const App = (props) => {
               <p className="movie-card__meta"></p>
               <p className="movie-card__meta">Вы будете перенаправлены на запрошеную страницу после получения данных.</p>
             </div>
-          </WaitData>
+          </TechInfoPage>
         )
         : (
           <Switch>
@@ -270,7 +270,7 @@ const App = (props) => {
 
             <Route
               render={() => (
-                <WaitData
+                <TechInfoPage
                   authorizationStatus = {authorizationStatus}
                   userInfo = {userInfo}
                   onLogoClick = {() =>
@@ -297,7 +297,7 @@ const App = (props) => {
                       Go to main page
                     </a>
                   </div>
-                </WaitData>
+                </TechInfoPage>
               )}
             />
           </Switch>

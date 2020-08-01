@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import WaitData from "./wait-data.jsx";
+import TechInfoPage from "./tech-info-page.jsx";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 
 const mocks = {
@@ -9,10 +9,10 @@ const mocks = {
   },
 };
 
-it(`WaitData render correctly`, () => {
+it(`TechInfoPage render correctly`, () => {
   const tree = renderer
     .create(
-        <WaitData
+        <TechInfoPage
           authorizationStatus = {AuthorizationStatus.AUTH}
           userInfo = {mocks.userInfo}
           onLogoClick = {() => {}}
@@ -20,7 +20,7 @@ it(`WaitData render correctly`, () => {
           onAvatarClick = {() => {}}
         >
           <div>Test1</div>
-        </WaitData>
+        </TechInfoPage>
     ).toJSON();
 
   expect(tree).toMatchSnapshot();
