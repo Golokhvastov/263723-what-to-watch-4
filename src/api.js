@@ -35,16 +35,3 @@ const createAPI = (onUnauthorized, onServerUnavailable) => {
 };
 
 export {createAPI};
-
-// API.get().then(res => {
-//   console.log();
-// });
-
-// const getInstance = (dispatch) => {
-//   const instance = axios.create({
-//     baseURL: `https://4.react.pages.academy/wtw`,
-//     timeout: 5000,
-//     withCredentials: true,
-//   });
-//   return instance;
-// };
