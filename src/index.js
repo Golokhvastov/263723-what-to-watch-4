@@ -6,20 +6,13 @@ import thunk from "redux-thunk";
 import App from "./components/app/app.jsx";
 import reducer from "./reducer/reducer.js";
 import {ActionCreator as UserActionCreator, AuthorizationStatus} from "./reducer/user/user.js";
-import {ActionCreator as PageActionCreator} from "./reducer/page/page.js";
 import {ActionCreator as DataActionCreator, ServerStatus} from "./reducer/data/data.js";
 import {Operation as DataOperation} from "./reducer/data/data.js";
 import {Operation as UserOperation} from "./reducer/user/user.js";
 import {createAPI} from "./api.js";
-import history from "./history.js";
-import {AppRoute} from "./const.js";
 
 const onUnauthorized = () => {
   store.dispatch(UserActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
-  if (history.location.pathname !== AppRoute.LOGIN) {
-    store.dispatch(PageActionCreator.savePreviousPath(history.location.pathname));
-    history.push(AppRoute.LOGIN);
-  }
 };
 
 const onServerUnavailable = () => {

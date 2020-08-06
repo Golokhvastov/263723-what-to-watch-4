@@ -18,7 +18,7 @@ import {getAuthorizationStatus, getUserInfo} from "../../reducer/user/selector.j
 import withVideo from "../../hocs/with-video/with-video.js";
 import withLoginSubmit from "../../hocs/with-login-submit/with-login-submit.js";
 import withAddReviewState from "../../hocs/with-add-review-state/with-add-review-state.js";
-import {Operation as UserOperation} from "../../reducer/user/user.js";
+import {Operation as UserOperation, AuthorizationStatus} from "../../reducer/user/user.js";
 import {Operation as DataOperation, ServerStatus} from "../../reducer/data/data.js";
 import {ActionCreator as PageActionCreator} from "../../reducer/page/page.js";
 import history from "../../history.js";
@@ -103,7 +103,13 @@ class App extends React.PureComponent {
                   promoMovie = {promoMovie}
                   authorizationStatus = {authorizationStatus}
                   userInfo = {userInfo}
-                  addMovieInFavorite = {addMovieInFavorite}
+                  addMovieInFavorite = {() => {
+                    if (authorizationStatus === AuthorizationStatus.AUTH) {
+                      addMovieInFavorite();
+                    } else {
+                      historyPushWithSavePath(AppRoute.LOGIN);
+                    }
+                  }}
                   removeMovieFromFavorite = {removeMovieFromFavorite}
                   onMovieTitleClick = {(movie) => {
                     loadReviewsForId(Number(movie.id));
@@ -136,7 +142,13 @@ class App extends React.PureComponent {
                         reviews = {reviews}
                         authorizationStatus = {authorizationStatus}
                         userInfo = {userInfo}
-                        addMovieInFavorite = {addMovieInFavorite}
+                        addMovieInFavorite = {() => {
+                          if (authorizationStatus === AuthorizationStatus.AUTH) {
+                            addMovieInFavorite();
+                          } else {
+                            historyPushWithSavePath(AppRoute.LOGIN);
+                          }
+                        }}
                         removeMovieFromFavorite = {removeMovieFromFavorite}
                         onLogoClick = {() =>
                           historyPushWithSavePath(AppRoute.ROOT)
