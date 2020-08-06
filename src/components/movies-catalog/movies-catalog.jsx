@@ -57,6 +57,7 @@ export default connect(
 MoviesCatalog.propTypes = {
   movies: PropTypes.arrayOf(
       PropTypes.shape({
+        genre: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired,
         preview: PropTypes.string.isRequired,
         previewImage: PropTypes.string.isRequired

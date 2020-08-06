@@ -51,7 +51,13 @@ const withShowMoreButton = (Component) => {
   }
 
   WithShowMoreButton.propTypes = {
-    movies: PropTypes.array.isRequired,
+    movies: PropTypes.arrayOf(
+        PropTypes.shape({
+          title: PropTypes.string.isRequired,
+          preview: PropTypes.string.isRequired,
+          previewImage: PropTypes.string.isRequired
+        })
+    ).isRequired,
     activeGenre: PropTypes.string.isRequired,
   };
 
