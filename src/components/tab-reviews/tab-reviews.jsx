@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-class TabOverview extends React.PureComponent {
+class TabReviews extends React.PureComponent {
   constructor(props) {
     super(props);
   }
@@ -54,10 +54,9 @@ class TabOverview extends React.PureComponent {
   }
 }
 
-export default TabOverview;
+export default TabReviews;
 
-TabOverview.propTypes = {
-
+TabReviews.propTypes = {
   reviews: PropTypes.arrayOf(
       PropTypes.shape({
         rating: PropTypes.number.isRequired,
