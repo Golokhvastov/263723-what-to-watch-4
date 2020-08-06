@@ -34,9 +34,16 @@ class AddReview extends React.PureComponent {
 
     const _renderStars = () => {
       let result = [];
+      result[0] = (
+        <input className="rating__input" id={`star-0`} type="radio" name="rating" value="0"
+          checked={rating ? false : true}
+          disabled={true}
+          key={`rating ` + 0}
+        />
+      );
       for (let i = 0; i < 5; i++) {
-        result[i] = (
-          <React.Fragment key={i}>
+        result[i + 1] = (
+          <React.Fragment key={`rating ` + (i + 1)}>
             <input className="rating__input" id={`star-${i + 1}`} type="radio" name="rating" value={i + 1}
               onChange={(evt) => {
                 onRatingChange(evt.target.value);

@@ -128,6 +128,15 @@ exports[`AddReview render correctly 1`] = `
           className="rating__stars"
         >
           <input
+            checked={true}
+            className="rating__input"
+            disabled={true}
+            id="star-0"
+            name="rating"
+            type="radio"
+            value="0"
+          />
+          <input
             checked={false}
             className="rating__input"
             disabled={false}
