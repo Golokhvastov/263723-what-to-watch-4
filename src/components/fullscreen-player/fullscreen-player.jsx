@@ -23,9 +23,11 @@ class FullscreenPlayer extends React.PureComponent {
       runTime,
     } = movie;
 
-    let seconds = progress % 60;
-    let minutes = Math.floor(progress / 60) % 60;
-    let hours = Math.floor(progress / 360) % 60;
+    const remainingTime = (runTime * 60) - progress;
+
+    let seconds = remainingTime % 60;
+    let minutes = Math.floor(remainingTime / 60) % 60;
+    let hours = Math.floor(remainingTime / 3600);
 
     if (seconds <= 9) {
       seconds = `0` + seconds;
