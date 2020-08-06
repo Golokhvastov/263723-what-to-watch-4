@@ -103,9 +103,9 @@ class App extends React.PureComponent {
                   promoMovie = {promoMovie}
                   authorizationStatus = {authorizationStatus}
                   userInfo = {userInfo}
-                  addMovieInFavorite = {() => {
+                  addMovieInFavorite = {(filmId) => {
                     if (authorizationStatus === AuthorizationStatus.AUTH) {
-                      addMovieInFavorite();
+                      addMovieInFavorite(filmId);
                     } else {
                       historyPushWithSavePath(AppRoute.LOGIN);
                     }
@@ -142,9 +142,9 @@ class App extends React.PureComponent {
                         reviews = {reviews}
                         authorizationStatus = {authorizationStatus}
                         userInfo = {userInfo}
-                        addMovieInFavorite = {() => {
+                        addMovieInFavorite = {(filmId) => {
                           if (authorizationStatus === AuthorizationStatus.AUTH) {
-                            addMovieInFavorite();
+                            addMovieInFavorite(filmId);
                           } else {
                             historyPushWithSavePath(AppRoute.LOGIN);
                           }
