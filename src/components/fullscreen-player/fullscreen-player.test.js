@@ -9,6 +9,7 @@ const movie = {
   src: `test4.jpg`,
   runTime: 55,
 };
+const duration = 3300;
 
 describe(`FullscreenPlayer render correctly`, () => {
   it(`progress = 0, isLoading = false, isPlaying = true`, () => {
@@ -18,6 +19,7 @@ describe(`FullscreenPlayer render correctly`, () => {
             movie = {movie}
             onExitClick = {() => {}}
             progress = {0}
+            duration = {duration}
             isLoading = {false}
             isPlaying = {true}
             onPlayClick = {() => {}}
@@ -37,6 +39,7 @@ describe(`FullscreenPlayer render correctly`, () => {
             movie = {movie}
             onExitClick = {() => {}}
             progress = {11}
+            duration = {duration}
             isLoading = {false}
             isPlaying = {false}
             onPlayClick = {() => {}}
@@ -56,6 +59,7 @@ describe(`FullscreenPlayer render correctly`, () => {
             movie = {movie}
             onExitClick = {() => {}}
             progress = {22}
+            duration = {duration}
             isLoading = {true}
             isPlaying = {true}
             onPlayClick = {() => {}}
@@ -75,6 +79,7 @@ describe(`FullscreenPlayer render correctly`, () => {
             movie = {movie}
             onExitClick = {() => {}}
             progress = {100}
+            duration = {duration}
             isLoading = {true}
             isPlaying = {false}
             onPlayClick = {() => {}}

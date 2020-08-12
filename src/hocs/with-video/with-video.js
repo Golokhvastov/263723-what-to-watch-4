@@ -8,6 +8,7 @@ const withVideo = (Component) => {
       this._videoRef = createRef();
       this.state = {
         progress: 0,
+        duration: 0,
         isLoading: true,
         isPlaying: props.isPlaying,
         startIsPlaying: props.isPlaying
@@ -66,6 +67,12 @@ const withVideo = (Component) => {
     componentDidUpdate() {
       const video = this._videoRef.current;
 
+      if (this.state.duration === 0 && video.duration) {
+        this.setState({
+          duration: Math.floor(video.duration),
+        });
+      }
+
       if (this.props.isPlaying !== this.state.startIsPlaying) {
         this.setState({
           isPlaying: this.props.isPlaying,
@@ -94,13 +101,14 @@ const withVideo = (Component) => {
     }
 
     render() {
-      const {progress, isLoading, isPlaying} = this.state;
+      const {progress, duration, isLoading, isPlaying} = this.state;
       const {controls} = this.props;
 
       return (
         <Component
           {...this.props}
           progress = {progress}
+          duration = {duration}
           isLoading = {isLoading}
           isPlaying = {isPlaying}
           onPlayClick = {this.playClickHandler}
