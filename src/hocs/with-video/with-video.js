@@ -80,7 +80,7 @@ const withVideo = (Component) => {
         });
       }
 
-      if (this.state.isPlaying) {
+      if (this.state.isPlaying && this.state.progress < this.state.duration && this.state.duration > 0) {
         video.play();
       } else {
         video.pause();
